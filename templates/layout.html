@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fuentes y Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--Tipografia-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Tipografia.css') }}">
+    <!--Estilos Generales-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{%block title%}Inicio {%endblock%}</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg  ">
+            <div class="container-fluid ">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav text-center mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/quienesomos' %}active{% endif %}"
+                                href="/quienesomos">Quienes Somos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '#' %}active{% endif %}" href="#">Como
+                                Contratar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '#' %}active{% endif %}" href="#">Promociones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content%}
+
+        {%endblock%}
+
+    </main>
+    <footer class="footer footer-animate">
+        <div class="container-fluid py-5">
+            <div class="row text-center text-md-start align-items-start">
+
+                <!-- Logo -->
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <img src="{{ url_for('static', filename='imagenes/footer.svg') }}" alt="Logo"
+                        class="footer-logo img-fluid">
+                    <p class="footer-info mt-3">
+                        La mejor plataforma para tus perfiles de streaming favoritos.
+                    </p>
+                </div>
+
+                <!-- Información -->
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Información al cliente</h5>
+                    <ul class="footer-list">
+                        <li><a href="#">Como Comprar</a></li>
+                        <li><a href="#">Problemas con Netflix</a></li>
+                        <li><a href="#">Problemas con Disney</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contáctanos -->
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Contáctanos</h5>
+
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="bi bi-telephone"></i>
+                            <span>+505 7614 5799</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="bi bi-envelope"></i>
+                            <span>filsmtreamgo@gmail.com</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Tipitapa, Managua</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suscripción -->
+                <div class="col-md-3">
+                    <h5>Suscríbete a nuestro blog</h5>
+
+                    <form class="footer-form">
+                        <input type="text" class="form-control mb-2" placeholder="Nombre" required>
+                        <input type="email" class="form-control mb-2" placeholder="Correo electrónico" required>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Suscribirme
+                        </button>
+                    </form>
+
+                    <div class="footer-social mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Línea inferior -->
+            <hr class="footer-divider">
+
+            <div class="text-center footer-bottom">
+                <small>
+                    © 2025 Todos los derechos reservados |
+                    Desarrollado por <strong>Ing. Royni Torres</strong>
+                </small>
+            </div>
+        </div>
+    </footer>
+    <!--Boton de whatsapp-->
+    <a href="https://wa.me/50576145799" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>

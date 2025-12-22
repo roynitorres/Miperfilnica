@@ -1,0 +1,350 @@
+/*Controlamos el navbar*/
+/* Navbar general */
+.navbar {
+    background-color: #00369f ; /* Fondo oscuro, cámbialo a tu gusto */
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+/* Links */
+.navbar .nav-link {
+    color: #ffffff; /* Color normal */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Hover color + subrayado animado */
+.navbar .nav-link:hover {
+    color: #f4a800; /* Color al pasar mouse */
+}
+
+.navbar .nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #f0a500; /* Color del subrayado */
+    transition: width 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.navbar .nav-link:hover::after {
+    width: 100%; /* Subraya completamente al hacer hover */
+}
+
+/* Link activo */
+.navbar .nav-link.active {
+    color: #f0a500;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/*Controlamos el boton amburguesa*/
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+
+/*Controlamos las dimensicion o tamano de los card*/
+.slider-wrapper {
+    width: 100%;
+    padding: 0 2rem;
+    overflow: hidden; /*Controla el margin de los bordes*/
+    
+}
+
+.slider-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem; /* ← separación tipo Bootstrap */
+    transition: transform 0.8s ease-in-out;
+}
+
+.slider-card {
+    flex: 0 0 calc(25% - 0.75rem);
+    max-width: calc(25% - 0.75rem);
+    
+}
+
+.slider-card-inner {
+    margin: 0 1rem; /* separación visual entre cards */
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.slider-card:nth-child(4n) {
+    margin-right: 0;
+}
+
+.slider-card a {
+    text-decoration: none; /* quita el subrayado */
+    color: inherit;        /* mantiene el color original */
+    display: block;
+}
+
+/* Imagen */
+.card-image {
+    width: 100%;
+    height: auto; /* ajustable */
+    overflow: hidden;
+    /*display: block;*/
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    max-width: none;
+}
+
+
+
+/* Móvil */
+@media (max-width: 767px) {
+    .slider-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+
+/*Contratacion en 3 pasos*/
+.contract-steps {
+    padding: 4rem 0;
+}
+
+/* Banner base */
+.step-banner {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.75rem;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    transition-delay: var(--delay);
+}
+
+/* Estado visible */
+.step-banner.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Imagen */
+.step-banner img {
+    width: 100%;
+    height: auto;   /* CLAVE */
+    display: block;
+}
+
+
+/*controla las dimensiones de la imagen en la hoja detalle*/
+.detalle-img-wrapper {
+    width: 100%;
+}
+
+.detalle-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1rem;
+}
+@media (max-width: 767px) {
+    .detalle-container {
+        padding-left: 2rem; /* similar a px-4 */
+        padding-right: 2rem;
+    }
+
+    /* Separar columnas verticalmente */
+    .detalle-container .col-md-5 {
+        margin-bottom: 2rem;
+    }
+}
+
+
+/*Controlamos el footer*/
+.footer {
+    background-color: #111;
+    color: #eaeaea;
+    padding: 3rem 1rem;
+}
+
+.footer h5 {
+    color: #ffffff;
+}
+
+.footer-list a {
+    color: #cccccc;
+}
+
+.footer-list a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-logo {
+     width: 100%;       /* ocupa todo el ancho de la columna */
+    max-width: 100%;
+    height: auto;      /* mantiene proporción */
+    display: block;
+    margin: 0 auto;    /
+}
+
+
+/*Animacion del footer*/
+.footer-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.footer-animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-info {
+    color: #cccccc;       /* contraste suave con fondo oscuro */
+    font-size: 0.9rem;    /* ligeramente más pequeño que el texto normal */
+    line-height: 1.4;
+}
+
+/*Controla el baner de inicio*/
+.hero {
+    width: 100vw;              /* fuerza ancho total de pantalla */
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;   /* centra la imagen */
+    display: block;
+}
+
+/* M E S P O N S I V O */
+@media (max-width: 768px) {
+    .hero {
+        height: 45vh;
+    }
+
+    .hero-img {
+        object-position: center center;
+    }
+}
+
+
+/*Controlo al whatsapp*/
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover */
+.whatsapp-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 26px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/*Le da animacion sutil a boton de whatsapp*/
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.whatsapp-float {
+    animation: pulse 2.5s infinite;
+}
+
+
+/*Controlamos la imagen de quienes somos*/
+.about-hero {
+    width: 100vw;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.about-hero-content {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffffff;
+}
+
+.about-hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.about-hero-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Responsive SOLO para esta sección */
+@media (max-width: 768px) {
+    .about-hero {
+        height: 35vh;
+    }
+
+    .about-hero-content h1 {
+        font-size: 1.8rem;
+    }
+}

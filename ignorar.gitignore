@@ -1,0 +1,22 @@
+# Entorno virtual
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Flask
+instance/
+.webassets-cache
+
+# VS Code
+.vscode/
+
+# Sistema
+*.log
+*.sqlite3
+*.db
+
+# Windows
+Thumbs.db

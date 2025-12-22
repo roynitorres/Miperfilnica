@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block content %}
+<div class="detalle-nav d-flex justify-content-center mt-2">
+    <a href="{{ url_for('inicio') }}#individuales" class="detalle-link mx-3 text-decoration-none text-dark">
+        <i class="bi bi-person-fill fs-5"></i>
+        <div>Individuales</div>
+    </a>
+    <a href="{{ url_for('inicio') }}#combos-duos" class="detalle-link mx-3 text-decoration-none text-dark">
+        <i class="bi bi-people-fill fs-5"></i>
+        <div>Combos Duos</div>
+    </a>
+    <a href="{{ url_for('inicio') }}#combos-trios" class="detalle-link mx-3 text-decoration-none text-dark">
+        <i class="bi bi-people fs-5"></i>
+        <div>Combos Trios</div>
+    </a>
+</div>
+
+<div class="container mt-3 detalle-container">
+    <div class="row">
+        <!-- Columna izquierda: imagen -->
+        <div class="col-md-5 text-center ">
+            <div class="detalle-img-wrapper">
+                <img src="{{ url_for('static', filename=item.image) }}" class="img-fluid rounded"
+                    alt="{{ item.title }}">
+            </div>
+        </div>
+
+        <!-- Columna derecha: información -->
+        <div class="col-md-7 border border-1 rounded p-4 detalle-info">
+            <h2>{{ item.title }}</h2>
+            <div class="text-dark">
+                <i class="bi bi-star"></i>
+                <i class="bi bi-star"></i>
+                <i class="bi bi-star"></i>
+                <i class="bi bi-star"></i>
+                <i class="bi bi-star"></i>
+            </div>
+            <p><strong>Código:</strong> {{ item.code }}</p>
+            <p style="white-space: pre-line;"><strong>Descripción:</strong> {{ item.description }}</p>
+            <p><strong>Precio:</strong> {{ item.price }}</p>
+            <div class="mt-3 mb-2">
+                <a href="{{ url_for('inicio') }}" class="btn btn-primary">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% if relacionados %}
+<div class="text-center mt-5 mb-5">
+    <h3>Productos Relacionados</h3>
+    <p>También te podrían interesar</p>
+</div>
+
+<div class="slider-wrapper mb-5 relacionados-wrapper">
+    <div class="slider-track slider" data-slider>
+        {% for rel in relacionados %}
+        <div class="card slider-card">
+            <a href="{{ url_for('detalle', tipo=tipo, item_id=loop.index0) }}">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename=rel.image) }}" alt="{{ rel.title }}">
+                </div>
+                <div class="card-body-custom">
+                    <span class="text-dark">Código: {{ rel.code }}</span>
+                    <div class="text-dark">
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <h6 class="fs-4">{{ rel.price }}</h6>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

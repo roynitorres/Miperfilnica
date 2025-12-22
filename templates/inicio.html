@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+{% block title %} Inicio {% endblock %}
+{% block content %}
+<section class="hero">
+    <img src="{{ url_for('static', filename='imagenes/fondo1.svg')}}" class="hero-img">
+
+    <div class="hero-content">
+        <h1>Streaming premium al mejor precio</h1>
+        <p>Elige tu plataforma favorita</p>
+    </div>
+</section>
+
+<div id="individuales" class="text-center mt-5 mb-5">
+    <h1> Plaraformas Individuales</h1>
+    <p>Elije tu favorita</p>
+</div>
+
+<div class="slider-wrapper">
+    <div class="slider-track slider" data-slider>
+        {% for platform in platforms %}
+        <div class="card slider-card">
+                <a href="{{ url_for('detalle', tipo='platform', item_id=loop.index0) }}">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename=platform.image) }}" alt="{{ platform.title }}">
+                    </div>
+
+                    <div class="card-body-custom">
+                        <span class="text-dark">Código: {{ platform.code }}</span>
+                        <div class="text-dark">
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <h6 class="fs-4">{{ platform.price }}</h6>
+                    </div>
+                </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="combos-duos" class="text-center mt-5 mb-5">
+    <h1>Combos Duos</h1>
+    <p>Porque dos son mejor que uno.</p>
+</div>
+
+<div class="slider-wrapper">
+    <div class="slider-track slider" data-slider>
+        {% for combosDuo in combosDuos %}
+        <div class="card slider-card">
+            <a href="{{ url_for('detalle', tipo='combosDuo', item_id=loop.index0) }}">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename=combosDuo.image) }}" class="img-fluid"
+                        alt="{{ combosDuo.title }}">
+                </div>
+                <div class="card-body-custom">
+                    <span class="text-dark">Código: {{combosDuo.code}}</span>
+                    <div class="text-dark">
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+
+                    <h6 class="fs-4">{{ combosDuo.price }}</h6>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div id="combos-trios" class="text-center mt-5 mb-5">
+    <h1> Trial </h1>
+    <p>Hombre precavido vale X 3</p>
+</div>
+
+<div class="slider-wrapper">
+    <div class="slider-track slider" data-slider>
+        {% for combotres in combosTrios %}
+        <div class="card slider-card">
+            <a href="{{ url_for('detalle', tipo='combotres', item_id=loop.index0) }}">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename=combotres.image) }}" class="img-fluid"
+                        alt="{{ combotres.title }}">
+                </div>
+                <div class="card-body-custom">
+                    <span class="text-dark">Código: {{combotres.code}}</span>
+                    <div class="text-dark">
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+
+                    <h6 class="fs-4">{{ combotres.price }}</h6>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<section class="contract-steps">
+    <div class="container-fluid">
+        <h2 class="text-center mb-4">Contratación en 3 pasos</h2>
+        <div class="row g-4">
+            <!-- Paso 1 -->
+            <div class="col-md-4">
+                <div class="step-banner">
+                    <img src="{{ url_for('static', filename='imagenes/aquiimagen.svg') }}" alt="Paso 1">
+
+                </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="col-md-4">
+                <div class="step-banner">
+                    <img src="{{ url_for('static', filename='imagenes/aquiimagen.svg') }}" alt="Paso 2">
+                </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="col-md-4">
+                <div class="step-banner">
+                    <img src="{{ url_for('static', filename='imagenes/aquiimagen.svg') }}" alt="Paso 3">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
