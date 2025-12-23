@@ -1,64 +1,75 @@
 document.querySelectorAll("[data-slider]").forEach(initSlider);
 
 function initSlider(track) {
-    const cards = track.children;
-    let currentIndex = 0;
+    const cards = Array.from(track.children);
+    const container = track.closest(".slider-container");
 
-    const btnPrev = document.querySelector(".slider-btn.prev");
-    const btnNext = document.querySelector(".slider-btn.next");
-    const dotsContainer = document.querySelector("[data-dots]");
+    const btnPrev = container.querySelector(".slider-btn.prev");
+    const btnNext = container.querySelector(".slider-btn.next");
+    /*const dotsContainer = container.querySelector("[data-dots]");*/
+    const dotsContainer = container.nextElementSibling;
+
+    let positions = [];
+    let currentStep = 0;
 
     function cardsPerView() {
         return window.innerWidth < 768 ? 1 : 4;
     }
 
-    function maxIndex() {
-        return cards.length - cardsPerView();
+    function buildPositions() {
+        positions = [];
+        const perView = cardsPerView();
+        const total = cards.length;
+
+        let i = 0;
+        while (i + perView < total) {
+            positions.push(i);
+            i += perView;
+        }
+
+        // último paso especial (solapado)
+        positions.push(total - perView);
     }
 
-    function moveTo(index) {
-        currentIndex = Math.max(0, Math.min(index, maxIndex()));
-        track.style.transform = `translateX(-${currentIndex * (100 / cardsPerView())}%)`;
+    function moveTo(step) {
+        currentStep = Math.max(0, Math.min(step, positions.length - 1));
+
+        const index = positions[currentStep];
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+        const offset = index * (cardWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+
         updateDots();
         updateButtons();
     }
 
     /* ---------- BOTONES ---------- */
 
-    btnNext.addEventListener("click", () => {
-        moveTo(currentIndex + 1);
-    });
-
-    btnPrev.addEventListener("click", () => {
-        moveTo(currentIndex - 1);
-    });
+    btnNext.addEventListener("click", () => moveTo(currentStep + 1));
+    btnPrev.addEventListener("click", () => moveTo(currentStep - 1));
 
     /* ---------- DOTS ---------- */
 
-    function totalSteps() {
-        return maxIndex() + 1;
-    }
-
     function createDots() {
         dotsContainer.innerHTML = "";
-        for (let i = 0; i < totalSteps(); i++) {
+        positions.forEach((_, i) => {
             const dot = document.createElement("button");
             dot.addEventListener("click", () => moveTo(i));
             dotsContainer.appendChild(dot);
-        }
+        });
     }
 
     function updateDots() {
         dotsContainer.querySelectorAll("button").forEach((dot, i) => {
-            dot.classList.toggle("active", i === currentIndex);
+            dot.classList.toggle("active", i === currentStep);
         });
     }
 
-    /* ---------- ESTADOS ---------- */
-
     function updateButtons() {
-        btnPrev.disabled = currentIndex === 0;
-        btnNext.disabled = currentIndex === maxIndex();
+        btnPrev.disabled = currentStep === 0;
+        btnNext.disabled = currentStep === positions.length - 1;
     }
 
     /* ---------- INIT ---------- */
@@ -66,10 +77,12 @@ function initSlider(track) {
     track.style.transition = "transform 0.8s ease-in-out";
 
     window.addEventListener("resize", () => {
-        moveTo(0);
+        buildPositions();
         createDots();
+        moveTo(0);
     });
 
+    buildPositions();
     createDots();
     moveTo(0);
 }

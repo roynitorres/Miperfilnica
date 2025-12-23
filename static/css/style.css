@@ -99,14 +99,14 @@
 .slider-track {
     display: flex;
     flex-wrap: nowrap;
-    gap: 1.5rem; /* ← separación tipo Bootstrap */
+    gap: 1.5rem; /*← separación tipo Bootstrap */
     transition: transform 0.8s ease-in-out;
 }
 
 .slider-card {
     flex: 0 0 calc(25% - 0.75rem);
     max-width: calc(25% - 0.75rem);
-    
+     padding: 0 0.75rem; /* separación visual */
 }
 
 .slider-card-inner {
@@ -116,9 +116,6 @@
     overflow: hidden;
 }
 
-.slider-card:nth-child(4n) {
-    margin-right: 0;
-}
 
 .slider-card a {
     text-decoration: none; /* quita el subrayado */
@@ -185,8 +182,10 @@
 .slider-dots {
     display: flex;
     justify-content: center;
-    gap: 0.6rem;
-    margin-top: 1.5rem;
+    gap: 8px;
+    margin-top: 15px;
+    position: relative;
+    z-index: 10; /* MUY IMPORTANTE */
 }
 
 .slider-dots button {
