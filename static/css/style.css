@@ -152,6 +152,64 @@
     }
 }
 
+/*Ahora controlamos las flechas de los card*/
+.slider-container {
+    position: relative;
+    width: 100%;
+}
+
+/* FLECHAS */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 5;
+}
+
+.slider-btn i {
+    font-size: 1.5rem;
+    color: #004aad;
+}
+
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
+
+/* DOTS */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+.slider-dots button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slider-dots button.active {
+    background: #00369f;
+}
+
+/* MÓVIL */
+@media (max-width: 767px) {
+    .slider-btn {
+        width: 38px;
+        height: 38px;
+    }
+}
 
 /*Contratacion en 3 pasos*/
 .contract-steps {
@@ -263,6 +321,8 @@
     height: 70vh;
     overflow: hidden;
     position: relative;
+
+   
 }
 
 /* Overlay oscuro sutil */
@@ -270,17 +330,11 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.10); /* más claro */
     z-index: 1;
 }
 
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
+
 
 /* CONTENIDO */
 .hero-content {

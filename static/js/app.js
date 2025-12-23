@@ -1,52 +1,78 @@
 document.querySelectorAll("[data-slider]").forEach(initSlider);
 
 function initSlider(track) {
-    let currentStep = 0;
-    const totalCards = track.children.length;
-    const delay = 5000;
+    const cards = track.children;
+    let currentIndex = 0;
 
-    function getCardsPerView() {
-        return window.innerWidth < 768 ? 1 : 4; // móvil = 1, desktop = 4
+    const btnPrev = document.querySelector(".slider-btn.prev");
+    const btnNext = document.querySelector(".slider-btn.next");
+    const dotsContainer = document.querySelector("[data-dots]");
+
+    function cardsPerView() {
+        return window.innerWidth < 768 ? 1 : 4;
     }
 
-    function move() {
-        const cardsPerView = getCardsPerView();
-        const totalSteps = Math.ceil(totalCards / cardsPerView) - 1;
+    function maxIndex() {
+        return cards.length - cardsPerView();
+    }
 
-        currentStep++;
+    function moveTo(index) {
+        currentIndex = Math.max(0, Math.min(index, maxIndex()));
+        track.style.transform = `translateX(-${currentIndex * (100 / cardsPerView())}%)`;
+        updateDots();
+        updateButtons();
+    }
 
-        if (currentStep > totalSteps) {
-            track.style.transition = "none";
-            track.style.transform = "translateX(0)";
-            currentStep = 0;
+    /* ---------- BOTONES ---------- */
 
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    track.style.transition = "transform 0.9s ease-in-out";
-                    track.style.transform = `translateX(-${currentStep * 100}%)`;
-                });
-            });
-        } else {
-            track.style.transition = "transform 0.9s ease-in-out";
-            track.style.transform = `translateX(-${currentStep * 100}%)`;
+    btnNext.addEventListener("click", () => {
+        moveTo(currentIndex + 1);
+    });
+
+    btnPrev.addEventListener("click", () => {
+        moveTo(currentIndex - 1);
+    });
+
+    /* ---------- DOTS ---------- */
+
+    function totalSteps() {
+        return maxIndex() + 1;
+    }
+
+    function createDots() {
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < totalSteps(); i++) {
+            const dot = document.createElement("button");
+            dot.addEventListener("click", () => moveTo(i));
+            dotsContainer.appendChild(dot);
         }
     }
 
-    let interval = setInterval(move, delay);
+    function updateDots() {
+        dotsContainer.querySelectorAll("button").forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentIndex);
+        });
+    }
 
-    track.addEventListener("mouseenter", () => clearInterval(interval));
-    track.addEventListener("mouseleave", () => {
-        interval = setInterval(move, delay);
-    });
+    /* ---------- ESTADOS ---------- */
 
-    // Actualizar on resize para mantener responsive
+    function updateButtons() {
+        btnPrev.disabled = currentIndex === 0;
+        btnNext.disabled = currentIndex === maxIndex();
+    }
+
+    /* ---------- INIT ---------- */
+
+    track.style.transition = "transform 0.8s ease-in-out";
+
     window.addEventListener("resize", () => {
-        track.style.transition = "none";
-        track.style.transform = `translateX(-${currentStep * 100}%)`;
+        moveTo(0);
+        createDots();
     });
+
+    createDots();
+    moveTo(0);
 }
-
-
 
 
 

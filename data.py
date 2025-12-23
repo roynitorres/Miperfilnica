@@ -6,7 +6,7 @@ platforms = [
         "id":1,
         "code": "26101",
         "title": "Netflix Premium   ",
-        "image": "imagenes/1.svg",
+        "image": "imagenes/Individuales/1.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos .""",
@@ -16,7 +16,7 @@ platforms = [
         "id":2,
         "code": "261002",
         "title": "Netflix Privado",
-        "image": "imagenes/2.svg",
+        "image": "imagenes/Individuales/2.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión sin Restricción de Red Wifi | Servicio recomendado para 1 persona |
          No necesita pin de acceso | Sin Actulizar Hogar.""",
@@ -26,7 +26,7 @@ platforms = [
         "id":3,
         "code": "261003",
         "title": "Disney+ Standard",
-        "image": "imagenes/3.svg",
+        "image": "imagenes/Individuales/3.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos | No incluye las transmiciones en vivo SPN de Deportes.""",
@@ -36,7 +36,7 @@ platforms = [
         "id":4,
         "code": "261004",
         "title": "Disney+ Premium",
-        "image": "imagenes/4.svg",
+        "image": "imagenes/Individuales/4.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos | Si Incluye las transmiciones en vivo SPN de Deportes.""",
@@ -46,7 +46,7 @@ platforms = [
         "id":5,
         "code": "261005",
         "title": "Hbo Max",
-        "image": "imagenes/5.svg",
+        "image": "imagenes/Individuales/5.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos """,
@@ -56,7 +56,7 @@ platforms = [
         "id":6,
         "code": "261006",
         "title": "Vix Premium",
-        "image": "imagenes/6.svg",
+        "image": "imagenes/Individuales/6.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          No Incluye PIN de privacidad """,
@@ -66,7 +66,7 @@ platforms = [
         "id":7,
         "code": "261007",
         "title": "Spotify Premium",
-        "image": "imagenes/7.svg",
+        "image": "imagenes/Individuales/7.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Escucha música sin anuncios |
           Escucha música sin conexión donde quieras.| Elige la canción que quieras |
          Salta canciones de forma ilimitada. """,
@@ -76,7 +76,7 @@ platforms = [
         "id":8,
         "code": "261008",
         "title": "Prime Video",
-        "image": "imagenes/8.svg",
+        "image": "imagenes/Individuales/8.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 6 dígitos """,
@@ -86,7 +86,7 @@ platforms = [
         "id":9,
         "code": "261009",
         "title": "YouTube Premium",
-        "image": "imagenes/9.svg",
+        "image": "imagenes/Individuales/9.svg",
         "description": """YouTube y YouTube Music sin anuncios, sin conexión y en segundo plano |
           Escucha música sin conexión donde quieras.| Elige la canción que quieras |
          Salta canciones de forma ilimitada. """,
@@ -96,33 +96,13 @@ platforms = [
         "id":10,
         "code": "261010",
         "title": "Crunchyroll",
-        "image": "imagenes/10.svg",
+        "image": "imagenes/Individuales/10.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          No invluye PIN de privacidad """,
         "price": "C$ 100.00"
     },
-    {
-        "id":11,
-        "code": "261010",
-        "title": "Crunchyroll",
-        "image": "imagenes/10.svg",
-        "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
-         Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
-         No invluye PIN de privacidad """,
-        "price": "C$ 100.00"
-    },{
-        "id":10,
-        "code": "261010",
-        "title": "Crunchyroll",
-        "image": "imagenes/10.svg",
-        "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
-         Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
-         No invluye PIN de privacidad """,
-        "price": "C$ 100.00"
-    }
-
-
+    
     
 ]
 
