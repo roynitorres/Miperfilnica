@@ -1,52 +1,91 @@
 document.querySelectorAll("[data-slider]").forEach(initSlider);
 
 function initSlider(track) {
+    const cards = Array.from(track.children);
+    const container = track.closest(".slider-container");
+
+    const btnPrev = container.querySelector(".slider-btn.prev");
+    const btnNext = container.querySelector(".slider-btn.next");
+    /*const dotsContainer = container.querySelector("[data-dots]");*/
+    const dotsContainer = container.nextElementSibling;
+
+    let positions = [];
     let currentStep = 0;
-    const totalCards = track.children.length;
-    const delay = 5000;
 
-    function getCardsPerView() {
-        return window.innerWidth < 768 ? 1 : 4; // móvil = 1, desktop = 4
+    function cardsPerView() {
+        return window.innerWidth < 768 ? 1 : 4;
     }
 
-    function move() {
-        const cardsPerView = getCardsPerView();
-        const totalSteps = Math.ceil(totalCards / cardsPerView) - 1;
+    function buildPositions() {
+        positions = [];
+        const perView = cardsPerView();
+        const total = cards.length;
 
-        currentStep++;
-
-        if (currentStep > totalSteps) {
-            track.style.transition = "none";
-            track.style.transform = "translateX(0)";
-            currentStep = 0;
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    track.style.transition = "transform 0.9s ease-in-out";
-                    track.style.transform = `translateX(-${currentStep * 100}%)`;
-                });
-            });
-        } else {
-            track.style.transition = "transform 0.9s ease-in-out";
-            track.style.transform = `translateX(-${currentStep * 100}%)`;
+        let i = 0;
+        while (i + perView < total) {
+            positions.push(i);
+            i += perView;
         }
+
+        // último paso especial (solapado)
+        positions.push(total - perView);
     }
 
-    let interval = setInterval(move, delay);
+    function moveTo(step) {
+        currentStep = Math.max(0, Math.min(step, positions.length - 1));
 
-    track.addEventListener("mouseenter", () => clearInterval(interval));
-    track.addEventListener("mouseleave", () => {
-        interval = setInterval(move, delay);
-    });
+        const index = positions[currentStep];
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
 
-    // Actualizar on resize para mantener responsive
+        const offset = index * (cardWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+
+        updateDots();
+        updateButtons();
+    }
+
+    /* ---------- BOTONES ---------- */
+
+    btnNext.addEventListener("click", () => moveTo(currentStep + 1));
+    btnPrev.addEventListener("click", () => moveTo(currentStep - 1));
+
+    /* ---------- DOTS ---------- */
+
+    function createDots() {
+        dotsContainer.innerHTML = "";
+        positions.forEach((_, i) => {
+            const dot = document.createElement("button");
+            dot.addEventListener("click", () => moveTo(i));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        dotsContainer.querySelectorAll("button").forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentStep);
+        });
+    }
+
+    function updateButtons() {
+        btnPrev.disabled = currentStep === 0;
+        btnNext.disabled = currentStep === positions.length - 1;
+    }
+
+    /* ---------- INIT ---------- */
+
+    track.style.transition = "transform 0.8s ease-in-out";
+
     window.addEventListener("resize", () => {
-        track.style.transition = "none";
-        track.style.transform = `translateX(-${currentStep * 100}%)`;
+        buildPositions();
+        createDots();
+        moveTo(0);
     });
+
+    buildPositions();
+    createDots();
+    moveTo(0);
 }
-
-
 
 
 

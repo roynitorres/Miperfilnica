@@ -22,7 +22,7 @@
     <div class="row">
         <!-- Columna izquierda: imagen -->
         <div class="col-md-5 text-center ">
-            <div class="detalle-img-wrapper">
+            <div class="detalle-img-wrapper border border-1 rounded">
                 <img src="{{ url_for('static', filename=item.image) }}" class="img-fluid rounded"
                     alt="{{ item.title }}">
             </div>
@@ -56,30 +56,39 @@
     <p>También te podrían interesar</p>
 </div>
 
-<div class="slider-wrapper mb-5 relacionados-wrapper">
-    <div class="slider-track slider" data-slider>
-        {% for rel in relacionados %}
-        <div class="card slider-card">
-            <a href="{{ url_for('detalle', tipo=tipo, item_id=loop.index0) }}">
-                <div class="card-image">
-                    <img src="{{ url_for('static', filename=rel.image) }}" alt="{{ rel.title }}">
-                </div>
-                <div class="card-body-custom">
-                    <span class="text-dark">Código: {{ rel.code }}</span>
-                    <div class="text-dark">
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
+<div class="slider-container mb-5 relacionados-wrapper">
+    <button class="slider-btn prev" aria-label="Anterior">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+    <div class="slider-wrapper">
+        <div class="slider-track" data-slider>
+            {% for rel in relacionados %}
+            <div class="card slider-card">
+                <a href="{{ url_for('detalle', tipo=tipo, item_id=loop.index0) }}">
+                    <div class="card-image rounded-4">
+                        <img src="{{ url_for('static', filename=rel.image) }}" alt="{{ rel.title }}">
                     </div>
-                    <h6 class="fs-4">{{ rel.price }}</h6>
-                </div>
-            </a>
+                    <div class="card-body-custom">
+                        <span class="text-dark">Código: {{ rel.code }}</span>
+                        <div class="text-dark">
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <h6 class="fs-4">{{ rel.price }}</h6>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+    <button class="slider-btn next" aria-label="Siguiente">
+        <i class="bi bi-chevron-right"></i>
+    </button>
 </div>
+<div class="slider-dots mb-5" data-dots></div>
 {% endif %}
 
 {% endblock %}

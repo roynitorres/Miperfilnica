@@ -99,14 +99,16 @@
 .slider-track {
     display: flex;
     flex-wrap: nowrap;
-    gap: 1.5rem; /* ← separación tipo Bootstrap */
+    gap: 1.5rem; /*← separación tipo Bootstrap */
     transition: transform 0.8s ease-in-out;
 }
 
 .slider-card {
+    padding: 0;
     flex: 0 0 calc(25% - 0.75rem);
     max-width: calc(25% - 0.75rem);
-    
+    border-radius: 1rem;
+    position: relative;
 }
 
 .slider-card-inner {
@@ -116,9 +118,6 @@
     overflow: hidden;
 }
 
-.slider-card:nth-child(4n) {
-    margin-right: 0;
-}
 
 .slider-card a {
     text-decoration: none; /* quita el subrayado */
@@ -132,6 +131,7 @@
     height: auto; /* ajustable */
     overflow: hidden;
     /*display: block;*/
+    
 }
 
 .card-image img {
@@ -140,8 +140,23 @@
     object-fit: cover;
     display: block;
     max-width: none;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius:  0.75rem;
+     
 }
 
+.card-body-custom{
+    text-align: center;
+    
+}
+.card-body-custom h6{
+color: #00369f;
+font-weight: 500;
+}
+.card-body-custom span{
+font-weight: 600;
+color: #070707;
+}
 
 
 /* Móvil */
@@ -151,7 +166,86 @@
         max-width: 100%;
     }
 }
+/*Carrito de compras*/
+.cart-top-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #210bcf;
+    color:  #ffffff;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
 
+.cart-top-icon:hover {
+    transform: scale(1.15);
+    background-color: #210bcf;
+}
+
+/*Ahora controlamos las flechas de los card*/
+.slider-container {
+    position: relative;
+    width: 100%;
+}
+
+/* FLECHAS */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 5;
+}
+
+.slider-btn i {
+    font-size: 1.5rem;
+    color: #004aad;
+}
+
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
+
+/* DOTS */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    position: relative;
+    z-index: 10; /* MUY IMPORTANTE */
+}
+
+.slider-dots button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slider-dots button.active {
+    background: #f0c403;
+}
+
+/* MÓVIL */
+@media (max-width: 767px) {
+    .slider-btn {
+        width: 38px;
+        height: 38px;
+    }
+}
 
 /*Contratacion en 3 pasos*/
 .contract-steps {
@@ -212,7 +306,7 @@
 
 /*Controlamos el footer*/
 .footer {
-    background-color: #111;
+    background-color: #004aad;
     color: #eaeaea;
     padding: 3rem 1rem;
 }
@@ -263,6 +357,15 @@
     height: 70vh;
     overflow: hidden;
     position: relative;
+    
+
+    /* Imagen de fondo */
+    background-image: url("/static/imagenes/Banner Principal.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+   animation: heroZoom 18s ease-in-out infinite alternate;
 }
 
 /* Overlay oscuro sutil */
@@ -270,32 +373,31 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(32, 29, 29, 0.15);
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.75),
+        rgba(10, 10, 10, 0.55)
+    );
     z-index: 1;
 }
 
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
+
 
 /* CONTENIDO */
 .hero-content {
     position: absolute;
     inset: 0;
     z-index: 2;
-    color: #ffffff;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 1.5rem;
 
-    /* Animación */
+    padding: 0 1.5rem;
+    color: #ffffff;
+
     animation: heroFadeUp 1.2s ease-out forwards;
 }
 
@@ -304,18 +406,21 @@
     font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
     margin-bottom: 0.5rem;
+    line-height: 1.2;
+    color: #00369f;
 }
 
 .hero-content h2 {
     font-size: clamp(1.1rem, 2vw, 1.6rem);
     font-weight: 500;
     margin-bottom: 0.75rem;
-    color: #f0a500;
+    color: #ffffff;
 }
 
 .hero-content p {
     font-size: 0.95rem;
     opacity: 0.9;
+     color: #f0a500;
 }
 
 /* ANIMACIÓN */
