@@ -1,9 +1,12 @@
 /*Controlamos el navbar*/
 /* Navbar general */
 .navbar {
+  
     background-color: #00369f ; /* Fondo oscuro, cámbialo a tu gusto */
     padding: 1rem 2rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+    
+    
 }
 
 /* Links */
@@ -91,7 +94,7 @@
 /*Controlamos las dimensicion o tamano de los card*/
 .slider-wrapper {
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     overflow: hidden; /*Controla el margin de los bordes*/
     
 }
@@ -105,8 +108,8 @@
 
 .slider-card {
     padding: 0;
-    flex: 0 0 calc(25% - 0.75rem);
-    max-width: calc(25% - 0.75rem);
+    flex: 0 0 calc(20% - 1rem);
+    max-width: calc(20% - 1rem);
     border-radius: 1rem;
     position: relative;
 }
@@ -119,11 +122,7 @@
 }
 
 
-.slider-card a {
-    text-decoration: none; /* quita el subrayado */
-    color: inherit;        /* mantiene el color original */
-    display: block;
-}
+
 
 /* Imagen */
 .card-image {
@@ -131,6 +130,8 @@
     height: auto; /* ajustable */
     overflow: hidden;
     /*display: block;*/
+    position: relative;
+    overflow: hidden;
     
 }
 
@@ -149,13 +150,104 @@
     text-align: center;
     
 }
-.card-body-custom h6{
-color: #00369f;
-font-weight: 500;
+
+
+.platform-name-overlay {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    z-index: 2;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
-.card-body-custom span{
-font-weight: 600;
-color: #070707;
+
+.popular-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ffc107; /* warning */
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.6rem 0;
+}
+
+.price-amount {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #0f3a91;
+    line-height: 1;
+}
+
+.price-period {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+    margin-left: 4px;
+    
+}
+.price-amount,
+.price-period {
+    display: inline-block;
+}
+.save-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #28a745; /* warning */
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    z-index: 3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+}
+
+.old-price {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-decoration: line-through;
+    margin-bottom: 0.2rem;
+}
+
+.price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+.btn-detail {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.45rem 1.2rem;
+    border-radius: 20px;
+    background-color: #00369f;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-detail:hover {
+    background-color: #002b7f;
+    transform: translateY(-2px);
 }
 
 
@@ -170,9 +262,9 @@ color: #070707;
 .cart-top-icon {
     position: absolute;
     top: 12px;
-    left: 12px;
-    background-color: #210bcf;
-    color:  #ffffff;
+    right: 12px;
+    background-color: #ffffff;
+    color:  #080808;
     padding: 8px;
     border-radius: 50%;
     font-size: 1.1rem;
@@ -183,7 +275,7 @@ color: #070707;
 
 .cart-top-icon:hover {
     transform: scale(1.15);
-    background-color: #210bcf;
+    background-color: #0a348a;
 }
 
 /*Ahora controlamos las flechas de los card*/
@@ -236,7 +328,7 @@ color: #070707;
 }
 
 .slider-dots button.active {
-    background: #f0c403;
+    background: #0a0a0a;
 }
 
 /* MÓVIL */
@@ -247,37 +339,6 @@ color: #070707;
     }
 }
 
-/*Contratacion en 3 pasos*/
-.contract-steps {
-    padding: 4rem 0;
-}
-
-/* Banner base */
-.step-banner {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 0.75rem;
-
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    transition-delay: var(--delay);
-}
-
-/* Estado visible */
-.step-banner.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Imagen */
-.step-banner img {
-    width: 100%;
-    height: auto;   /* CLAVE */
-    display: block;
-}
 
 
 /*controla las dimensiones de la imagen en la hoja detalle*/
@@ -355,17 +416,16 @@ color: #070707;
 .hero {
     width: 100vw;
     height: 70vh;
-    overflow: hidden;
     position: relative;
-    
+    overflow: hidden;
 
-    /* Imagen de fondo */
-    background-image: url("/static/imagenes/Banner Principal.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-   animation: heroZoom 18s ease-in-out infinite alternate;
+    /* Degradado basado en #00369f */
+    background: linear-gradient(
+        135deg,
+        #00369f 0%,
+        #004aad 45%,
+        #002a80 100%
+    );
 }
 
 /* Overlay oscuro sutil */
@@ -375,8 +435,8 @@ color: #070707;
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(10, 10, 10, 0.75),
-        rgba(10, 10, 10, 0.55)
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.35)
     );
     z-index: 1;
 }
@@ -388,6 +448,7 @@ color: #070707;
     position: absolute;
     inset: 0;
     z-index: 2;
+    color: #ffffff;
 
     display: flex;
     flex-direction: column;
@@ -396,8 +457,6 @@ color: #070707;
     text-align: center;
 
     padding: 0 1.5rem;
-    color: #ffffff;
-
     animation: heroFadeUp 1.2s ease-out forwards;
 }
 
@@ -405,35 +464,23 @@ color: #070707;
 .hero-content h1 {
     font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-    color: #00369f;
+    color: #ffffff;
 }
 
 .hero-content h2 {
     font-size: clamp(1.1rem, 2vw, 1.6rem);
     font-weight: 500;
-    margin-bottom: 0.75rem;
-    color: #ffffff;
+    color: #ffc107; /* armoniza con tu sección “Máximo Ahorro” */
 }
 
 .hero-content p {
     font-size: 0.95rem;
     opacity: 0.9;
-     color: #f0a500;
+    color: #e3e6e3;
 }
 
 /* ANIMACIÓN */
-@keyframes heroFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -539,4 +586,40 @@ color: #070707;
     .about-hero-content h1 {
         font-size: 1.8rem;
     }
+}
+
+
+/*Controlamos los pequenos parrafos de cada seccion */
+.section-label span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border-radius: 999px; /* pill style */
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.label-individuales {
+    background-color: rgb(23, 162, 184);
+    color: #ffffff;
+}
+
+.label-ahorra {
+    background-color: #28a745;
+    color: #ffffff;
+}
+.label-maximo {
+    background-color: #ffc107;
+    color: #004aad;
+}
+
+.label-maximo i {
+    color: #004aad;
+}
+
+.section-label span {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }

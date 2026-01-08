@@ -32,11 +32,11 @@
         <div class="col-md-7 border border-1 rounded p-4 detalle-info">
             <h2>{{ item.title }}</h2>
             <div class="text-dark">
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
+                <i class="bi bi-star-fill fs-5 text-warning"></i>
+                <i class="bi bi-star-fill fs-5 text-warning"></i>
+                <i class="bi bi-star-fill fs-5 text-warning"></i>
+                <i class="bi bi-star-fill fs-5 text-warning"></i>
+                <i class="bi bi-star-fill fs-5 text-warning"></i>
             </div>
             <p><strong>Código:</strong> {{ item.code }}</p>
             <p style="white-space: pre-line;"><strong>Descripción:</strong> {{ item.description }}</p>
@@ -60,35 +60,78 @@
     <button class="slider-btn prev" aria-label="Anterior">
         <i class="bi bi-chevron-left"></i>
     </button>
+
     <div class="slider-wrapper">
         <div class="slider-track" data-slider>
+
             {% for rel in relacionados %}
             <div class="card slider-card">
-                <a href="{{ url_for('detalle', tipo=tipo, item_id=loop.index0) }}">
-                    <div class="card-image rounded-4">
-                        <img src="{{ url_for('static', filename=rel.image) }}" alt="{{ rel.title }}">
+
+                <a href="{{ url_for('detalle', tipo=tipo, item_id=rel['id']) }}" class="text-decoration-none text-dark">
+
+                    <!-- Imagen -->
+                    <div class="card-image position-relative">
+
+                        {% if rel.get("ahorro") %}
+                        <span class="save-badge">
+                            Ahorra C${{ rel["ahorro"] }}
+                        </span>
+                        {% endif %}
+
+                        <span class="platform-name-overlay">
+                            {{ rel["title"] }}
+                        </span>
+
+                        <img src="{{ url_for('static', filename=rel['image']) }}" alt="{{ rel['title'] }}">
                     </div>
+
+                    <!-- Body -->
                     <div class="card-body-custom">
-                        <span class="text-dark">Código: {{ rel.code }}</span>
-                        <div class="text-dark">
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
+
+                        
+
+                        <!-- Precio -->
+                        <div class="price-container">
+
+                            {% if rel.get("price_original") %}
+                            <div class="old-price fs-5 fw-bold">
+                                {{ rel["currency"] }} {{ rel["price_original"] }}
+                            </div>
+                            {% endif %}
+
+                            <div class="current-price">
+                                <span class="price-amount fs-5 fw-bold">
+                                    {{ rel["currency"] }} {{ rel["price"] }}
+                                </span>
+                                <span class="price-period">
+                                    /{{ rel["period"] }}
+                                </span>
+                            </div>
+
                         </div>
-                        <h6 class="fs-4">{{ rel.price }}</h6>
+                        <div class="stars mb-2">
+                            <i class="bi bi-star-fill text-warning  fs-5"></i>
+                            <i class="bi bi-star-fill text-warning  fs-5"></i>
+                            <i class="bi bi-star-fill text-warning  fs-5"></i>
+                            <i class="bi bi-star-fill text-warning  fs-5"></i>
+                            <i class="bi bi-star-fill text-warning  fs-5"></i>
+                        </div>
+
                     </div>
                 </a>
             </div>
             {% endfor %}
+
         </div>
     </div>
+
     <button class="slider-btn next" aria-label="Siguiente">
         <i class="bi bi-chevron-right"></i>
     </button>
 </div>
+
 <div class="slider-dots mb-5" data-dots></div>
 {% endif %}
+
 
 {% endblock %}

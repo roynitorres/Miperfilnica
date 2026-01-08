@@ -25,19 +25,19 @@ def detalle(tipo, item_id):
     else:
         abort(404)
 
-    if item_id < 0 or item_id >= len(lista):
+    item = next((x for x in lista if x["id"] == item_id), None)
+
+    if not item:
         abort(404)
 
-    try:
-        item = lista[item_id]
-    except IndexError:
-        abort(404)
-    
-    relacionados = [
-        p for i, p in enumerate(lista) if i != item_id
-    ]
+    relacionados = [x for x in lista if x["id"] != item_id]
 
-    return render_template("detalle.html", item=item,relacionados=relacionados,tipo=tipo)
+    return render_template(
+        "detalle.html",
+        item=item,
+        relacionados=relacionados,
+        tipo=tipo
+    )
 
 @app.route("/quienesomos")
 def quienesomos():

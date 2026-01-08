@@ -13,8 +13,10 @@ function initSlider(track) {
     let currentStep = 0;
 
     function cardsPerView() {
-        return window.innerWidth < 768 ? 1 : 4;
-    }
+    if (window.innerWidth < 768) return 1;   // móvil
+    if (window.innerWidth < 992) return 3;   // tablet (opcional, recomendado)
+    return 5;                                // escritorio
+}
 
     function buildPositions() {
         positions = [];

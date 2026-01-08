@@ -2,21 +2,22 @@
 {% block title %} Inicio {% endblock %}
 {% block content %}
 <section class="hero">
-    
     <div class="hero-content">
         <h1>Elige tu plataforma favorita y comienza hoy</h1>
         <h2>Compra fácil, acceso inmediato y sin complicaciones</h2>
         <p>Perfiles premium • Activación rápida • Soporte confiable</p>
     </div>
 </section>
-
+<!-- Sección de sliders -->
+<div class="section-label text-center mt-5 mb-4">
+    <span class="label-individuales">Perfiles Individuales</span>
+</div>
 <div id="individuales" class="text-center mt-5 mb-4">
-    <h1>Plataformas Individuales</h1>
-    <p>Elije tu favorita</p>
+    <h1>Perfiles Individuales</h1>
 </div>
 
-<div class="slider-container">
-
+<!--Plataformas individuales-->
+<div class="slider-container mb-5">
     <!-- Flecha izquierda -->
     <button class="slider-btn prev" aria-label="Anterior">
         <i class="bi bi-chevron-left"></i>
@@ -25,47 +26,81 @@
     <!-- Slider -->
     <div class="slider-wrapper">
         <div class="slider-track" data-slider>
-            
+
             {% for platform in platforms %}
             <div class="card slider-card">
-                <i class="bi bi-cart4 cart-top-icon"></i>
-                <a href="{{ url_for('detalle', tipo='platform', item_id=loop.index0) }}">
-                    <div class="card-image rounded-4">
-                        <img src="{{ url_for('static', filename=platform.image) }}" alt="{{ platform.title }}">
-                    </div>
-                    <div class="card-body-custom">
-                        
-                        <div >
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
+
+                <!-- Imagen -->
+                <div class="card-image ">
+
+                    {% if platform.title.strip() == "Netflix Premium" %}
+                    <span class="popular-badge">
+                        <i class="bi bi-star-fill"></i> Más popular
+                    </span>
+                    {% endif %}
+
+                    <span class="platform-name-overlay">
+                        {{ platform.title }}
+                    </span>
+
+                    <img src="{{ url_for('static', filename=platform.image) }}" alt="{{ platform.title }}">
+                </div>
+
+                <!-- Body -->
+                <div class="card-body-custom">
+                    <div class="price-container">
+                        <div class="price-row">
+                            <span class="price-amount fs-5 fw-bold">
+                                {{ platform.currency }} {{ platform.price }}
+                            </span>
+                            <span class="price-period">
+                                /{{ platform.period }}
+                            </span>
                         </div>
-                         <h6 class="fs-5 fw-bold">{{ platform.price }}</h6>
-                        <span class="fs-5">{{ platform.title }}</span>
-                       
-                        
+                        </span>
                     </div>
-                </a>
+
+                    <div class="stars">
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                    </div>
+
+                    
+
+                    <a href="{{ url_for('detalle', tipo='platform', item_id=platform.id) }}" class="btn-detail">
+                        Ver detalle
+                    </a>
+
+                </div>
             </div>
             {% endfor %}
+
         </div>
     </div>
+
 
     <!-- Flecha derecha -->
     <button class="slider-btn next" aria-label="Siguiente">
         <i class="bi bi-chevron-right"></i>
     </button>
 </div>
-
 <!-- Dots -->
-<div class="slider-dots" data-dots></div>
+<div class="slider-dots " data-dots></div>
+
+<div class="section-label text-center mt-5 mb-4">
+    <span class="label-ahorra">
+        <i class="bi bi-piggy-bank-fill me-2"></i>
+        Ahorra Más
+    </span>
+</div>
 
 
 <div id="combos-duos" class="text-center mt-5 mb-4">
-    <h1>Combos Dúos</h1>
-    <p>Porque dos son mejor que uno.</p>
+    <h1>Combos x 2 - ¡Ahorra Más!</h1>
+    <p>Combina tus plataformas favoritas y ahorra dinero.</p>
 </div>
 
 <div class="slider-container mb-5">
@@ -76,52 +111,88 @@
     </button>
 
     <!-- Slider -->
+
     <div class="slider-wrapper">
         <div class="slider-track" data-slider>
-            {% for combosDuo in combosDuos %}
+
+            {% for combduos in combosDuos %}
             <div class="card slider-card">
-                <i class="bi bi-cart4 cart-top-icon"></i>
-                <a href="{{ url_for('detalle', tipo='combosDuo', item_id=loop.index0) }}">
-                    <div class="card-image rounded-4">
-                        
-                        <img src="{{ url_for('static', filename=combosDuo.image) }}"
-                             alt="{{ combosDuo.title }}">
+
+                <!-- Imagen -->
+                <div class="card-image">
+
+                    <span class="save-badge">
+                        Ahorra C${{ combduos.ahorro }}
+                    </span>
+
+                    <span class="platform-name-overlay">
+                        {{ combduos.title }}
+                    </span>
+
+                    <img src="{{ url_for('static', filename=combduos.image) }}" alt="{{ combduos.title }}">
+                </div>
+
+                <!-- Body -->
+                <div class="card-body-custom">
+
+                    
+
+                    <div class="price-container">
+
+                        <div class="old-price fw-bold ">
+                            C${{ combduos.price_original }}
+                        </div>
+
+                        <div class="price-row">
+                            <span class="price-amount fs-5 fw-bold">
+                                {{ combduos.currency }} {{ combduos.price }}
+                            </span>
+                            <span class="price-period">
+                                /{{ combduos.period }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
                     </div>
 
-                    <div class="card-body-custom">
-                        
-                        <div >
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                            <i class="bi bi-star-fill text-warning fs-5"></i>
-                        </div>
-                        <h6 class="fs-5 fw-bold">{{ combosDuo.price }}</h6>
-                        <span class="fs-5">{{ combosDuo.title }}</span>
-                        
-                        
-                    </div>
-                </a>
+
+                    <a href="{{ url_for('detalle', tipo='combosDuo', item_id=combduos.id) }}" class="btn-detail">
+                        Ver detalle
+                    </a>
+
+                </div>
             </div>
             {% endfor %}
-        </div>
-    </div>
 
-    <!-- Flecha derecha -->
-    <button class="slider-btn next" aria-label="Siguiente">
-        <i class="bi bi-chevron-right"></i>
-    </button>
+        </div>
+
+        <!-- Flecha derecha -->
+        <button class="slider-btn next" aria-label="Siguiente">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
 </div>
 
 <!-- Dots -->
 <div class="slider-dots mb-5" data-dots></div>
 
+<div class="section-label text-center mt-5 mb-4">
+    <span class="label-maximo">
+        <i class="bi bi-star-fill me-2"></i>
+        Máximo Ahorro
+        <i class="bi bi-star-fill ms-2"></i>
+    </span>
+</div>
 
 
 <div id="combos-trios" class="text-center mt-5 mb-4">
-    <h1>Trial</h1>
-    <p>Hombre precavido vale x3</p>
+    <h1>Mega Combos x3 - ¡Máximo Ahorro!</h1>
+    <p>La mejor selección de 3 plataformas al precio más bajo</p>
 </div>
 
 <div class="slider-container mb-5">
@@ -134,72 +205,71 @@
     <!-- Slider -->
     <div class="slider-wrapper">
         <div class="slider-track" data-slider>
-            {% for combotres in combosTrios %}
-            <div class="card slider-card ">
-                <a href="{{ url_for('detalle', tipo='combotres', item_id=loop.index0) }}">
-                    <div class="card-image">
-                        <img src="{{ url_for('static', filename=combotres.image) }}"
-                             alt="{{ combotres.title }}">
+
+            {% for combtrio in combosTrios %}
+            <div class="card slider-card">
+
+                <!-- Imagen -->
+                <div class="card-image">
+                    <span class="save-badge">
+                        Ahorra C${{ combtrio.ahorro }}
+                    </span>
+
+                    <span class="platform-name-overlay">
+                        {{ combtrio.title }}
+                    </span>
+
+                    <img src="{{ url_for('static', filename=combtrio.image) }}" alt="{{ combtrio.title }}">
+                </div>
+
+                <!-- Body -->
+                <div class="card-body-custom">
+
+                    
+
+                    <div class="price-container">
+                        <div class="old-price fw-bold">
+                            C${{ combtrio.price_original }}
+                        </div>
+
+                        <div class="price-row">
+                            <span class="price-amount fs-5 fw-bold">
+                                {{ combtrio.currency }} {{ combtrio.price }}
+                            </span>
+                            <span class="price-period">
+                                /{{ combtrio.period }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
+                        <i class="bi bi-star-fill text-warning fs-5"></i>
                     </div>
 
-                    <div class="card-body-custom">
-                        <h6 class="fs-5 fw-bold">{{ combotres.price }}</h6>
-                        <div >
-                            <i class="bi bi-star fs-5"></i>
-                            <i class="bi bi-star fs-5"></i>
-                            <i class="bi bi-star fs-5"></i>
-                            <i class="bi bi-star fs-5"></i>
-                            <i class="bi bi-star fs-5"></i>
-                        </div>
-                        <span class="fs-5 ">{{ combotres.title }}</span>
-                        
-                    </div>
-                </a>
+                    <a href="{{ url_for('detalle', tipo='combotres', item_id=combtrio.id) }}" class="btn-detail">
+                        Ver detalle
+                    </a>
+
+                </div>
             </div>
             {% endfor %}
+
         </div>
+
+        <!-- Flecha derecha -->
+        <button class="slider-btn next" aria-label="Siguiente">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
     </div>
-
-    <!-- Flecha derecha -->
-    <button class="slider-btn next" aria-label="Siguiente">
-        <i class="bi bi-chevron-right"></i>
-    </button>
-
 </div>
-
 <!-- Dots -->
 <div class="slider-dots mb-5" data-dots></div>
 
 
-<section class="contract-steps">
-    <div class="container-fluid">
-        <h2 class="text-center mb-4">Contratación en 3 pasos</h2>
-        <div class="row g-4">
-            <!-- Paso 1 -->
-            <div class="col-md-4">
-                <div class="step-banner">
-                    <img src="{{ url_for('static', filename='imagenes/Paso1.svg') }}" alt="Paso 1">
-
-                </div>
-            </div>
-
-            <!-- Paso 2 -->
-            <div class="col-md-4">
-                <div class="step-banner">
-                    <img src="{{ url_for('static', filename='imagenes/Paso2.svg') }}" alt="Paso 2">
-                </div>
-            </div>
-
-            <!-- Paso 3 -->
-            <div class="col-md-4">
-                <div class="step-banner">
-                    <img src="{{ url_for('static', filename='imagenes/Paso3.svg') }}" alt="Paso 3">
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 
 {% endblock %}

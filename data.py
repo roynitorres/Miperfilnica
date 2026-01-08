@@ -5,12 +5,15 @@ platforms = [
     {
         "id":1,
         "code": "26101",
-        "title": "Netflix Premium   ",
+        "title": "Netflix Premium ",
         "image": "imagenes/Individuales/1.svg",
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos .""",
-        "price": "C$ 140.00/Mes"
+        "price": "140.00",
+        "currency": "C$",
+        "period": "mes"
+
     },
     {
         "id":2,
@@ -20,7 +23,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión sin Restricción de Red Wifi | Servicio recomendado para 1 persona |
          No necesita pin de acceso | Sin Actulizar Hogar.""",
-        "price": "C$ 190.00/Mes"
+        "price": "190.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":3,
@@ -30,7 +35,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos | No incluye las transmiciones en vivo SPN de Deportes.""",
-        "price": "C$ 130.00/Mes"
+        "price": "130.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":4,
@@ -40,7 +47,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos | Si Incluye las transmiciones en vivo SPN de Deportes.""",
-        "price": "C$ 160.00/Mes"
+        "price": "160.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":5,
@@ -50,7 +59,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 4 dígitos """,
-        "price": "C$ 90.00/Mes"
+        "price": "90.00",
+        "currency": "C$",       
+        "period": "mes"
     },
     {
         "id":6,
@@ -60,7 +71,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          No Incluye PIN de privacidad """,
-        "price": "C$ 100.00/Mes"
+        "price": "100.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":7,
@@ -70,7 +83,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Escucha música sin anuncios |
           Escucha música sin conexión donde quieras.| Elige la canción que quieras |
          Salta canciones de forma ilimitada. """,
-        "price": "C$ 120.00/Mes"
+        "price": "120.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":8,
@@ -80,7 +95,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          Incluye PIN de privacidad de 6 dígitos """,
-        "price": "C$ 90.00/Mes"
+        "price": "90.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":9,
@@ -90,7 +107,9 @@ platforms = [
         "description": """YouTube y YouTube Music sin anuncios, sin conexión y en segundo plano |
           Escucha música sin conexión donde quieras.| Elige la canción que quieras |
          Salta canciones de forma ilimitada. """,
-        "price": "C$ 150.00/Mes"
+        "price": "150.00",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":10,
@@ -100,7 +119,9 @@ platforms = [
         "description": """ Servicio de streaming para 1 dispositivo | Funciona en Teléfono o TV |
          Conexión a una sola red WiFi | Servicio recomendado para 1 persona |
          No invluye PIN de privacidad """,
-        "price": "C$ 100.00/Mes"
+        "price": "100.00",
+        "currency": "C$",
+        "period": "mes"
     },
     
     
@@ -111,82 +132,122 @@ combosDuos = [
     {
         "id":1,
         "code": "CBT001",
-        "title": "Netflix + Crunchyroll",
+        "title": "Combo Ani-Flix",
         "image": "imagenes/CombosDuos/11.svg",
         "description": "Netflix y Crunchyroll",
-        "price": "C$ 220.00/Mes"
+        "price_original":"240.00",
+        "price": "220.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":2,
         "code": "CBT002",
-        "title": "Netflix + Hbo Max",
+        "title": "Combo Max-Flix",
         "image": "imagenes/CombosDuos/12.svg",
-        "description": "Combo de Prime Video y HBO.",
-        "price": "C$ 220.00/Mes"
+        "description": "Netflix + Hbo Max",
+        "price_original":"230.00",
+        "price": "220.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":3,
         "code": "CBT003",
-        "title": "Netflix + Prime Video",
+        "title": "Combo Prime-Flix",
         "image": "imagenes/CombosDuos/13.svg",
-        "description": "Combo de Spotify y Apple TV.",
-        "price": "C$ 220.00/Mes"
+        "description": "Netflix + Prime Video",
+        "price_original":"230.00",
+        "price": "220.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":4,
         "code": "CBT004",
-        "title": "Netflix + Spotify",
+        "title": "Combo Sound-Flix",
         "image": "imagenes/CombosDuos/14.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 250.00/Mes"
+        "description": "Netflix + Spotify",
+        "price_original":"260.00",
+        "price": "250.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":5,
         "code": "CBT005",
-        "title": "Netflix + Disney Standar",
+        "title": "Combo Disney-Flix",
         "image": "imagenes/CombosDuos/15.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 260.00/Mes"
+        "description": "Netflix + Disney Standar",
+        "price_original":"270.00",
+        "price": "260.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":6,
         "code": "CBT006",
-        "title": "Netflix + Disney Premium",
+        "title": "Combo Disney-Flix Premium",
         "image": "imagenes/CombosDuos/16.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 290.00/Mes"
+        "description": "Netflix + Disney Premium",
+        "price_original":"300.00",
+        "price": "290.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":7,
         "code": "CBT07",
-        "title": "Netflix + Youtube Premium",
+        "title": "Combo YouFlix",
         "image": "imagenes/CombosDuos/17.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 280.00/Mes"
+        "description": "Netflix + Youtube Premium",
+        "price_original":"290.00",
+        "price": "280.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":8,
         "code": "CBT008",
-        "title": "Netflix + Vix Premium",
+        "title": "Combo VixFlix",
         "image": "imagenes/CombosDuos/18.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 220.00/Mes"
+        "description": "Netflix + Vix Premium",
+        "price_original":"240.00",
+        "price": "220.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":9,
         "code": "CBT008",
-        "title": "Prime Video + Hbo Max",
+        "title": "Combo PrimeMax",
         "image": "imagenes/CombosDuos/19.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 180.00/Mes"
+        "description": "Prime Video + Hbo Max",
+        "price_original":"180.00",
+        "price": "180.00",
+        "ahorro":"0",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":10,
         "code": "CBT008",
-        "title": "Spotify + Disney Standar",
+        "title": "Combo SoundMagic",
         "image": "imagenes/CombosDuos/20.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "C$ 240.00/Mes"
+        "description": "Spotify + Disney Standar",
+        "price_original":"250.00",
+        "price": "240.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     }
     
 ]
@@ -195,75 +256,123 @@ combosDuos = [
 combosTrios = [
     {
         "id":1,
-        "code": "T001",
-        "title": "Trio 1",
+        "code": "CT2601",
+        "title": "Combo AniSound",
         "image": "imagenes/ComboTrio/21.svg",
-        "description": "Combo de Netflix y Disney+.",
-        "price": "$15.99"
+        "description": "Netflix + Crunchyroll + Spotify",
+        "price_original":"360.00",
+        "price": "340.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
+    },
+    {
+        "id":2,
+        "code": "CT2601",
+        "title": "Combo MaxLatino",
+        "image": "imagenes/ComboTrio/22.svg",
+        "description": "Netflix + Vix + Hbo Max",
+        "price_original":"330.00",
+        "price": "310.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":3,
-        "code": "T002",
-        "title": "Trio 2",
-        "image": "imagenes/ComboTrio/22.svg",
-        "description": "Combo de Prime Video y HBO.",
-        "price": "$18.99"
+        "code": "CT2601",
+        "title": "Combo TripleMax",
+        "image": "imagenes/ComboTrio/23.svg",
+        "description": "Netflix + Prime Video + Hbo Max",
+        "price_original":"320.00",
+        "price": "300.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":4,
-        "code": "T003",
-        "title": "Trio 3",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Spotify y Apple TV.",
-        "price": "$14.99"
+        "code": "CT2604",
+        "title": "Combo MagicSound+",
+        "image": "imagenes/ComboTrio/24.svg",
+        "description": "Netflix + Disney Premium + Spotify",
+        "price_original":"420.00",
+        "price": "400.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":5,
-        "code": "T004",
-        "title": "Trio 4",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "$16.99"
+        "code": "CT2604",
+        "title": "Combo UltraPlay",
+        "image": "imagenes/ComboTrio/25.svg",
+        "description": "Netflix + Disney Premium + youtube Premium",
+        "price_original":"450.00",
+        "price": "430.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":6,
-        "code": "T005",
-        "title": "Trio 5",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "$16.99"
+        "code": "CT2604",
+        "title": "Combo FamilyMax",
+        "image": "imagenes/ComboTrio/26.svg",
+        "description": "Netflix + Disney Standar + Hbo Max",
+        "price_original":"360.00",
+        "price": "340.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":7,
-        "code": "T006",
-        "title": "Trio 6",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "$16.99"
+        "code": "CT2604",
+        "title": "Combo FamilyPrime",
+        "image": "imagenes/ComboTrio/27.svg",
+        "description": "Netflix + Disney Standar + Prime Video",
+        "price_original":"360.00",
+        "price": "340.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":8,
-        "code": "T007",
-        "title": "Trio 7",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "$16.99"
+        "code": "CT2604",
+        "title": "Combo SoundMax",
+        "image": "imagenes/ComboTrio/28.svg",
+        "description": "Spotify + Hbo Max + Prime Video",
+        "price_original":"300.00",
+        "price": "300.00",
+        "ahorro":"0",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":9,
-        "code": "T008",
-        "title": "Trio 8",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "$16.99"
+        "code": "CT2604",
+        "title": "Combo LatinoMax",
+        "image": "imagenes/ComboTrio/29.svg",
+        "description": "Vix + Hbo Max + Prime Video",
+        "price_original":"280.00",
+        "price": "270.00",
+        "ahorro":"10",
+        "currency": "C$",
+        "period": "mes"
     },
     {
         "id":10,
-        "code": "T008",
-        "title": "Trio 8",
-        "image": "imagenes/PRUEBA.svg",
-        "description": "Combo de Disney+ y HBO.",
-        "price": "$16.99"
+        "code": "CT2604",
+        "title": "Combo CineFamily",
+        "image": "imagenes/ComboTrio/30.svg",
+        "description": "Disney Premium+ Hbo Max + Prime Video",
+        "price_original":"340.00",
+        "price": "320.00",
+        "ahorro":"20",
+        "currency": "C$",
+        "period": "mes"
     }
     
 ]
