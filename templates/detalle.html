@@ -18,10 +18,11 @@
     </a>
 </div>
 
-<div class="container mt-3 detalle-container">
+<div class="container mt-3 detalle-container border border-1 rounded p-4">
     <div class="row">
+
         <!-- Columna izquierda: imagen -->
-        <div class="col-md-5 text-center ">
+        <div class="col-md-5 text-center">
             <div class="detalle-img-wrapper border border-1 rounded">
                 <img src="{{ url_for('static', filename=item.image) }}" class="img-fluid rounded"
                     alt="{{ item.title }}">
@@ -29,24 +30,39 @@
         </div>
 
         <!-- Columna derecha: información -->
-        <div class="col-md-7 border border-1 rounded p-4 detalle-info">
-            <h2>{{ item.title }}</h2>
-            <div class="text-dark">
-                <i class="bi bi-star-fill fs-5 text-warning"></i>
-                <i class="bi bi-star-fill fs-5 text-warning"></i>
-                <i class="bi bi-star-fill fs-5 text-warning"></i>
-                <i class="bi bi-star-fill fs-5 text-warning"></i>
-                <i class="bi bi-star-fill fs-5 text-warning"></i>
+        <div class="col-md-7 detalle-info">
+
+            <!-- Título -->
+            <h5 class="fw-bold">{{ item.title }}</h5>
+
+            <hr>
+
+            <!-- Características -->
+            <h5 class=" mb-3 text-dark">Características</h5>
+            <div class="detalle-specs mt-4">
+
+                {% for key, value in item.features.items() %}
+                <div class="spec-row">
+                    <div class="spec-label">{{ key }}</div>
+                    <div class="spec-value">{{ value }}</div>
+                </div>
+                {% endfor %}
+
             </div>
-            <p><strong>Código:</strong> {{ item.code }}</p>
-            <p style="white-space: pre-line;"><strong>Descripción:</strong> {{ item.description }}</p>
-            <p><strong>Precio:</strong> {{ item.price }}</p>
-            <div class="mt-3 mb-2">
-                <a href="{{ url_for('inicio') }}" class="btn btn-primary">Volver</a>
+
+
+            <!-- Botones -->
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a href="https://wa.me/50576145799?text=Hola,%20estoy%20interesado%20en%20{{ item.title }}%20(Código%20{{ item.code }})"
+                    target="_blank" class="btn btn-primary w-100">
+                    <i class="bi bi-whatsapp me-1"></i> Contratar por WhatsApp
+                </a>
             </div>
+
         </div>
     </div>
 </div>
+
 
 
 
@@ -88,7 +104,7 @@
                     <!-- Body -->
                     <div class="card-body-custom">
 
-                        
+
 
                         <!-- Precio -->
                         <div class="price-container">

@@ -364,6 +364,41 @@
     }
 }
 
+.detalle-specs {
+    
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    font-weight: 600;
+    color: #212529;
+    width: 40%;
+}
+
+.spec-value {
+    color: #495057;
+    width: 60%;
+    text-align: right;
+}
+
+.btn-primary {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+}
 
 /*Controlamos el footer*/
 .footer {
