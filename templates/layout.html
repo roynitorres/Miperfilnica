@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Tipografia.css') }}">
     <!--Estilos Generales-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
     <title>{%block title%}Inicio {%endblock%}</title>
 </head>
 
@@ -42,7 +43,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/quienesomos' %}active{% endif %}"
-                                href="/quienesomos">Combos</a>
+                                href="/quienesomos">Quienes Somos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '#' %}active{% endif %}" href="#">Como

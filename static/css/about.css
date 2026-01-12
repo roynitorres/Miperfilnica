@@ -1,0 +1,185 @@
+.about-hero {
+    position: relative;
+    height: 420px;
+    overflow: visible;
+}
+
+/* Imagen */
+.about-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Degradado azul */
+.about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0, 70, 160, 0.85),
+        rgba(0, 110, 220, 0.85)
+    );
+}
+
+/* Texto centrado */
+.about-hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    padding: 1rem;
+}
+
+.about-hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.about-hero-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+/* Tarjetas flotantes */
+.about-cards {
+    position: relative;
+    margin-top: -90px;
+    z-index: 3;
+}
+
+.about-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    height: 100%;
+}
+
+.about-card h3 {
+    color: #0d6efd;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.about-card span {
+    font-size: 0.95rem;
+    color: #555;
+}
+.about-hero-content h1,
+.about-hero-content p {
+    color: #ffffff;
+}
+
+/* ==============================
+   ABOUT - NUESTRA HISTORIA
+================================ */
+
+.about-story {
+    padding: 4rem 0;
+    background-color: #f8f9fc;
+}
+
+.about-story-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 3rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.about-story h2 {
+    margin-bottom: 1.5rem;
+}
+
+.about-story p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* Imagen */
+.about-story-img {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ==============================
+   ABOUT - MISIÓN Y VISIÓN
+================================ */
+
+.about-mission-vision {
+    padding: 4rem 0;
+    background-color: #ffffff;
+}
+
+/* Card base */
+.mv-card {
+    height: 100%;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mv-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* Título con ícono */
+.mv-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Párrafos */
+.mv-card p {
+    color: #000000;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ==============================
+   MISIÓN
+================================ */
+
+.mv-mision {
+    border-top: 6px solid #00369f; /* azul navbar */
+}
+
+.mv-mision .mv-title {
+    color: #00369f;
+}
+
+.mv-mision .mv-title i {
+    color: #00369f;
+    font-size: 1.4rem;
+}
+
+/* ==============================
+   VISIÓN
+================================ */
+
+.mv-vision {
+    border-top: 6px solid #198754; /* verde */
+}
+
+.mv-vision .mv-title {
+    color: #198754;
+}
+
+.mv-vision .mv-title i {
+    color: #198754;
+    font-size: 1.4rem;
+}

@@ -2,39 +2,130 @@
 {% block title %} Quienes somos? {% endblock %}
 {% block content %}
 <section class="about-hero">
-    <img src="{{ url_for('static', filename='imagenes/fondo1.svg') }}" class="about-hero-img">
+    <img src="{{ url_for('static', filename='imagenes/Quienes somos.svg') }}" class="about-hero-img" alt="Quiénes Somoss">
 
+    <!-- Degradado -->
+    <div class="about-hero-overlay"></div>
+
+    <!-- Texto -->
     <div class="about-hero-content">
-        <h1>Streaming premium al mejor precio</h1>
-        <p>Elige tu plataforma favorita</p>
+        <h1>Quiénes Somos</h1>
+        <p>Tu aliado de confianza para acceder al mejor entretenimiento digital</p>
+    </div>
+
+    <!-- Tarjetas flotantes -->
+    <div class="about-cards container">
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="about-card">
+                    <h3>50K+</h3>
+                    <span>Clientes satisfechos</span>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="about-card">
+                    <h3>99.9%</h3>
+                    <span>Uptime garantizado</span>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="about-card">
+                    <h3>24/7</h3>
+                    <span>Soporte disponible</span>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="about-card">
+                    <h3>5 Años</h3>
+                    <span>En el mercado</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Sobre Nosotros</h2>
-            <p>En FilStreamGo, nos apasiona ofrecerte las mejores opciones de streaming al mejor precio. Nuestro
-                objetivo es brindarte acceso a tus plataformas favoritas de manera fácil y asequible.</p>
-            <p>Con años de experiencia en el mercado, hemos seleccionado cuidadosamente una variedad de planes y
-                combos que se adaptan a tus necesidades. Ya sea que busques entretenimiento individual o quieras
-                compartir la diversión con amigos y familiares, tenemos la solución perfecta para ti.</p>
-        </div>
-        <div class="col-md-6">
-            <h2>Nuestra Misión</h2>
-            <p>Nuestra misión es democratizar el acceso al entretenimiento digital, ofreciendo planes de streaming
-                accesibles y flexibles. Creemos que todos deberían tener la oportunidad de disfrutar de sus series y
-                películas favoritas sin preocuparse por los costos elevados.</p>
-            <p>Nos comprometemos a proporcionar un servicio al cliente excepcional y a mantenernos actualizados con las
-                últimas tendencias en el mundo del streaming para asegurarnos de que siempre tengas las mejores opciones
-                a tu alcance.</p>
+
+<section class="about-story">
+    <div class="container">
+        <div class="about-story-card">
+            <div class="row align-items-center g-4">
+                
+                <!-- Texto -->
+                <div class="col-12 col-lg-6">
+                    <h2>Nuestra Historia</h2>
+
+                    <p>
+                        StreamStore nació en 2021 con una misión clara: hacer el entretenimiento
+                        digital accesible para todos. Lo que comenzó como una pequeña iniciativa
+                        se ha convertido en una de las plataformas más confiables para acceder a
+                        servicios de streaming premium.
+                    </p>
+
+                    <p>
+                        Con más de 50,000 clientes satisfechos, nos hemos ganado la reputación
+                        de ser rápidos, confiables y transparentes. Cada día trabajamos para
+                        ofrecer los mejores precios sin comprometer la calidad del servicio.
+                    </p>
+
+                    <p>
+                        Nuestro equipo está comprometido con tu satisfacción, por eso ofrecemos
+                        soporte 24/7 y garantía de reemplazo en todos nuestros productos.
+                    </p>
+                </div>
+
+                <!-- Imagen -->
+                <div class="col-12 col-lg-6 text-center">
+                    <img 
+                        src="{{ url_for('static', filename='imagenes/Historia.svg') }}"
+                        alt="Nuestra visión"
+                        class="about-story-img"
+                    >
+                </div>
+
+            </div>
         </div>
     </div>
-    <div>Nuestro valores 
-        <ul>
-            <li>Accesibilidad: Ofrecemos planes asequibles para que todos puedan disfrutar del entretenimiento digital.</li>
-            <li>Variedad: Contamos con una amplia gama de plataformas y combos para satisfacer diferentes gustos y necesidades.</li>
-            <li>Servicio al Cliente: Nos esforzamos por brindar un soporte excepcional y resolver cualquier inquietud de nuestros clientes.</li>
-            <li>Innovación: Estamos comprometidos a mantenernos a la vanguardia de las tendencias en streaming para ofrecer siempre las mejores opciones.</li>
-        </ul>
+</section>
+
+<section class="about-mission-vision">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Misión -->
+            <div class="col-12 col-lg-6">
+                <div class="mv-card mv-mision">
+                    <h3 class="mv-title">
+                        <i class="bi bi-bullseye"></i>
+                        Nuestra Misión
+                    </h3>
+                    <p>
+                        Proporcionar acceso confiable y asequible a plataformas de streaming
+                        premium, garantizando una experiencia segura, rápida y transparente
+                        para todos nuestros clientes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visión -->
+            <div class="col-12 col-lg-6">
+                <div class="mv-card mv-vision">
+                    <h3 class="mv-title">
+                        <i class="bi bi-eye"></i>
+                        Nuestra Visión
+                    </h3>
+                    <p>
+                        Convertirnos en la plataforma líder en distribución de servicios de
+                        entretenimiento digital en la región, destacando por innovación,
+                        excelencia en el servicio y confianza.
+                    </p>
+                </div>
+            </div>
+
+        </div>
     </div>
+</section>
+
+
 {% endblock %}
