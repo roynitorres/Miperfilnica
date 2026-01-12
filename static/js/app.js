@@ -133,3 +133,50 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(footer);
 });
 
+/* ==============================
+   Animacion de contadores - About Us
+================================ */
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".about-card h3");
+    let started = false;
+
+    function animateCounters() {
+        const section = document.querySelector(".about-cards");
+        const sectionTop = section.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        // Activar animación solo cuando la sección está visible
+        if (sectionTop < screenHeight && !started) {
+            counters.forEach(counter => {
+                const targetText = counter.textContent.trim();
+                let isPercentage = targetText.includes("%");
+                let isPlus = targetText.includes("+");
+
+                // Extraer solo el número
+                const targetNumber = parseFloat(targetText.replace(/[^\d.]/g, ""));
+                let current = 0;
+                const increment = targetNumber / 100; // Ajusta velocidad de animación
+
+                const updateCounter = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNumber) {
+                        counter.textContent = targetNumber + (isPercentage ? "%" : "") + (isPlus ? "+" : "");
+                        clearInterval(updateCounter);
+                    } else {
+                        // Mostrar número redondeado, mantener decimales si los tiene
+                        counter.textContent = (targetNumber % 1 !== 0 ? current.toFixed(1) : Math.floor(current)) 
+                                              + (isPercentage ? "%" : "") + (isPlus ? "+" : "");
+                    }
+                }, 20); // velocidad de actualización en ms
+            });
+
+            started = true; // Evitar que se repita la animación
+        }
+    }
+
+    // Escuchar scroll y cargar inicial
+    window.addEventListener("scroll", animateCounters);
+    animateCounters(); // Por si la sección ya está visible al cargar
+});
