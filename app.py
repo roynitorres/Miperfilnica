@@ -43,5 +43,14 @@ def detalle(tipo, item_id):
 def quienesomos():
     return render_template("quienesomos.html") 
 
+@app.route("/comofunciona")
+def comofunciona():
+    return render_template("comofunciona.html") 
+
+
+@app.route("/politicas")
+def politicas():
+    return render_template("politicas.html") 
+
 if __name__ == "__main__":
     app.run(debug=True)

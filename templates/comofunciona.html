@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+{% block title %} Como funciona {%endblock%}
+{% block content %}
+<!-- ¿Cómo Funciona? -->
+<section class="how-it-works-header text-center text-white py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-3">¿Cómo Funciona?</h2>
+        <p class="lead mb-0">
+            Obtener tu plataforma de streaming favorita es muy fácil y rápido.
+            Solo sigue estos simples pasos y empieza a disfrutar de tu contenido en minutos.
+        </p>
+    </div>
+</section>
+
+<!-- Pasos -->
+<section class="how-it-works-steps py-5">
+    <div class="container">
+
+        <!-- Paso 1 -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <div class="step-image-wrapper">
+                    <span class="step-number">1</span>
+                    <img src="{{ url_for('static', filename='imagenes/Whatsapp.svg') }}" alt="Paso 1" class="img-fluid rounded-circle step-image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h5 class="fw-bold">Escríbenos por WhatsApp</h5>
+                    <p class="mb-0">
+                        Contacta con nosotros a través de WhatsApp y cuéntanos qué plataforma
+                        de streaming te interesa.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div class="row align-items-center mb-5 flex-md-row-reverse">
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <div class="step-image-wrapper">
+                    <span class="step-number">2</span>
+                    <img src="{{ url_for('static', filename='imagenes/validar.svg') }}" alt="Paso 2" class="img-fluid rounded-circle step-image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h5 class="fw-bold">Validamos disponibilidad</h5>
+                    <p class="mb-0">
+                        Nuestro equipo verificará inmediatamente la disponibilidad de la
+                        plataforma que solicitaste.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 3 -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <div class="step-image-wrapper">
+                    <span class="step-number">3</span>
+                    <img src="{{ url_for('static', filename='imagenes/Ncuenta.svg') }}" alt="Paso 3" class="img-fluid rounded-circle step-image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h5 class="fw-bold">Realiza el pago</h5>
+                    <p class="mb-0">
+                        Te indicamos los métodos de pago disponibles para que completes
+                        tu compra de forma rápida y segura.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 4 -->
+        <div class="row align-items-center mb-5 flex-md-row-reverse">
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <div class="step-image-wrapper">
+                    <span class="step-number">4</span>
+                    <img src="{{ url_for('static', filename='imagenes/Voucher.svg') }}" alt="Paso 4" class="img-fluid rounded-circle step-image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h5 class="fw-bold">Recibe tu perfil</h5>
+                    <p class="mb-0">
+                        Te entregamos tu perfil con todas las indicaciones necesarias
+                        para que empieces a usarlo de inmediato.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 5 -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <div class="step-image-wrapper">
+                    <span class="step-number">5</span>
+                    <img src="{{ url_for('static', filename='imagenes/Credenciales.svg') }}" alt="Paso 5" class="img-fluid rounded-circle step-image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h5 class="fw-bold">Disfruta tu contenido</h5>
+                    <p class="mb-0">
+                        Relájate y disfruta de tus series y películas favoritas
+                        sin interrupciones.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock%}

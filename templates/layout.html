@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -17,14 +17,23 @@
     <!--Estilos Generales-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-    <title>{%block title%}Inicio {%endblock%}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/funtion.css') }}">
+    <title>{%block title%}Mi Perfil Nica | Ventas de Perfiles de Streaming en Nicaragua{%endblock%}</title>
+    <meta name="description"
+        content="Venta de Perfiles de streaming seguros y económicos en Nicaragua. Netflix, Disney y más con soporte confiable.">
+    <meta property="og:title" content="Mi Perfil Nica">
+    <meta property="og:description" content="Plataforma confiable para comprar perfiles de streaming en Nicaragua.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://miperfilnica.com">
+    <meta property="og:image" content="{{ url_for('static', filename='imagenes/og-image.png') }}">
+
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg  ">
             <div class="container-fluid ">
-                
+
                 <a class="navbar-brand d-flex align-items-center" href="/">
                     <div class="logo-pill d-flex align-items-center">
                         <i class="bi bi-person-fill logo-icon"></i>
@@ -46,12 +55,16 @@
                                 href="/quienesomos">Quienes Somos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == '#' %}active{% endif %}" href="#">Como
-                                Contratar</a>
+                            <a class="nav-link {% if request.path == '/comofunciona' %}active{% endif %}"
+                                href="/comofunciona">¿Cómo
+                                Funciona?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == '#' %}active{% endif %}" href="#">Promociones</a>
+                            <a class="nav-link {% if request.path == '/politicas' %}active{% endif %}"
+                                href="/politicas">Politicas</a>
                         </li>
+                        
+
                     </ul>
                 </div>
             </div>
@@ -80,9 +93,9 @@
                 <div class="col-md-3 mb-4 mb-md-0">
                     <h5>Información al cliente</h5>
                     <ul class="footer-list">
-                        <li><a href="#">Como Comprar</a></li>
-                        <li><a href="#">Problemas con Netflix</a></li>
-                        <li><a href="#">Problemas con Disney</a></li>
+                        <li><a href="/construccion">Como Comprar</a></li>
+                        <li><a href="/construccion">Problemas con Netflix</a></li>
+                        <li><a href="/construccion">Problemas con Disney</a></li>
                     </ul>
                 </div>
 
@@ -98,12 +111,12 @@
 
                         <div class="contact-item">
                             <i class="bi bi-envelope"></i>
-                            <span>filsmtreamgo@gmail.com</span>
+                            <span>contacto@miperfilnica.com</span>
                         </div>
 
                         <div class="contact-item">
                             <i class="bi bi-geo-alt"></i>
-                            <span>Tipitapa, Managua</span>
+                            <span>Tipitapa, Managua, Nicaragua</span>
                         </div>
                     </div>
                 </div>
@@ -135,7 +148,7 @@
 
             <div class="text-center footer-bottom">
                 <small>
-                    © 2025 Todos los derechos reservados |
+                    © 2026 Todos los derechos reservados |
                     Desarrollado por <strong>Ing. Royni Torres</strong>
                 </small>
             </div>
