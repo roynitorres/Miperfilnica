@@ -1,5 +1,209 @@
 {% extends "layout.html" %}
 {% block title %}Politicas {%endblock%}
+
 {% block content %}
-Nuestras políticas de privacidad y términos de servicio garantizan la seguridad y confianza de nuestros usuarios al utilizar Mi Perfil Nica. Al acceder a nuestra plataforma, aceptas cumplir con estas políticas diseñadas para proteger tu información personal y asegurar una experiencia segura y confiable.
-{% endblock%}
+<section class="policies-hero py-5">
+    <div class="container text-center text-white">
+        <i class="bi bi-shield-check display-4 mb-3"></i>
+        <h1 class="fw-bold mb-3">Políticas y Términos</h1>
+        <p class="mb-0">
+            Lee detenidamente nuestras políticas antes de realizar tu compra.
+            <br>
+            Al confirmar tu pago, aceptas todos los términos y condiciones aquí establecidos.
+        </p>
+    </div>
+</section>
+
+<section class="container my-5">
+    <div class="card policy-card shadow-sm">
+        <div class="card-body p-4">
+
+            <!-- Título -->
+            <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-cash-stack policy-title-icon me-2"></i>
+                <h3 class="mb-0">Política de Reembolsos</h3>
+            </div>
+
+            <!-- Label -->
+            <span class="badge bg-success mb-3">Actualizada</span>
+
+            <!-- Introducción -->
+            <p class="mt-3">
+                En <strong>MiPerfilnica.com</strong>, debido a la naturaleza digital del servicio,
+                no se realizan reembolsos una vez entregado el perfil de streaming.
+            </p>
+
+            <!-- Condiciones generales -->
+            <h5 class="mt-4">📌 Condiciones generales</h5>
+
+            <div class="conditions-box mt-3 ps-4">
+                <p>El pago confirma la aceptación total de nuestras políticas.</p>
+
+                <p class="mb-2">No se realizan devoluciones de dinero por:</p>
+                <ul class="conditions-list">
+                    <li>Cambio de opinión</li>
+                    <li>Falta de uso del servicio</li>
+                    <li>Desconocimiento de las políticas</li>
+                    <li>Incumplimiento de las reglas de uso</li>
+                </ul>
+            </div>
+
+            <!-- Alternativa -->
+            <h5 class="mt-4">🔁 Alternativa al reembolso</h5>
+            <p>
+                En caso de presentarse fallas técnicas reales y comprobadas:
+            </p>
+
+            <ul>
+                <li>Soporte técnico inmediato, o</li>
+                <li>Reemplazo del perfil (si aplica)</li>
+            </ul>
+
+            <!-- Importante -->
+            <div class="alert alert-warning mt-4">
+                <strong>Importante:</strong>
+                El reemplazo sustituye cualquier derecho a reembolso.
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="container my-5">
+    <div class="card policy-card shadow-sm">
+        <div class="card-body p-4">
+
+            <!-- Título -->
+            <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-wallet2 policy-title-icon me-2"></i>
+                <h3 class="mb-0">Pagos Excedentes</h3>
+            </div>
+
+            <!-- Label -->
+            <span class="badge bg-success mb-3">Aplicable</span>
+
+            <!-- Introducción -->
+            <p class="mt-3">
+                En caso de que el cliente realice un pago mayor al monto correspondiente,
+                en <strong>MiPerfilnica.com</strong> ofrecemos alternativas claras y justas
+                para el manejo del excedente.
+            </p>
+
+            <!-- Cuadro verde -->
+            <div class="excess-payment-box mt-4 p-4">
+
+                <h5 class="fw-bold mb-4 text-center">
+                    ¿Qué hacer si pagaste de más?
+                </h5>
+
+                <!-- Opciones -->
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="option-card h-100">
+                            <h6 class="fw-bold">💳 Crédito a favor</h6>
+                            <p class="mb-0">
+                                El monto excedente puede quedar como saldo a favor
+                                para aplicarse automáticamente en la próxima renovación.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="option-card h-100">
+                            <h6 class="fw-bold">💸 Devolución</h6>
+                            <p class="mb-0">
+                                Se puede solicitar la devolución del monto excedente,
+                                sujeto a validación y al método de pago utilizado.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="option-card h-100">
+                            <h6 class="fw-bold">🚀 Mejora de servicio</h6>
+                            <p class="mb-0">
+                                El excedente puede aplicarse para mejorar el plan,
+                                extender el tiempo del servicio o añadir beneficios adicionales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Condiciones importantes -->
+            <div class="alert alert-warning mt-4">
+                <strong>Condiciones importantes:</strong>
+                <ul class="mb-0 mt-2">
+                    <li>El excedente debe ser notificado dentro de las primeras 24 horas.</li>
+                    <li>Las devoluciones pueden tardar según la entidad bancaria.</li>
+                    <li>El crédito a favor no es transferible a terceros.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="container my-5">
+    <div class="card policy-card shadow-sm">
+        <div class="card-body p-4">
+
+            <!-- Título -->
+            <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-file-earmark-text policy-title-icon me-2"></i>
+                <h3 class="mb-0">Términos Generales de Uso</h3>
+            </div>
+
+            <!-- Label -->
+            <span class="badge bg-primary mb-3">Vigente</span>
+
+            <!-- Introducción -->
+            <p class="mt-3">
+                Al adquirir un perfil de streaming en <strong>MiPerfilnica.com</strong>,
+                el cliente acepta cumplir con las normas de uso establecidas para garantizar
+                la estabilidad del servicio y una experiencia justa para todos los usuarios.
+            </p>
+
+            <!-- Lista de términos -->
+            <ul class="mt-3">
+                <li>No cambiar la contraseña del perfil.</li>
+                <li>No modificar el correo electrónico asociado.</li>
+                <li>No compartir el acceso fuera del perfil asignado.</li>
+                <li>No utilizar el perfil en más dispositivos de los permitidos.</li>
+            </ul>
+
+            <!-- Importante -->
+            <div class="alert alert-warning mt-4">
+                <strong>Consecuencias del incumplimiento:</strong>
+                <ul class="mb-0 mt-2">
+                    <li>Suspensión inmediata del perfil sin derecho a reembolso.</li>
+                    <li>Pérdida de cualquier garantía activa.</li>
+                    <li>Cancelación definitiva del servicio en casos reiterados.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="container my-5">
+    <div class="card text-center text-white shadow-sm" style="background-color: #004aad;">
+        <div class="card-body p-5">
+
+            <i class="bi bi-whatsapp display-4 mb-3"></i>
+
+            <h3 class="fw-bold mb-3 text-white">
+                ¿Tienes dudas sobre nuestras políticas?
+            </h3>
+
+            <p class="mb-4 text-white">
+                Contáctanos por WhatsApp y con gusto resolveremos todas tus preguntas
+                antes de realizar tu compra.
+            </p>
+
+            <a href="https://wa.me/50576145799?text=Hola,Tengo%20la%20siguiente%20duda:" class="btn btn-light fw-bold px-4 py-2">
+                Escribir por WhatsApp
+            </a>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -4,7 +4,7 @@
 <!-- ¿Cómo Funciona? -->
 <section class="how-it-works-header text-center text-white py-5">
     <div class="container">
-        <h2 class="fw-bold mb-3">¿Cómo Funciona?</h2>
+        <h2 class="fw-bold mb-3 text-white">¿Cómo Funciona?</h2>
         <p class="lead mb-0">
             Obtener tu plataforma de streaming favorita es muy fácil y rápido.
             Solo sigue estos simples pasos y empieza a disfrutar de tu contenido en minutos.
@@ -21,15 +21,18 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">1</span>
-                    <img src="{{ url_for('static', filename='imagenes/Whatsapp.svg') }}" alt="Paso 1" class="img-fluid rounded-circle step-image">
+                    <img src="{{ url_for('static', filename='imagenes/Whatsapp.svg') }}" alt="Paso 1"
+                        class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">Escríbenos por WhatsApp</h5>
+                    <h5 class="fw-bold">
+                        <i class="bi bi-whatsapp me-2 text-primary"></i>Escríbenos por WhatsApp
+
+                    </h5>
                     <p class="mb-0">
-                        Contacta con nosotros a través de WhatsApp y cuéntanos qué plataforma
-                        de streaming te interesa.
+                        Contacta con nosotros a través de WhatsApp y cuéntanos qué plataforma de streaming te interesa.
                     </p>
                 </div>
             </div>
@@ -40,15 +43,17 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">2</span>
-                    <img src="{{ url_for('static', filename='imagenes/validar.svg') }}" alt="Paso 2" class="img-fluid rounded-circle step-image">
+                    <img src="{{ url_for('static', filename='imagenes/validar.svg') }}" alt="Paso 2"
+                        class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">Validamos disponibilidad</h5>
+                    <h5 class="fw-bold">
+                        <i class="bi bi-search me-2 text-primary"></i>Validamos disponibilidad
+                    </h5>
                     <p class="mb-0">
-                        Nuestro equipo verificará inmediatamente la disponibilidad de la
-                        plataforma que solicitaste.
+                        Nuestro equipo verificará inmediatamente la disponibilidad de la plataforma que solicitaste.
                     </p>
                 </div>
             </div>
@@ -59,18 +64,54 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">3</span>
-                    <img src="{{ url_for('static', filename='imagenes/Ncuenta.svg') }}" alt="Paso 3" class="img-fluid rounded-circle step-image">
+                    <img src="{{ url_for('static', filename='imagenes/Ncuenta.svg') }}" alt="Paso 3"
+                        class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">Realiza el pago</h5>
-                    <p class="mb-0">
-                        Te indicamos los métodos de pago disponibles para que completes
-                        tu compra de forma rápida y segura.
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-bank me-2 text-primary"></i> Recibe Datos Bancarios
+                    </h5>
+
+                    <p>
+                        Te compartimos los números de cuenta bancaria para que realices
+                        tu transferencia de forma rápida y segura.
                     </p>
+
+                    <hr>
+
+                    <div class="payment-methods">
+                        <h6 class="fw-semibold mb-3 text-muted">
+                            Métodos de pago disponibles
+                        </h6>
+
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="payment-item">
+                                    <i class="bi bi-cash-coin me-2"></i> BAC
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="payment-item">
+                                    <i class="bi bi-cash-coin me-2"></i> Banpro
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="payment-item">
+                                    <i class="bi bi-cash-coin me-2"></i> Lafise
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="payment-item">
+                                    <i class="bi bi-phone me-2"></i> Billetera móvil
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Paso 4 -->
@@ -78,15 +119,18 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">4</span>
-                    <img src="{{ url_for('static', filename='imagenes/Voucher.svg') }}" alt="Paso 4" class="img-fluid rounded-circle step-image">
+                    <img src="{{ url_for('static', filename='imagenes/Credenciales.svg') }}" alt="Paso 4"
+                        class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">Recibe tu perfil</h5>
+                    <h5 class="fw-bold">
+                        <i class="bi bi-camera me-2 text-primary"></i>Envía Comprobante
+
+                    </h5>
                     <p class="mb-0">
-                        Te entregamos tu perfil con todas las indicaciones necesarias
-                        para que empieces a usarlo de inmediato.
+                        Realiza la transferencia o depósito y envíanos la foto del comprobante por WhatsApp.
                     </p>
                 </div>
             </div>
@@ -97,22 +141,146 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">5</span>
-                    <img src="{{ url_for('static', filename='imagenes/Credenciales.svg') }}" alt="Paso 5" class="img-fluid rounded-circle step-image">
+                    <img src="{{ url_for('static', filename='imagenes/Voucher.svg') }}" alt="Paso 5"
+                        class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">Disfruta tu contenido</h5>
-                    <p class="mb-0">
-                        Relájate y disfruta de tus series y películas favoritas
-                        sin interrupciones.
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-key me-2 text-primary"></i> Recibe tus Credenciales
+                    </h5>
+
+                    <p>
+                        Una vez confirmado el pago, te entregamos las credenciales de acceso: correo electrónico, contraseña y PIN.
                     </p>
+
+                    <div class="receive-box mt-4">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <span>
+                            Recibirás: <strong>correo electrónico, contraseña y PIN de acceso</strong>
+                            para que puedas empezar a disfrutar de inmediato.
+                        </span>
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>
 </section>
 
+<section class="why-us py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5">¿Por Qué Comprar con Nosotros?</h2>
+
+        <div class="row g-4">
+            <!-- Item 1 -->
+            <div class="col-md-4">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h5 class="fw-bold mt-3">Entrega Inmediata</h5>
+                    <p>
+                        Recibe tus credenciales en menos de 30 minutos después de confirmar el pago.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="col-md-4">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <h5 class="fw-bold mt-3">100% Seguro</h5>
+                    <p>
+                        Credenciales válidas y funcionales con garantía de servicio.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="col-md-4">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <h5 class="fw-bold mt-3">Soporte 24/7</h5>
+                    <p>
+                       Estamos disponibles para ayudarte en cualquier momento vía WhatsApp.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="faq-section py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold text-center mb-5">Preguntas Frecuentes</h2>
+
+        <div class="row g-4">
+            <!-- Pregunta 1 -->
+            <div class="col-md-6">
+                <div class="faq-card">
+                    <h6 class="fw-bold">¿Cuánto tiempo tarda la entrega?</h6>
+                    <p>
+                        Una vez que envíes el comprobante de pago, entregaremos tus credenciales en un máximo de 30 minutos durante horario laboral.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="col-md-6">
+                <div class="faq-card">
+                    <h6 class="fw-bold">¿Las credenciales son seguras?</h6>
+                    <p>
+                        Sí, todas nuestras cuentas son completamente legales y seguras. Entregamos credenciales de acceso válidas y funcionales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="col-md-6">
+                <div class="faq-card">
+                    <h6 class="fw-bold">¿Qué pasa si el perfil deja de funcionar?</h6>
+                    <p>
+                        Nuestro equipo de soporte te ayudará de inmediato a resolver
+                        el problema o reemplazar el perfil.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="col-md-6">
+                <div class="faq-card">
+                    <h6 class="fw-bold">¿Qué pasa si tengo problemas con las credenciales?</h6>
+                    <p>
+                        Ofrecemos soporte completo. Si tienes algún problema, contáctanos por WhatsApp y lo solucionaremos de inmediato.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-whatsapp py-5 text-center">
+    <div class="container">
+        <div class="cta-icon mb-3">
+            <i class="bi bi-whatsapp"></i>
+        </div>
+
+        <h2 class="fw-bold mb-3">¿Listo para Empezar?</h2>
+        <p class="mb-4">
+            Contáctanos ahora por WhatsApp y obtén tu plataforma
+            de streaming favorita en minutos.
+        </p>
+
+        <a href="https://wa.me/50576145799" target="_blank" class="btn btn-whatsapp px-4 py-2">
+            <i class="bi bi-chat-dots me-2"></i> Escribir por WhatsApp
+        </a>
+    </div>
+</section>
 
 {% endblock%}

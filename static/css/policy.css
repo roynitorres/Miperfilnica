@@ -1,0 +1,186 @@
+/* ===============================
+   SECCIÓN HERO POLÍTICAS
+================================ */
+.policies-hero {
+    background: linear-gradient(90deg, #004aad, #1a73e8);
+    color: #ffffff;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.policies-hero i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.policies-hero h1 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.policies-hero p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .policies-hero {
+        padding: 3rem 1rem;
+    }
+
+    .policies-hero i {
+        font-size: 2.5rem;
+    }
+
+    .policies-hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .policies-hero p {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* ===============================
+   SECCIÓN HEADER POLÍTICAS
+================================ */
+.policy-header {
+    background: linear-gradient(90deg, #004aad, #1bbf6b);
+    color: #ffffff;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.policy-header i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.policy-header h2 {
+    font-weight: 700;
+}
+
+.policy-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* ===============================
+   TARJETAS GENERALES
+================================ */
+.policy-card {
+    border: none;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.policy-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.policy-title-icon {
+    font-size: 1.8rem;
+    color: #004aad;
+}
+
+/* ===============================
+   LISTAS CON LÍNEA VERTICAL
+================================ */
+.policy-list {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.policy-list::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #004aad;
+    border-radius: 4px;
+}
+
+.policy-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* ===============================
+   CUADRO VERDE (PAGOS EXCEDENTES)
+================================ */
+.excess-payment-box {
+    background-color: #e9f8f1;
+    border-radius: 14px;
+}
+
+.excess-payment-box h5 {
+    color: #1bbf6b;
+}
+
+/* ===============================
+   OPCIONES INTERNAS
+================================ */
+.option-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-4px);
+}
+
+.option-card h6 {
+    margin-bottom: 0.5rem;
+}
+
+/* ===============================
+   ALERTA IMPORTANTE
+================================ */
+.alert-warning {
+    border-radius: 12px;
+    background-color: #fff4cc;
+    border: none;
+}
+
+/* ===============================
+   TARJETA FINAL WHATSAPP
+================================ */
+.card.text-white {
+    border-radius: 18px;
+}
+
+.card.text-white i {
+    color: #ffffff;
+}
+
+.card.text-white .btn-light {
+    border-radius: 30px;
+    padding: 0.7rem 2rem;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    .policy-header {
+        padding: 3rem 1rem;
+    }
+
+    .policy-title-icon {
+        font-size: 1.5rem;
+    }
+}
