@@ -17,9 +17,11 @@
     <!--Estilos Generales-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/funtion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/how_it_work.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css') }}">
     <title>{%block title%}Mi Perfil Nica | Ventas de Perfiles de Streaming en Nicaragua{%endblock%}</title>
+    <link rel="canonical" href="https://miperfilnica.com{{ request.path }}">
+
     <meta name="description"
         content="Venta de Perfiles de streaming seguros y económicos en Nicaragua. Netflix, Disney y más con soporte confiable.">
     <meta property="og:title" content="Mi Perfil Nica">
@@ -27,7 +29,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://miperfilnica.com">
     <meta property="og:image" content="{{ url_for('static', filename='imagenes/og-image.png') }}">
-
+    <meta property="og:site_name" content="Mi Perfil Nica">
+    <meta property="og:locale" content="es_NI">
 </head>
 
 <body>
@@ -64,7 +67,7 @@
                             <a class="nav-link {% if request.path == '/politicas' %}active{% endif %}"
                                 href="/politicas">Politicas</a>
                         </li>
-                        
+
 
                     </ul>
                 </div>
@@ -83,8 +86,8 @@
 
                 <!-- Logo -->
                 <div class="col-md-3 mb-4 mb-md-0">
-                    <img src="{{ url_for('static', filename='imagenes/Footer1.svg') }}" alt="Logo"
-                        class="footer-logo img-fluid">
+                    <img src="{{ url_for('static', filename='imagenes/Footer1.svg') }}"
+                        alt="Mi Pefil Nica - Las mejores plataformas de streaming" class="footer-logo img-fluid">
                     <p class="footer-info mt-3">
                         La mejor plataforma para tus perfiles de streaming favoritos.
                     </p>
@@ -94,9 +97,9 @@
                 <div class="col-md-3 mb-4 mb-md-0">
                     <h5>Información al cliente</h5>
                     <ul class="footer-list">
-                        <li><a href="/construccion">Como Comprar</a></li>
-                        <li><a href="/construccion">Problemas con Netflix</a></li>
-                        <li><a href="/construccion">Problemas con Disney</a></li>
+                        <li><a href="{{url_for('comofunciona')}}#como-funciona">¿Cómo Funciona?</a></li>
+                        <li><a href="{{url_for('comofunciona')}}#section_faq">Preguntas Frecuentes</a></li>
+                        <li><a href="{{url_for('politicas')}}#Terminos_Generales">Terminos de Uso</a></li>
                     </ul>
                 </div>
 
@@ -127,7 +130,7 @@
                     <h5>Suscríbete a nuestro blog</h5>
 
                     <form class="footer-form">
-                        <input type="text" class="form-control mb-2" placeholder="Nombre" required>
+                        <input type="text" class="form-control mb-2" placeholder="Nombre" name="nombre">
                         <input type="email" class="form-control mb-2" placeholder="Correo electrónico" required>
                         <button type="submit" class="btn btn-primary w-100">
                             Suscribirme
@@ -135,10 +138,10 @@
                     </form>
 
                     <div class="footer-social mt-3">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com" aria-label="Facebook Mi Perfil Nica"><i
+                                class="bi bi-facebook fs-5"></i></a>
+                        <a href="https://www.instagram.com" aria-label="Instagram Mi Perfil Nica"><i
+                                class="bi bi-instagram fs-5"></i></a>
                     </div>
                 </div>
 

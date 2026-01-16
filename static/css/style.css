@@ -463,6 +463,7 @@
     );
 }
 
+
 /* Overlay oscuro sutil */
 .hero::after {
     content: "";

@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
-{% block title %} Como funciona {%endblock%}
+{% block title %} Cómo Funciona | Compra Perfiles de Streaming en Nicaragua | Mi Perfil Nica {%endblock%}
 {% block content %}
 <!-- ¿Cómo Funciona? -->
-<section class="how-it-works-header text-center text-white py-5">
+<section id="como-funciona" class="how-it-works-header text-center text-white py-5">
     <div class="container">
-        <h2 class="fw-bold mb-3 text-white">¿Cómo Funciona?</h2>
+        <h1 class="fw-bold mb-3 text-white">¿Cómo Funciona?</h1>
         <p class="lead mb-0">
             Obtener tu plataforma de streaming favorita es muy fácil y rápido.
             Solo sigue estos simples pasos y empieza a disfrutar de tu contenido en minutos.
@@ -21,16 +21,16 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">1</span>
-                    <img src="{{ url_for('static', filename='imagenes/Whatsapp.svg') }}" alt="Paso 1"
+                    <img src="{{ url_for('static', filename='imagenes/Whatsapp.svg') }}" alt="Contáctanos por WhatsAppy con gusto de atendemos en Mi perfil Nica"
                         class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">
-                        <i class="bi bi-whatsapp me-2 text-primary"></i>Escríbenos por WhatsApp
+                    <h3 class="fw-bold">
+                        <i class="bi bi-whatsapp me-2 fs-4"></i>Escríbenos por WhatsApp
 
-                    </h5>
+                    </h3>
                     <p class="mb-0">
                         Contacta con nosotros a través de WhatsApp y cuéntanos qué plataforma de streaming te interesa.
                     </p>
@@ -43,15 +43,15 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">2</span>
-                    <img src="{{ url_for('static', filename='imagenes/validar.svg') }}" alt="Paso 2"
+                    <img src="{{ url_for('static', filename='imagenes/validar.svg') }}" alt="En Mi Perfil Nica validamos la disponibilidad de tu plataforma de streaming favorita"
                         class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">
-                        <i class="bi bi-search me-2 text-primary"></i>Validamos disponibilidad
-                    </h5>
+                    <h3 class="fw-bold">
+                        <i class="bi bi-search me-2 fs-4"></i>Validamos disponibilidad
+                    </h3>
                     <p class="mb-0">
                         Nuestro equipo verificará inmediatamente la disponibilidad de la plataforma que solicitaste.
                     </p>
@@ -64,15 +64,15 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">3</span>
-                    <img src="{{ url_for('static', filename='imagenes/Ncuenta.svg') }}" alt="Paso 3"
+                    <img src="{{ url_for('static', filename='imagenes/Ncuenta.svg') }}" alt="Recibe datos bancarios para realizar tu pago en Mi Perfil Nica"
                         class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold mb-3">
-                        <i class="bi bi-bank me-2 text-primary"></i> Recibe Datos Bancarios
-                    </h5>
+                    <h3 class="fw-bold mb-3">
+                        <i class="bi bi-bank me-2 fs-4"></i> Recibe Datos Bancarios
+                    </h3>
 
                     <p>
                         Te compartimos los números de cuenta bancaria para que realices
@@ -82,9 +82,9 @@
                     <hr>
 
                     <div class="payment-methods">
-                        <h6 class="fw-semibold mb-3 text-muted">
+                        <h4 class="fw-semibold mb-3 text-muted">
                             Métodos de pago disponibles
-                        </h6>
+                        </h4>
 
                         <div class="row g-2">
                             <div class="col-6">
@@ -119,16 +119,16 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">4</span>
-                    <img src="{{ url_for('static', filename='imagenes/Credenciales.svg') }}" alt="Paso 4"
+                    <img src="{{ url_for('static', filename='imagenes/Credenciales.svg') }}" alt="Realza tu pago y envía el comprobante a Mi Perfil Nica"
                         class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold">
-                        <i class="bi bi-camera me-2 text-primary"></i>Envía Comprobante
+                    <h3 class="fw-bold">
+                        <i class="bi bi-camera me-2 fs-4"></i>Envía Comprobante
 
-                    </h5>
+                    </h3>
                     <p class="mb-0">
                         Realiza la transferencia o depósito y envíanos la foto del comprobante por WhatsApp.
                     </p>
@@ -141,15 +141,15 @@
             <div class="col-md-6 text-center mb-4 mb-md-0">
                 <div class="step-image-wrapper">
                     <span class="step-number">5</span>
-                    <img src="{{ url_for('static', filename='imagenes/Voucher.svg') }}" alt="Paso 5"
+                    <img src="{{ url_for('static', filename='imagenes/Voucher.svg') }}" alt="Disfruta tu plataforma de streaming con las credenciales que te entrega Mi Perfil Nica"
                         class="img-fluid rounded-circle step-image">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="step-card">
-                    <h5 class="fw-bold mb-3">
-                        <i class="bi bi-key me-2 text-primary"></i> Recibe tus Credenciales
-                    </h5>
+                    <h3 class="fw-bold mb-3">
+                        <i class="bi bi-key me-2 fs-3"></i> Recibe tus Credenciales
+                    </h3>
 
                     <p>
                         Una vez confirmado el pago, te entregamos las credenciales de acceso: correo electrónico, contraseña y PIN.
@@ -181,7 +181,7 @@
                     <div class="why-icon">
                         <i class="bi bi-shield-check"></i>
                     </div>
-                    <h5 class="fw-bold mt-3">Entrega Inmediata</h5>
+                    <h3 class="fw-bold mt-3">Entrega Inmediata</h3>
                     <p>
                         Recibe tus credenciales en menos de 30 minutos después de confirmar el pago.
                     </p>
@@ -194,7 +194,7 @@
                     <div class="why-icon">
                         <i class="bi bi-lightning-charge"></i>
                     </div>
-                    <h5 class="fw-bold mt-3">100% Seguro</h5>
+                    <h3 class="fw-bold mt-3">100% Seguro</h3>
                     <p>
                         Credenciales válidas y funcionales con garantía de servicio.
                     </p>
@@ -207,7 +207,7 @@
                     <div class="why-icon">
                         <i class="bi bi-headset"></i>
                     </div>
-                    <h5 class="fw-bold mt-3">Soporte 24/7</h5>
+                    <h3 class="fw-bold mt-3">Soporte 24/7</h3>
                     <p>
                        Estamos disponibles para ayudarte en cualquier momento vía WhatsApp.
                     </p>
@@ -218,13 +218,13 @@
 </section>
 <section class="faq-section py-5 bg-light">
     <div class="container">
-        <h2 class="fw-bold text-center mb-5">Preguntas Frecuentes</h2>
+        <h2 id="section_faq" class="fw-bold text-center mb-5">Preguntas Frecuentes</h2>
 
         <div class="row g-4">
             <!-- Pregunta 1 -->
             <div class="col-md-6">
                 <div class="faq-card">
-                    <h6 class="fw-bold">¿Cuánto tiempo tarda la entrega?</h6>
+                    <h3 class="fw-bold">¿Cuánto tiempo tarda la entrega?</h3>
                     <p>
                         Una vez que envíes el comprobante de pago, entregaremos tus credenciales en un máximo de 30 minutos durante horario laboral.
                     </p>
@@ -234,7 +234,7 @@
             <!-- Pregunta 2 -->
             <div class="col-md-6">
                 <div class="faq-card">
-                    <h6 class="fw-bold">¿Las credenciales son seguras?</h6>
+                    <h3 class="fw-bold">¿Las credenciales son seguras?</h3>
                     <p>
                         Sí, todas nuestras cuentas son completamente legales y seguras. Entregamos credenciales de acceso válidas y funcionales.
                     </p>
@@ -244,7 +244,7 @@
             <!-- Pregunta 3 -->
             <div class="col-md-6">
                 <div class="faq-card">
-                    <h6 class="fw-bold">¿Qué pasa si el perfil deja de funcionar?</h6>
+                    <h3 class="fw-bold">¿Qué pasa si el perfil deja de funcionar?</h3>
                     <p>
                         Nuestro equipo de soporte te ayudará de inmediato a resolver
                         el problema o reemplazar el perfil.
@@ -255,7 +255,7 @@
             <!-- Pregunta 4 -->
             <div class="col-md-6">
                 <div class="faq-card">
-                    <h6 class="fw-bold">¿Qué pasa si tengo problemas con las credenciales?</h6>
+                    <h3 class="fw-bold">¿Qué pasa si tengo problemas con las credenciales?</h3>
                     <p>
                         Ofrecemos soporte completo. Si tienes algún problema, contáctanos por WhatsApp y lo solucionaremos de inmediato.
                     </p>
@@ -271,7 +271,7 @@
             <i class="bi bi-whatsapp"></i>
         </div>
 
-        <h2 class="fw-bold mb-3">¿Listo para Empezar?</h2>
+        <h5 class="fw-bold mb-3">¿Listo para Empezar?</h5>
         <p class="mb-4">
             Contáctanos ahora por WhatsApp y obtén tu plataforma
             de streaming favorita en minutos.

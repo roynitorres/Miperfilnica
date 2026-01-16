@@ -1,275 +1,278 @@
 {% extends "layout.html" %}
-{% block title %} Inicio {% endblock %}
+{% block title %} Mi Perfil Nica | Perfiles de Streaming en Nicaragua {% endblock %}
 {% block content %}
 <section class="hero">
-    <div class="hero-content">
-        <h1>Elige tu plataforma favorita y comienza hoy</h1>
-        <h2>Compra fácil, acceso inmediato y sin complicaciones</h2>
+    <header class="hero-content">
+
+        <h1>Venta de perfiles de streaming en Nicaragua</h1>
+        <p class="hero-subtitle">Compra fácil, acceso inmediato y sin complicaciones</p>
         <p>Perfiles premium • Activación rápida • Soporte confiable</p>
-    </div>
+
+    </header>
 </section>
-<!-- Sección de sliders -->
-<div class="section-label text-center mt-5 mb-4">
-    <span class="label-individuales">Perfiles Individuales</span>
-</div>
-<div id="individuales" class="text-center mt-5 mb-4">
-    <h1>Perfiles Individuales</h1>
-</div>
 
-<!--Plataformas individuales-->
-<div class="slider-container mb-5">
-    <!-- Flecha izquierda -->
-    <button class="slider-btn prev" aria-label="Anterior">
-        <i class="bi bi-chevron-left"></i>
-    </button>
+<section id="individuales">
+    <header class="section-label text-center mt-5 mb-4">
+        <span class="label-individuales">Streaming Premium</span>
+        <h2 class=" mt-5 mb-4">Perfiles Individuales</h2>
+    </header>
 
-    <!-- Slider -->
-    <div class="slider-wrapper">
-        <div class="slider-track" data-slider>
+    <div class="slider-container mb-5">
+        <!-- Flecha izquierda -->
+        <button class="slider-btn prev" aria-label="Anterior">
+            <i class="bi bi-chevron-left"></i>
+        </button>
 
-            {% for platform in platforms %}
-            <div class="card slider-card">
+        <!-- Slider -->
+        <div class="slider-wrapper">
+            <div class="slider-track" data-slider>
 
-                <!-- Imagen -->
-                <div class="card-image ">
+                {% for platform in platforms %}
+                <div class="card slider-card">
 
-                    {% if platform.title.strip() == "Netflix Premium" %}
-                    <span class="popular-badge">
-                        <i class="bi bi-star-fill"></i> Más popular
-                    </span>
-                    {% endif %}
+                    <!-- Imagen -->
+                    <div class="card-image ">
 
-                    <span class="platform-name-overlay">
-                        {{ platform.title }}
-                    </span>
-
-                    <img src="{{ url_for('static', filename=platform.image) }}" alt="{{ platform.title }}">
-                </div>
-
-                <!-- Body -->
-                <div class="card-body-custom">
-                    <div class="price-container">
-                        <div class="price-row">
-                            <span class="price-amount fs-5 fw-bold">
-                                {{ platform.currency }} {{ platform.price }}
-                            </span>
-                            <span class="price-period">
-                                /{{ platform.period }}
-                            </span>
-                        </div>
+                        {% if platform.title.strip() == "Netflix Premium" %}
+                        <span class="popular-badge">
+                            <i class="bi bi-star-fill"></i> Más popular
                         </span>
+                        {% endif %}
+
+                        <span class="platform-name-overlay">
+                            {{ platform.title }}
+                        </span>
+
+                        <img src="{{ url_for('static', filename=platform.image) }}"
+                            alt="{{ platform.title }} en Miperfilnica.com">
                     </div>
 
-                    <div class="stars">
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                    </div>
-
-                    
-
-                    <a href="{{ url_for('detalle', tipo='platform', item_id=platform.id) }}" class="btn-detail">
-                        Ver detalle
-                    </a>
-
-                </div>
-            </div>
-            {% endfor %}
-
-        </div>
-    </div>
-
-
-    <!-- Flecha derecha -->
-    <button class="slider-btn next" aria-label="Siguiente">
-        <i class="bi bi-chevron-right"></i>
-    </button>
-</div>
-<!-- Dots -->
-<div class="slider-dots " data-dots></div>
-
-<div class="section-label text-center mt-5 mb-4">
-    <span class="label-ahorra">
-        <i class="bi bi-piggy-bank-fill me-2"></i>
-        Ahorra Más
-    </span>
-</div>
-
-
-<div id="combos-duos" class="text-center mt-5 mb-4">
-    <h1>Combos x 2 - ¡Ahorra Más!</h1>
-    <p>Combina tus plataformas favoritas y ahorra dinero.</p>
-</div>
-
-<div class="slider-container mb-5">
-
-    <!-- Flecha izquierda -->
-    <button class="slider-btn prev" aria-label="Anterior">
-        <i class="bi bi-chevron-left"></i>
-    </button>
-
-    <!-- Slider -->
-
-    <div class="slider-wrapper">
-        <div class="slider-track" data-slider>
-
-            {% for combduos in combosDuos %}
-            <div class="card slider-card">
-
-                <!-- Imagen -->
-                <div class="card-image">
-
-                    <span class="save-badge">
-                        Ahorra C${{ combduos.ahorro }}
-                    </span>
-
-                    <span class="platform-name-overlay">
-                        {{ combduos.title }}
-                    </span>
-
-                    <img src="{{ url_for('static', filename=combduos.image) }}" alt="{{ combduos.title }}">
-                </div>
-
-                <!-- Body -->
-                <div class="card-body-custom">
-
-                    
-
-                    <div class="price-container">
-
-                        <div class="old-price fw-bold ">
-                            C${{ combduos.price_original }}
+                    <!-- Body -->
+                    <div class="card-body-custom">
+                        <div class="price-container">
+                            <div class="price-row">
+                                <span class="price-amount fs-5 fw-bold">
+                                    {{ platform.currency }} {{ platform.price }}
+                                </span>
+                                <span class="price-period">
+                                    /{{ platform.period }}
+                                </span>
+                            </div>
+                            
                         </div>
 
-                        <div class="price-row">
-                            <span class="price-amount fs-5 fw-bold">
-                                {{ combduos.currency }} {{ combduos.price }}
-                            </span>
-                            <span class="price-period">
-                                /{{ combduos.period }}
-                            </span>
+                        <div class="stars">
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
                         </div>
+
+                        <a href="{{ url_for('detalle', tipo='platform', item_id=platform.id) }}" class="btn-detail">
+                            Detalle
+                        </a>
+
                     </div>
-                    <div class="stars">
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                    </div>
-
-
-                    <a href="{{ url_for('detalle', tipo='combosDuo', item_id=combduos.id) }}" class="btn-detail">
-                        Ver detalle
-                    </a>
-
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
 
+            </div>
         </div>
+
 
         <!-- Flecha derecha -->
         <button class="slider-btn next" aria-label="Siguiente">
             <i class="bi bi-chevron-right"></i>
         </button>
     </div>
-</div>
 
-<!-- Dots -->
-<div class="slider-dots mb-5" data-dots></div>
+    <!-- Dots -->
+    <div class="slider-dots " data-dots></div>
 
-<div class="section-label text-center mt-5 mb-4">
-    <span class="label-maximo">
-        <i class="bi bi-star-fill me-2"></i>
-        Máximo Ahorro
-        <i class="bi bi-star-fill ms-2"></i>
-    </span>
-</div>
+</section>
 
 
-<div id="combos-trios" class="text-center mt-5 mb-4">
-    <h1>Mega Combos x3 - ¡Máximo Ahorro!</h1>
-    <p>La mejor selección de 3 plataformas al precio más bajo</p>
-</div>
 
-<div class="slider-container mb-5">
+<section id="combos-duos">
+    <header class="section-label text-center mt-5 mb-4">
+        <span class="label-ahorra mb-5">
+            <i class="bi bi-piggy-bank-fill me-2"></i>
+            Ahorra Más
+        </span>
+        <h2>Combos x 2 - ¡Ahorra Más!</h2>
+        <p>Combina tus plataformas favoritas y ahorra dinero.</p>
+    </header>
 
-    <!-- Flecha izquierda -->
-    <button class="slider-btn prev" aria-label="Anterior">
-        <i class="bi bi-chevron-left"></i>
-    </button>
 
-    <!-- Slider -->
-    <div class="slider-wrapper">
-        <div class="slider-track" data-slider>
+    <div class="slider-container mb-5">
 
-            {% for combtrio in combosTrios %}
-            <div class="card slider-card">
-
-                <!-- Imagen -->
-                <div class="card-image">
-                    <span class="save-badge">
-                        Ahorra C${{ combtrio.ahorro }}
-                    </span>
-
-                    <span class="platform-name-overlay">
-                        {{ combtrio.title }}
-                    </span>
-
-                    <img src="{{ url_for('static', filename=combtrio.image) }}" alt="{{ combtrio.title }}">
-                </div>
-
-                <!-- Body -->
-                <div class="card-body-custom">
-
-                    
-
-                    <div class="price-container">
-                        <div class="old-price fw-bold">
-                            C${{ combtrio.price_original }}
-                        </div>
-
-                        <div class="price-row">
-                            <span class="price-amount fs-5 fw-bold">
-                                {{ combtrio.currency }} {{ combtrio.price }}
-                            </span>
-                            <span class="price-period">
-                                /{{ combtrio.period }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                        <i class="bi bi-star-fill text-warning fs-5"></i>
-                    </div>
-
-                    <a href="{{ url_for('detalle', tipo='combotres', item_id=combtrio.id) }}" class="btn-detail">
-                        Ver detalle
-                    </a>
-
-                </div>
-            </div>
-            {% endfor %}
-
-        </div>
-
-        <!-- Flecha derecha -->
-        <button class="slider-btn next" aria-label="Siguiente">
-            <i class="bi bi-chevron-right"></i>
+        <!-- Flecha izquierda -->
+        <button class="slider-btn prev" aria-label="Anterior">
+            <i class="bi bi-chevron-left"></i>
         </button>
 
+        <!-- Slider -->
+
+        <div class="slider-wrapper">
+            <div class="slider-track" data-slider>
+
+                {% for combduos in combosDuos %}
+                <div class="card slider-card">
+
+                    <!-- Imagen -->
+                    <div class="card-image">
+
+                        <span class="save-badge">
+                            Ahorra C${{ combduos.ahorro }}
+                        </span>
+
+                        <span class="platform-name-overlay">
+                            {{ combduos.title }}
+                        </span>
+
+                        <img src="{{ url_for('static', filename=combduos.image) }}" alt="{{ combduos.title }}">
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body-custom">
+
+
+
+                        <div class="price-container">
+
+                            <div class="old-price fw-bold ">
+                                C${{ combduos.price_original }}
+                            </div>
+
+                            <div class="price-row">
+                                <span class="price-amount fs-5 fw-bold">
+                                    {{ combduos.currency }} {{ combduos.price }}
+                                </span>
+                                <span class="price-period">
+                                    /{{ combduos.period }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                        </div>
+
+
+                        <a href="{{ url_for('detalle', tipo='combosDuo', item_id=combduos.id) }}" class="btn-detail">
+                            Ver detalle
+                        </a>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- Flecha derecha -->
+            <button class="slider-btn next" aria-label="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
     </div>
+
+    <!-- Dots -->
+    <div class="slider-dots mb-5" data-dots></div>
+</section>
+
+<div>
+
 </div>
-<!-- Dots -->
-<div class="slider-dots mb-5" data-dots></div>
 
 
+<section id="combos-trios">
+    <header class="section-label text-center mt-5 mb-4">
+        <span class="label-maximo mb-5">
+            <i class="bi bi-star-fill me-2"></i>
+            Máximo Ahorro
+            <i class="bi bi-star-fill ms-2"></i>
+        </span>
+        <h2>Mega Combos x3 - ¡Máximo Ahorro!</h2>
+        <p>La mejor selección de 3 plataformas al precio más bajo</p>
+    </header>
+
+
+    <div class="slider-container mb-5">
+
+        <!-- Flecha izquierda -->
+        <button class="slider-btn prev" aria-label="Anterior">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <!-- Slider -->
+        <div class="slider-wrapper">
+            <div class="slider-track" data-slider>
+
+                {% for combtrio in combosTrios %}
+                <div class="card slider-card">
+
+                    <!-- Imagen -->
+                    <div class="card-image">
+                        <span class="save-badge">
+                            Ahorra C${{ combtrio.ahorro }}
+                        </span>
+
+                        <span class="platform-name-overlay">
+                            {{ combtrio.title }}
+                        </span>
+
+                        <img src="{{ url_for('static', filename=combtrio.image) }}" alt="{{ combtrio.title }}">
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body-custom">
+                        <div class="price-container">
+                            <div class="old-price fw-bold">
+                                C${{ combtrio.price_original }}
+                            </div>
+
+                            <div class="price-row">
+                                <span class="price-amount fs-5 fw-bold">
+                                    {{ combtrio.currency }} {{ combtrio.price }}
+                                </span>
+                                <span class="price-period">
+                                    /{{ combtrio.period }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                        </div>
+
+                        <a href="{{ url_for('detalle', tipo='combotres', item_id=combtrio.id) }}" class="btn-detail">
+                            Ver detalle
+                        </a>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- Flecha derecha -->
+            <button class="slider-btn next" aria-label="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+        </div>
+    </div>
+    <!-- Dots -->
+    <div class="slider-dots mb-5" data-dots></div>
+
+</section>
 
 
 {% endblock %}

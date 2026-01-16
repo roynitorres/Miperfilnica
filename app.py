@@ -2,6 +2,7 @@ from flask import Flask, render_template, abort
 from data import platforms, combosDuos, combosTrios
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 @app.route("/")
 def inicio():
