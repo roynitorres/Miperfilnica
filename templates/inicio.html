@@ -2,12 +2,21 @@
 {% block title %} Mi Perfil Nica | Perfiles de Streaming en Nicaragua {% endblock %}
 {% block content %}
 <section class="hero">
+    <div class="hero-ribbon">
+        <div class="ribbon-track">
+            <i class="bi bi-heart-fill"></i>
+            Promociones especiales de San Valentín: ¡Celebra el amor con las mejores plataformas de streaming!
+            <i class="bi bi-heart-fill"></i>
+        </div> 
+    </div>
+
     <header class="hero-content">
-
-        <h1>Venta de perfiles de streaming en Nicaragua</h1>
-        <p >Compra fácil, acceso inmediato y sin complicaciones</p>
-        <p>Perfiles premium • Activación rápida • Soporte confiable</p>
-
+        <h1>Comparte tus momentos favoritos juntos</h1>
+        <p >Disfruten películas, series y música en pareja o con amigos</p>
+        <a href="#combos-duos" class="hero-btn">
+            Ver Especiales san Valentín
+            <i class="bi bi-heart" ></i>
+        </a>
     </header>
 </section>
 
@@ -98,11 +107,12 @@
 <section id="combos-duos">
     <header class="section-label text-center mt-5 mb-4">
         <span class="label-ahorra mb-5">
-            <i class="bi bi-piggy-bank-fill me-2"></i>
+            <i class="bi bi-heart-fill "></i>
             Especial san Velentin
+            <i class="bi bi-heart-fill"></i>
         </span>
-        <h2>Combos Dúo para Parejas</h2>
-        <p>Comparte entretenimiento con tu pareja o mejor amigo. ¡Ahorra hasta 20%!</p>
+        <h2 class="titulo-ahorra">Combos Dúo <span  class="gradiente-texto">para Parejas</span></h2>
+        <p style="font-weight:900 ; color: #dd06728a;">Comparte entretenimiento con tu pareja o mejor amigo. ¡Ahorra hasta 1    0%!</p>
     </header>
 
 
@@ -115,7 +125,7 @@
 
         <!-- Slider -->
 
-        <div class="slider-wrapper">
+        <div class="slider-wrapper ">
             <div class="slider-track" data-slider>
 
                 {% for combduos in combosDuos %}
@@ -123,6 +133,7 @@
 
                     <!-- Imagen -->
                     <div class="card-image">
+                        <i class="bi bi-heart-fill heart-icon"></i>
 
                         <span class="save-badge">
                             Ahorra C${{ combduos.ahorro }}
@@ -163,10 +174,14 @@
                             <i class="bi bi-star-fill text-warning fs-5"></i>
                         </div>
 
-
+                        
                         <a href="{{ url_for('detalle', tipo='combosDuo', item_id=combduos.id) }}" class="btn-detail">
                             Ver detalle
                         </a>
+                        
+                            <P style="color: crimson;">
+                                <i class="bi bi-heart-fill "></i>
+                                Ideal para compartir en febrero.</P>
 
                     </div>
                 </div>
@@ -198,7 +213,7 @@
             <i class="bi bi-star-fill ms-2"></i>
         </span>
         <h2>Mega Combos x3 - ¡Máximo Ahorro!</h2>
-        <p>La mejor selección de 3 plataformas al precio más bajo</p>
+        <p>Todo el entretenimiento que necesitas en un solo paquete.</p>
     </header>
 
 

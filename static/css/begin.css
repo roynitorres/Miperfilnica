@@ -4,31 +4,44 @@
     height: 70vh;
     position: relative;
     overflow: hidden;
+    background: url("/static/imagenes/Banner_Febrero.svg") center/cover no-repeat;
 
-    /* Degradado basado en #00369f */
-    background: linear-gradient(
-        135deg,
-        #00369f 0%,
-        #004aad 45%,
-        #002a80 100%
-    );
 }
 
 
-/* Overlay oscuro sutil */
+/*Overlay oscuro para que el texto sea legible*/
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.35)
-    );
     z-index: 1;
 }
 
+.hero-ribbon {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #ff4081; /* Color vibrante para destacar */
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 3; /* Asegura que esté por encima del contenido */
+    overflow: hidden;
+    white-space: nowrap;
+    
+    
+}
 
+.ribbon-track {
+    display: inline-block;
+    padding: 8px;
+    animation: ribbonScroll 18s linear infinite;
+}
+
+@keyframes ribbonScroll{
+    from {transform: translateX(100%);}
+    to {transform: translateX(-100%);}
+}
 
 /* CONTENIDO */
 .hero-content {
@@ -44,8 +57,11 @@
     text-align: center;
 
     padding: 0 1.5rem;
-    animation: heroFadeUp 1.2s ease-out forwards;
+    
 }
+
+
+
 
 /* Tipografía */
 .hero-content h1 {
@@ -54,20 +70,31 @@
     color: #ffffff;
 }
 
-.hero-content h2 {
-    font-size: clamp(1.1rem, 2vw, 1.6rem);
-    font-weight: 500;
-    color: #ffc107; /* armoniza con tu sección “Máximo Ahorro” */
-}
 
 .hero-content p {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    color: #e3e6e3;
+    font-size: 1.2rem;
+    color: #dd06728a;
+    font-weight: 900;
 }
 
 /* ANIMACIÓN */
 
+.hero-btn{
+    margin-top: 22px;
+    padding: 15px;
+    background:#ffffff;
+    color: #00369f;
+    border-radius: 30px;
+    font-weight: 900;
+    text-decoration: none;
+    transition: all 0.3s ease ;
+    font-size: 1rem;
+}
+
+.hero-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgb(0,0,0,0.5);
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -78,4 +105,43 @@
     .hero-content p {
         display: none; /* Limpio en móvil */
     }
+
+    .hero-content h1{
+        margin-top:40px;
+    }
+
+    .hero-btn{
+        margin-top: 0px;
+    }
+}
+
+.gradiente-texto{
+    background: linear-gradient(to right, #f70174, #d90429);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 900;
+}
+
+.titulo-ahorra{
+    color: #0f0f0f;
+    font-weight: 700;
+}
+
+.heart-icon{
+    position:absolute;
+    top:12px;
+    left: 12px;
+    font-size: 22px;
+    color: #ff4081;
+    z-index: 3;
+    filter: drop-shadow(0 2px 4px rgb(0,0,0,0,25));
+    cursor: pointer;
+    transition: transform 0.3s ease opacity 0.3s ease;
+}
+
+.heart-icon:hover{
+    transform: scale(1.15);
+    opacity: .85;
 }

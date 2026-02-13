@@ -1,12 +1,9 @@
 /*Controlamos el navbar*/
 /* Navbar general */
 .navbar {
-  
     background-color: #00369f ; /* Fondo oscuro, cámbialo a tu gusto */
     padding: 1rem 2rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
-    
-    
 }
 
 /* Links */
@@ -209,7 +206,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #28a745; /* warning */
+    background: linear-gradient(to right, #ec03a6, #f71e01); ; /* warning */
     color: #ffffff;
     font-size: 0.75rem;
     font-weight: 700;
@@ -237,7 +234,7 @@
     margin-top: 0.5rem;
     padding: 0.45rem 1.2rem;
     border-radius: 20px;
-    background-color: #00369f;
+    background-color: #004aad;
     color: #ffffff;
     font-size: 0.85rem;
     font-weight: 600;
@@ -514,21 +511,21 @@
 }
 
 .label-individuales {
-    background-color: rgb(23, 162, 184);
+    background:linear-gradient(to right, #007bff, #004aad); ;
     color: #ffffff;
 }
 
 .label-ahorra {
-    background-color: #28a745;
+    background:linear-gradient(to right, #f70174, #d90429 );
     color: #ffffff;
 }
 .label-maximo {
-    background-color: #ffc107;
-    color: #004aad;
+    background:linear-gradient(to right, #ffc107, #f38201) ;
+    color: #090f16;
 }
 
 .label-maximo i {
-    color: #004aad;
+    color: #0e0f0f;
 }
 
 .section-label span {
