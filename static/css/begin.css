@@ -4,8 +4,7 @@
     height: 70vh;
     position: relative;
     overflow: hidden;
-    background: url("/static/imagenes/Banner_Febrero.svg") center/cover no-repeat;
-
+    background: linear-gradient(to right, #00369f, #0d46af)
 }
 
 
@@ -21,7 +20,7 @@
     position: absolute;
     top: 0;
     width: 100%;
-    background-color: #ff4081; /* Color vibrante para destacar */
+    background: linear-gradient(to right, #f78c01, #d9cb04f1); 
     color: #fff;
     font-weight: 600;
     font-size: 0.9rem;
@@ -49,51 +48,72 @@
     inset: 0;
     z-index: 2;
     color: #ffffff;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
     padding: 0 1.5rem;
-    
+    padding-top: 60px;
 }
 
 
 
 
 /* Tipografía */
-.hero-content h1 {
+.hero-content h1 em{
     font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700;
     color: #ffffff;
+    text-align: left;
+    font-style: normal;
+    
 }
-
+.hero-content h1 strong{
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: #f5e504;
+    margin-top: 20px;
+    text-align: left;
+}
 
 .hero-content p {
     font-size: 1.2rem;
-    color: #dd06728a;
+    color: #ffffff;
     font-weight: 900;
 }
 
+.about-content{
+    display: flex;
+    color: #ffffff;
+    align-items: center;
+    
+}
+.about-content h3{
+    color: #ffffff;
+}
 /* ANIMACIÓN */
+.hero-imagnes{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    text-align: right;
+    animation: slide 20s linear infinite;
+    padding-top: 90px;
+   
+}
+.hero-img-1{
+    width: 250px;
+    height: auto;
+    margin-right: 20px;
+    animation-delay: 0s;
+    padding-top: 50px;
+    z-index: 2;
 
-.hero-btn{
-    margin-top: 22px;
-    padding: 15px;
-    background:#ffffff;
-    color: #00369f;
-    border-radius: 30px;
-    font-weight: 900;
-    text-decoration: none;
-    transition: all 0.3s ease ;
-    font-size: 1rem;
 }
 
-.hero-btn:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgb(0,0,0,0.5);
+.hero-img-2{
+    width: 250px;
+    margin-right: 20px;
+    animation-delay: 10s;
+  
 }
 
 /* RESPONSIVE */
@@ -113,35 +133,13 @@
     .hero-btn{
         margin-top: 0px;
     }
+    .hero-imagnes{
+        display: none; /* Oculto imágenes en móvil */
+    }
 }
 
-.gradiente-texto{
-    background: linear-gradient(to right, #f70174, #d90429);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    font-size: 900;
+.label-ahorra {
+    background:linear-gradient(to right, #f73a01e5, #d97d04 );
+    color: #ffffff;
 }
 
-.titulo-ahorra{
-    color: #0f0f0f;
-    font-weight: 700;
-}
-
-.heart-icon{
-    position:absolute;
-    top:12px;
-    left: 12px;
-    font-size: 22px;
-    color: #ff4081;
-    z-index: 3;
-    filter: drop-shadow(0 2px 4px rgb(0,0,0,0,25));
-    cursor: pointer;
-    transition: transform 0.3s ease opacity 0.3s ease;
-}
-
-.heart-icon:hover{
-    transform: scale(1.15);
-    opacity: .85;
-}

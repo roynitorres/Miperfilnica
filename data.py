@@ -458,7 +458,7 @@ combosTrios = [
     {
         "id":1,
         "code": "CT2601",
-        "title": "Mega Combo Anime",
+        "title": "Netflix + Crunchyroll + Spotify",
         "image": "imagenes/ComboTrio/21.svg",
         "description": "Netflix + Crunchyroll + Spotify",
         "price_original":"360.00",
@@ -483,7 +483,7 @@ combosTrios = [
     {
         "id":2,
         "code": "CT2601",
-        "title": "Mega combo Latino",
+        "title": "Netflix + Vix + Hbo Max",
         "image": "imagenes/ComboTrio/22.svg",
         "description": "Netflix + Vix + Hbo Max",
         "price_original":"330.00",
@@ -508,7 +508,7 @@ combosTrios = [
     {
         "id":3,
         "code": "CT2601",
-        "title": "Mega Combo Familiar",
+        "title": "Netflix + Prime Video + Hbo Max",
         "image": "imagenes/ComboTrio/23.svg",
         "description": "Netflix + Prime Video + Hbo Max",
         "price_original":"320.00",
@@ -533,7 +533,7 @@ combosTrios = [
     {
         "id":4,
         "code": "CT2604",
-        "title": "Mega Combo Musical",
+        "title": "Netflix + Disney Premium + Spotify",
         "image": "imagenes/ComboTrio/24.svg",
         "description": "Netflix + Disney Premium + Spotify",
         "price_original":"420.00",
@@ -558,7 +558,7 @@ combosTrios = [
     {
         "id":5,
         "code": "CT2604",
-        "title": "Mega combo Total",
+        "title": "Netflix + Disney Premium + youtube Premium",
         "image": "imagenes/ComboTrio/25.svg",
         "description": "Netflix + Disney Premium + youtube Premium",
         "price_original":"450.00",
@@ -583,7 +583,7 @@ combosTrios = [
     {
         "id":6,
         "code": "CT2604",
-        "title": "Mega Combo CineMax",
+        "title": "Netflix + Disney Standar + Hbo Max",
         "image": "imagenes/ComboTrio/26.svg",
         "description": "Netflix + Disney Standar + Hbo Max",
         "price_original":"360.00",
@@ -608,7 +608,7 @@ combosTrios = [
     {
         "id":7,
         "code": "CT2604",
-        "title": "Mega Combo Streaming",
+        "title": "Netflix + Disney Standar + Prime Video",
         "image": "imagenes/ComboTrio/27.svg",
         "description": "Netflix + Disney Standar + Prime Video",
         "price_original":"360.00",
@@ -633,7 +633,7 @@ combosTrios = [
     {
         "id":8,
         "code": "CT2604",
-        "title": "Mega combo Milenial",
+        "title": "Spotify + Hbo Max + Prime Video",
         "image": "imagenes/ComboTrio/28.svg",
         "description": "Spotify + Hbo Max + Prime Video",
         "price_original":"300.00",
@@ -658,7 +658,7 @@ combosTrios = [
     {
         "id":9,
         "code": "CT2604",
-        "title": "Mega combo LatinoMax",
+        "title": "Vix + Hbo Max + Prime Video",
         "image": "imagenes/ComboTrio/29.svg",
         "description": "Vix + Hbo Max + Prime Video",
         "price_original":"280.00",
@@ -683,7 +683,7 @@ combosTrios = [
     {
         "id":10,
         "code": "CT2604",
-        "title": "Combo CineFamily",
+        "title": "Disney Premium + Hbo Max + Prime Video",
         "image": "imagenes/ComboTrio/30.svg",
         "description": "Disney Premium+ Hbo Max + Prime Video",
         "price_original":"340.00",

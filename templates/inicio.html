@@ -5,25 +5,42 @@
     <div class="hero-ribbon">
         <div class="ribbon-track">
             <i class="bi bi-heart-fill"></i>
-            Promociones especiales de San Valentín: ¡Celebra el amor con las mejores plataformas de streaming!
+            Celebramos el dia internacional de la mujer con ofertas especiales en perfiles de streaming.
             <i class="bi bi-heart-fill"></i>
-        </div> 
+        </div>
     </div>
 
     <header class="hero-content">
-        <h1>Comparte tus momentos favoritos juntos</h1>
-        <p >Disfruten películas, series y música en pareja o con amigos</p>
-        <a href="#combos-duos" class="hero-btn">
-            Ver Especiales san Valentín
-            <i class="bi bi-heart" ></i>
-        </a>
+        <h1> <em>Accede a Tus</em> <br> <strong>Plataformas Favoritas</strong></h1>
+        <p>Perfiles individuales desde C$90. Combos dúos <br> desde C$220. ¡Mega combos x3 desde C$270!</p>
+        <div class="about-content gap-4 mt-4">
+            <div class="text-center">
+                <h3>500+</h3>
+                <span>Clientes satisfechos</span>
+            </div>
+            <div class="text-center">
+                <h3>10+</h3>
+                <span>Plataformas </span>
+
+            </div>
+            <div class="text-center">
+                <h3>24/7</h3>
+                <span>Soporte</span>
+            </div>
+        </div>
+        <div class="hero-imagnes"> 
+            <img class="hero-img-2"  src="{{ url_for('static', filename='imagenes/disney.svg') }}" alt="Imagen de Disney">
+            <img class="hero-img-1" src="{{ url_for('static', filename='imagenes/netflix.svg') }}" alt="Imagen de Netflix">
+        </div>
+
     </header>
+
 </section>
 
 <section id="individuales">
     <header class="section-label text-center mt-5 mb-4">
         <span class="label-individuales">Perfiles Individuales</span>
-        <h2 class=" mt-5 mb-4">Elige tu plataforma favorita </h2>
+        <h2 class=" mt-5 mb-4">Elige tu plataforma favorita y disfruta al máximo </h2>
         <p>Accede a las mejores plataformas de streaming con perfiles premium</p>
     </header>
 
@@ -68,7 +85,7 @@
                                     /{{ platform.period }}
                                 </span>
                             </div>
-                            
+
                         </div>
 
                         <div class="stars">
@@ -107,12 +124,14 @@
 <section id="combos-duos">
     <header class="section-label text-center mt-5 mb-4">
         <span class="label-ahorra mb-5">
-            <i class="bi bi-heart-fill "></i>
-            Especial san Velentin
-            <i class="bi bi-heart-fill"></i>
+             <i class="bi bi-star-fill me-2"></i>
+             Combos Duos
+             <i class="bi bi-star-fill ms-2"></i>
+         </span>
+        <h2 >¡Doble Diversión, Doble Ahorro!</h2>
         </span>
-        <h2 class="titulo-ahorra">Combos Dúo <span  class="gradiente-texto">para Parejas</span></h2>
-        <p style="font-weight:900 ; color: #dd06728a;">Comparte entretenimiento con tu pareja o mejor amigo. ¡Ahorra hasta 1    0%!</p>
+        <p>2 plataformas, doble diversión, un solo precio increíble
+            hasta 10% OFF</p>
     </header>
 
 
@@ -133,8 +152,6 @@
 
                     <!-- Imagen -->
                     <div class="card-image">
-                        <i class="bi bi-heart-fill heart-icon"></i>
-
                         <span class="save-badge">
                             Ahorra C${{ combduos.ahorro }}
                         </span>
@@ -174,15 +191,10 @@
                             <i class="bi bi-star-fill text-warning fs-5"></i>
                         </div>
 
-                        
+
                         <a href="{{ url_for('detalle', tipo='combosDuo', item_id=combduos.id) }}" class="btn-detail">
                             Ver detalle
                         </a>
-                        
-                            <P style="color: crimson;">
-                                <i class="bi bi-heart-fill "></i>
-                                Ideal para compartir en febrero.</P>
-
                     </div>
                 </div>
                 {% endfor %}
@@ -236,7 +248,7 @@
                         <span class="save-badge">
                             Ahorra C${{ combtrio.ahorro }}
                         </span>
-
+                         
                         <span class="platform-name-overlay">
                             {{ combtrio.title }}
                         </span>

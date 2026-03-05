@@ -36,42 +36,68 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg  ">
-            <div class="container-fluid ">
+        <nav class="navbar navbar-expand-lg">
+
+            <div class="container-fluid">
 
                 <a class="navbar-brand d-flex align-items-center" href="/">
-                    <div class="logo-pill d-flex align-items-center">
-                        <i class="bi bi-person-fill logo-icon"></i>
-                        <span class="logo-text">Miperfilnica.com</span>
-                        <i class="bi bi-heart-fill" style="color: #ff4081;"></i>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-caret-right-square-fill logo-icon"></i>
+                        <span class="logo-text">MiPerfilNica</span>
                     </div>
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false">
+
                     <span class="navbar-toggler-icon"></span>
+
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav text-center mx-auto">
+
+                    <ul class="navbar-nav  mx-auto">
+
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Inicio</a>
+                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">
+                                Inicio
+                            </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/quienesomos' %}active{% endif %}"
-                                href="/quienesomos">Quienes Somos</a>
+                                href="/quienesomos">
+                                Quienes Somos
+                            </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/comofunciona' %}active{% endif %}"
-                                href="/comofunciona">¿Cómo
-                                Funciona?</a>
+                                href="/comofunciona">
+                                ¿Cómo Funciona?
+                            </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/politicas' %}active{% endif %}"
-                                href="/politicas">Politicas</a>
+                                href="/politicas">
+                                Políticas
+                            </a>
                         </li>
 
+                        <!-- BOTON WHATSAPP COMO ULTIMO ITEM -->
+
+                        <li class="nav-item whatsapp-item">
+                            <a href="https://wa.me/50576145799" class="btn whatsapp-btn" target="_blank">
+
+                                <i class="bi bi-whatsapp"></i>
+                                <span>Contactar</span>
+
+                            </a>
+                        </li>
 
                     </ul>
+
                 </div>
             </div>
         </nav>
