@@ -5,7 +5,7 @@
     <div class="hero-ribbon">
         <div class="ribbon-track">
             <i class="bi bi-heart-fill"></i>
-            Celebramos el dia internacional de la mujer con ofertas especiales en perfiles de streaming.
+            Celebramos las fiestras patrias con ofertas especiales en perfiles de streaming.
             <i class="bi bi-heart-fill"></i>
         </div>
     </div>
@@ -28,9 +28,11 @@
                 <span>Soporte</span>
             </div>
         </div>
-        <div class="hero-imagnes"> 
-            <img class="hero-img-2"  src="{{ url_for('static', filename='imagenes/disney.svg') }}" alt="Imagen de Disney">
-            <img class="hero-img-1" src="{{ url_for('static', filename='imagenes/netflix.svg') }}" alt="Imagen de Netflix">
+        <div class="hero-imagnes">
+            <img class="hero-img-2" src="{{ url_for('static', filename='imagenes/disney.svg') }}"
+                alt="Imagen de Disney">
+            <img class="hero-img-1" src="{{ url_for('static', filename='imagenes/netflix.svg') }}"
+                alt="Imagen de Netflix">
         </div>
 
     </header>
@@ -66,9 +68,7 @@
                         </span>
                         {% endif %}
 
-                        <span class="platform-name-overlay">
-                            {{ platform.title }}
-                        </span>
+
 
                         <img src="{{ url_for('static', filename=platform.image) }}"
                             alt="{{ platform.title }} en Miperfilnica.com">
@@ -76,6 +76,7 @@
 
                     <!-- Body -->
                     <div class="card-body-custom">
+
                         <div class="price-container">
                             <div class="price-row">
                                 <span class="price-amount fs-5 fw-bold">
@@ -85,8 +86,12 @@
                                     /{{ platform.period }}
                                 </span>
                             </div>
+                            <span class="platform-name-overlay">
+                                {{ platform.title }}
+                            </span>
 
                         </div>
+
 
                         <div class="stars">
                             <i class="bi bi-star-fill text-warning fs-5"></i>
@@ -95,6 +100,7 @@
                             <i class="bi bi-star-fill text-warning fs-5"></i>
                             <i class="bi bi-star-fill text-warning fs-5"></i>
                         </div>
+
 
                         <a href="{{ url_for('detalle', tipo='platform', item_id=platform.id) }}" class="btn-detail">
                             Detalle
@@ -124,11 +130,11 @@
 <section id="combos-duos">
     <header class="section-label text-center mt-5 mb-4">
         <span class="label-ahorra mb-5">
-             <i class="bi bi-star-fill me-2"></i>
-             Combos Duos
-             <i class="bi bi-star-fill ms-2"></i>
-         </span>
-        <h2 >¡Doble Diversión, Doble Ahorro!</h2>
+            <i class="bi bi-star-fill me-2"></i>
+            Combos Duos
+            <i class="bi bi-star-fill ms-2"></i>
+        </span>
+        <h2>¡Doble Diversión, Doble Ahorro!</h2>
         </span>
         <p>2 plataformas, doble diversión, un solo precio increíble
             hasta 10% OFF</p>
@@ -156,17 +162,13 @@
                             Ahorra C${{ combduos.ahorro }}
                         </span>
 
-                        <span class="platform-name-overlay">
-                            {{ combduos.title }}
-                        </span>
+
 
                         <img src="{{ url_for('static', filename=combduos.image) }}" alt="{{ combduos.title }}">
                     </div>
 
                     <!-- Body -->
                     <div class="card-body-custom">
-
-
 
                         <div class="price-container">
 
@@ -182,6 +184,9 @@
                                     /{{ combduos.period }}
                                 </span>
                             </div>
+                            <span class="platform-name-overlay">
+                                {{ combduos.title }}
+                            </span>
                         </div>
                         <div class="stars">
                             <i class="bi bi-star-fill text-warning fs-5"></i>
@@ -248,16 +253,15 @@
                         <span class="save-badge">
                             Ahorra C${{ combtrio.ahorro }}
                         </span>
-                         
-                        <span class="platform-name-overlay">
-                            {{ combtrio.title }}
-                        </span>
+
+
 
                         <img src="{{ url_for('static', filename=combtrio.image) }}" alt="{{ combtrio.title }}">
                     </div>
 
                     <!-- Body -->
                     <div class="card-body-custom">
+
                         <div class="price-container">
                             <div class="old-price fw-bold">
                                 C${{ combtrio.price_original }}
@@ -271,6 +275,9 @@
                                     /{{ combtrio.period }}
                                 </span>
                             </div>
+                            <span class="platform-name-overlay">
+                                {{ combtrio.title }}
+                            </span>
                         </div>
                         <div class="stars">
                             <i class="bi bi-star-fill text-warning fs-5"></i>
