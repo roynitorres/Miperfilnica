@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container my-4" style="max-width: 600px;">
+    <div class="card shadow-sm border-0 rounded-4 p-4">
+        <h3 class="fw-bold mb-3">{{ action }} Producto</h3>
+        <p class="text-muted small">Cambia el precio o la imagen desde este formulario web.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Título del Producto</label>
+                <input type="text" name="title" class="form-control" value="{{ product.title if product else '' }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Categoría</label>
+                <select name="category" class="form-select" required {% if product %}disabled{% endif %}>
+                    <option value="platform" {% if product and product.category == 'platform' %}selected{% endif %}>Plataforma Individual</option>
+                    <option value="combosDuo" {% if product and product.category == 'combosDuo' %}selected{% endif %}>Combo Dúo</option>
+                    <option value="combotres" {% if product and product.category == 'combotres' %}selected{% endif %}>Combo Trío</option>
+                </select>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-8">
+                    <label class="form-label fw-bold">Precio (Editable)</label>
+                    <input type="number" step="0.01" name="price" class="form-control" value="{{ product.price if product else '100.00' }}" required>
+                </div>
+                <div class="col-4">
+                    <label class="form-label fw-bold">Moneda</label>
+                    <input type="text" name="currency" class="form-control" value="{{ product.currency if product else 'C$' }}" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">Imagen del Producto</label>
+                {% if product and product.image_url %}
+                    <div class="mb-2">
+                        <small class="text-muted d-block">Imagen actual:</small>
+                        <img src="{{ url_for('static', filename=product.image_url) }}" alt="Actual" class="img-thumbnail" style="height: 80px;">
+                    </div>
+                {% endif %}
+                <input type="file" name="image" class="form-control" accept="image/*">
+                <small class="text-muted">Selecciona una imagen (.png, .jpg, .svg, .webp) para actualizar la imagen actual.</small>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-success fw-bold px-4">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

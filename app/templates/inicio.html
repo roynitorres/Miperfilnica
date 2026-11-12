@@ -1,0 +1,782 @@
+{% extends "layout.html" %}
+
+{% block title %}Mi Perfil Nica | Cuentas y Combos de Streaming en Nicaragua{% endblock %}
+
+{% block content %}
+<!-- Luces ambientales de fondo -->
+<div class="ambient-glow-wrapper" aria-hidden="true">
+    <div class="ambient-orb-1"></div>
+    <div class="ambient-orb-2"></div>
+    <div class="ambient-orb-3"></div>
+</div>
+
+<!-- ==========================================================================
+     1. HERO SECTION DE ALTO IMPACTO (IMAGEN JPG CINEMÁTICA Y PRECIOS EN C$)
+     ========================================================================== -->
+<section class="hero-section" id="hero">
+    <div class="site-container">
+        <div class="hero-grid">
+
+            <!-- Columna Izquierda: Copywriting y Conversión -->
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span class="ping-dot"></span>
+                    <span>Perfiles 100% Originales • Cero Caídas • Precio en C$</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Tu Entretenimiento Digital al 
+                    <span class="hero-title-gradient">Mejor Precio en Nicaragua</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Disfruta de Netflix, Disney+, HBO Max y más en perfiles privados e individuales. Sin pagar membresías internacionales completas: soporte local garantizado y pago fácil en córdobas.
+                </p>
+
+                <!-- Acciones Principales -->
+                <div class="hero-actions-row">
+                    <a href="#calculadora" class="btn-primary-hero">
+                        <i class="bi bi-sliders"></i>
+                        <span>Armar Mi Combo en C$</span>
+                    </a>
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20consultar%20promociones%20activas" 
+                       target="_blank" 
+                       class="btn-secondary-hero" 
+                       rel="noopener noreferrer">
+                        <i class="bi bi-shield-check" style="color:var(--color-blue-electric);"></i>
+                        <span>Comprobar Garantía</span>
+                    </a>
+                </div>
+
+                <!-- 3 Métricas de Confianza -->
+                <div class="hero-metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-num">5,000+</div>
+                        <div class="metric-label">Clientes Nicas</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-num highlight">5 Min</div>
+                        <div class="metric-label">Entrega Rápida</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-num highlight-green">100%</div>
+                        <div class="metric-label">Garantía Total</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: IMAGEN JPG CINEMÁTICA REAL FLOTANTE -->
+            <div class="hero-media-wrapper">
+                <div class="hero-media-glow"></div>
+
+                <div class="hero-image-frame">
+                    <div class="hero-badge-floating">
+                        <i class="bi bi-camera-fill" style="color:var(--color-cyan-glacier);"></i>
+                        <span>Banner Principal JPG</span>
+                    </div>
+
+                    <div class="hero-badge-warranty">
+                        <i class="bi bi-shield-fill-check" style="color:var(--color-blue-electric); font-size:1.25rem;"></i>
+                        <div>
+                            <div style="font-size:0.68rem; text-transform:uppercase; color:var(--color-blue-royal); letter-spacing:0.5px;">Cuentas Seguras</div>
+                            <div style="color:var(--color-navy-dark);">Garantía 30 Días</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-image-container">
+                        <img src="{{ url_for('static', filename='imagenes/hero_banner.jpg') }}" 
+                             alt="MiPerfilNica Streaming Entretenimiento Digital" 
+                             loading="eager"
+                             onerror="this.src='https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=80'">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     2. SECCIÓN 1: CUENTAS INDIVIDUALES (CARRUSEL SLIDER DINÁMICO)
+     ========================================================================== -->
+<section class="individual-section" id="individuales" style="padding: 3.5rem 0; background:#ffffff; border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);">
+    <div class="site-container">
+        
+        <div class="section-header-block">
+            <div>
+                <span class="section-tag">
+                    <i class="bi bi-stars"></i> Sección 01
+                </span>
+                <h2 class="section-title">Perfiles Individuales</h2>
+                <p class="section-subtitle">
+                    Elige tu plataforma favorita. Acceso personal con PIN privado en moneda local córdobas (C$).
+                </p>
+            </div>
+
+            <!-- Controles Manuales del Slider -->
+            <div class="slider-controls-group">
+                <button type="button" class="slider-nav-btn" id="slideLeftBtn" aria-label="Deslizar a la izquierda" title="Anterior">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button type="button" class="slider-nav-btn" id="slideRightBtn" aria-label="Deslizar a la derecha" title="Siguiente">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pista del Carrusel Deslizante Continuo -->
+    <div class="slider-container-track">
+        <div class="slider-track" id="carouselTrack">
+            
+            {% for platform in platforms %}
+            <article class="ux-product-card">
+                <div>
+                    <div class="card-top-row">
+                        <span class="badge-top-tag">
+                            <i class="bi bi-fire" style="color:var(--color-amber-gold);"></i> DISPONIBLE
+                        </span>
+                        <span class="card-code">#{{ platform.code or platform.id }}</span>
+                    </div>
+
+                    <div class="card-brand-header">
+                        <div class="card-brand-icon">
+                            <img src="{{ url_for('static', filename=platform.image) }}" 
+                                 alt="{{ platform.title }}" 
+                                 loading="lazy"
+                                 onerror="this.src='{{ url_for('static', filename='imagenes/Individuales/1.svg') }}'">
+                        </div>
+                        <div>
+                            <h3 class="card-title">{{ platform.title }}</h3>
+                            <span class="card-stock-status">
+                                <span class="ping-dot" style="background:#10b981; width:5px; height:5px;"></span> Entrega Inmediata
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Micro-chips de Especificaciones -->
+                    <div class="card-chips-group">
+                        {% if platform.features %}
+                            {% for key, val in platform.features.items() %}
+                            <span class="chip-spec">
+                                <i class="bi bi-check2-circle" style="color:var(--color-blue-electric);"></i> {{ val }}
+                            </span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="chip-spec"><i class="bi bi-badge-4k" style="color:var(--color-blue-electric);"></i> 4K Ultra HD</span>
+                            <span class="chip-spec"><i class="bi bi-tv" style="color:var(--color-blue-electric);"></i> 1 Pantalla</span>
+                            <span class="chip-spec"><i class="bi bi-pin-angle" style="color:var(--color-blue-electric);"></i> Con PIN</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Mensual</span>
+                        <div>
+                            <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
+                            <span class="price-period">/{{ platform.period }}</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
+                       target="_blank" 
+                       class="btn-card-contract"
+                       rel="noopener noreferrer"
+                       title="Contratar {{ platform.title }} por WhatsApp">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>Contratar</span>
+                    </a>
+                </div>
+            </article>
+            {% else %}
+            <div style="padding: 2rem; text-align: center; width: 100%; color: var(--text-muted);">
+                <p>No hay plataformas registradas en el catálogo en este momento.</p>
+            </div>
+            {% endfor %}
+
+            <!-- Repetición para Carrusel Infinito Fluido (Si hay plataformas) -->
+            {% if platforms|length > 0 %}
+            {% for platform in platforms %}
+            <article class="ux-product-card" aria-hidden="true">
+                <div>
+                    <div class="card-top-row">
+                        <span class="badge-top-tag">
+                            <i class="bi bi-fire" style="color:var(--color-amber-gold);"></i> DISPONIBLE
+                        </span>
+                        <span class="card-code">#{{ platform.code or platform.id }}</span>
+                    </div>
+
+                    <div class="card-brand-header">
+                        <div class="card-brand-icon">
+                            <img src="{{ url_for('static', filename=platform.image) }}" 
+                                 alt="{{ platform.title }}" 
+                                 loading="lazy"
+                                 onerror="this.src='{{ url_for('static', filename='imagenes/Individuales/1.svg') }}'">
+                        </div>
+                        <div>
+                            <h3 class="card-title">{{ platform.title }}</h3>
+                            <span class="card-stock-status">
+                                <span class="ping-dot" style="background:#10b981; width:5px; height:5px;"></span> Entrega Inmediata
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-chips-group">
+                        {% if platform.features %}
+                            {% for key, val in platform.features.items() %}
+                            <span class="chip-spec">
+                                <i class="bi bi-check2-circle" style="color:var(--color-blue-electric);"></i> {{ val }}
+                            </span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="chip-spec"><i class="bi bi-badge-4k" style="color:var(--color-blue-electric);"></i> 4K Ultra HD</span>
+                            <span class="chip-spec"><i class="bi bi-tv" style="color:var(--color-blue-electric);"></i> 1 Pantalla</span>
+                            <span class="chip-spec"><i class="bi bi-pin-angle" style="color:var(--color-blue-electric);"></i> Con PIN</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Mensual</span>
+                        <div>
+                            <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
+                            <span class="price-period">/{{ platform.period }}</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
+                       target="_blank" 
+                       class="btn-card-contract"
+                       rel="noopener noreferrer">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>Contratar</span>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     3. DESCANSO VISUAL 1: ILUSTRACIÓN EN 3D PARA COMBOS DÚO
+     ========================================================================== -->
+<section class="visual-break-section">
+    <div class="site-container">
+        <div class="visual-break-card">
+            <div class="break-grid">
+                
+                <div class="break-content">
+                    <span class="break-tag">
+                        <i class="bi bi-layers-half"></i> Doble Diversión, Máximo Ahorro
+                    </span>
+                    <h2 class="break-title">
+                        ¿Por qué conformarte con una? <br>
+                        <span>Combina y Ahorra en Dúo</span>
+                    </h2>
+                    <p class="break-desc">
+                        Junta tus dos plataformas favoritas en un solo pago mensual en córdobas. Cero complicaciones, perfiles 100% independientes y hasta un <strong>35% de descuento</strong> comparado a comprarlas por separado.
+                    </p>
+
+                    <div class="break-features-row">
+                        <div class="break-feat-badge">
+                            <i class="bi bi-check-circle-fill" style="color:#34d399;"></i> 2 Pantallas a la vez
+                        </div>
+                        <div class="break-feat-badge">
+                            <i class="bi bi-wallet2" style="color:var(--color-cyan-glacier);"></i> Un Solo Pago en C$
+                        </div>
+                        <div class="break-feat-badge">
+                            <i class="bi bi-shield-check" style="color:#f59e0b;"></i> Garantía 30 Días
+                        </div>
+                    </div>
+                </div>
+
+                <div class="break-image-wrapper">
+                    <div class="break-image-box">
+                        <img src="{{ url_for('static', filename='imagenes/combos_duo_banner.jpg') }}" 
+                             alt="Ilustración 3D de Combos Dúo MiPerfilNica" 
+                             loading="lazy">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     4. SECCIÓN 2: CATÁLOGO DE COMBOS DÚO (2 PLATAFORMAS)
+     ========================================================================== -->
+<section class="combos-section" id="combos-duos" style="padding: 3rem 0; background: var(--bg-secondary);">
+    <div class="site-container">
+
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
+            <span class="section-tag" style="justify-content: center;">
+                <i class="bi bi-collection-play-fill"></i> Catálogo Combos Dúo
+            </span>
+            <h2 class="section-title">Nuestros Paquetes Dúo Más Pedidos</h2>
+            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
+                Plataformas activadas al instante, con soporte garantizado y el mayor ahorro en Nicaragua.
+            </p>
+        </div>
+
+        <div class="combos-grid">
+            {% for combo in combosDuos %}
+            <article class="combo-card">
+                <div class="combo-ribbon-savings">AHORRO DÚO</div>
+
+                <div>
+                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
+                        <img src="{{ url_for('static', filename=combo.image) }}" 
+                             alt="{{ combo.title }}" 
+                             style="max-height: 100%; object-fit: contain;"
+                             onerror="this.src='{{ url_for('static', filename='imagenes/CombosDuos/netf_disney.svg') }}'">
+                    </div>
+
+                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-electric); text-transform:uppercase; letter-spacing:0.5px;">
+                        Paquete 2 en 1
+                    </span>
+                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">
+                        {{ combo.title }}
+                    </h3>
+                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">
+                        Acceso simultáneo a tus 2 plataformas preferidas con perfiles separados y soporte directo en Nicaragua.
+                    </p>
+
+                    <div style="display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.5rem; font-size:0.8rem; font-weight:600; color:var(--text-body);">
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
+                            <i class="bi bi-check-circle-fill" style="color:var(--color-blue-electric);"></i> 2 Cuentas / Perfiles independientes
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
+                            <i class="bi bi-check-circle-fill" style="color:var(--color-blue-electric);"></i> Smart TV, Celular, Laptop y Tablet
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
+                            <i class="bi bi-check-circle-fill" style="color:var(--color-blue-electric);"></i> Facturación unificada en C$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Combo</span>
+                        <div>
+                            <span class="price-val">{{ combo.currency }} {{ "%.2f"|format(combo.price) }}</span>
+                            <span class="price-period">/{{ combo.period }}</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20Combo%20Dúo%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
+                       target="_blank" 
+                       class="btn-card-contract"
+                       rel="noopener noreferrer"
+                       title="Contratar {{ combo.title }}">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>Pedir Dúo</span>
+                    </a>
+                </div>
+            </article>
+            {% else %}
+            <!-- Card de respaldo si la base de datos aún no tiene combosDuo -->
+            <article class="combo-card">
+                <div class="combo-ribbon-savings">AHORRAS C$ 40</div>
+                <div>
+                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
+                        <img src="{{ url_for('static', filename='imagenes/CombosDuos/netf_disney.svg') }}" alt="Netflix + Disney+" style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-electric); text-transform:uppercase;">Combo Pareja #1</span>
+                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">Netflix 4K + Disney+</h3>
+                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">Series globales, Marvel, Pixar y deportes en directo ESPN con perfiles privados.</p>
+                </div>
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Combo</span>
+                        <span class="price-val">C$ 230.00 <small class="price-period">/mes</small></span>
+                    </div>
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20el%20Combo%20Netflix%20%2B%20Disney" target="_blank" class="btn-card-contract"><i class="bi bi-whatsapp"></i> Pedir Dúo</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+     5. DESCANSO VISUAL 2: ILUSTRACIÓN EN 3D PARA MEGA COMBOS TRÍOS
+     ========================================================================== -->
+<section class="visual-break-section">
+    <div class="site-container">
+        <div class="visual-break-card" style="background: linear-gradient(135deg, #001233, #001f54, #00369f); border-color: rgba(56, 189, 248, 0.25);">
+            <div class="break-grid">
+                
+                <div class="break-content">
+                    <span class="break-tag" style="background:rgba(245, 158, 11, 0.15); border-color:rgba(245, 158, 11, 0.3); color:#fcd34d;">
+                        <i class="bi bi-trophy-fill" style="color:#fbbf24;"></i> La Experiencia Total en Casa
+                    </span>
+                    <h2 class="break-title">
+                        El Entretenimiento Definitivo: <br>
+                        <span style="color:#38bdf8;">Mega Combos x3 Plataformas</span>
+                    </h2>
+                    <p class="break-desc">
+                        Cine, deportes en vivo y música ilimitada al mismo tiempo. El paquete pensado para que en casa nadie pelee por el control: cada quien en su pantalla y tú ahorrando hasta un <strong>45% de descuento</strong>.
+                    </p>
+
+                    <div class="break-features-row">
+                        <div class="break-feat-badge">
+                            <i class="bi bi-people-fill" style="color:#fbbf24;"></i> Ideal para Familias
+                        </div>
+                        <div class="break-feat-badge">
+                            <i class="bi bi-star-fill" style="color:#fbbf24;"></i> Ahorro Máximo en C$
+                        </div>
+                        <div class="break-feat-badge">
+                            <i class="bi bi-shield-check" style="color:#34d399;"></i> Soporte VIP Prioritario
+                        </div>
+                    </div>
+                </div>
+
+                <div class="break-image-wrapper">
+                    <div class="break-image-box">
+                        <img src="{{ url_for('static', filename='imagenes/combos_trio_banner.jpg') }}" 
+                             alt="Ilustración 3D de Mega Combos Trío MiPerfilNica" 
+                             loading="lazy">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     6. SECCIÓN 3: CATÁLOGO DE MEGA COMBOS X3
+     ========================================================================== -->
+<section class="combos-section" id="combos-trios" style="padding: 3rem 0; background: #ffffff; border-bottom: 1px solid var(--border-light);">
+    <div class="site-container">
+
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
+            <span class="section-tag" style="justify-content: center; color:var(--color-amber-gold);">
+                <i class="bi bi-gem"></i> Paquetes Todo Incluido
+            </span>
+            <h2 class="section-title">Mega Combos x3 de Streaming</h2>
+            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
+                Elige la combinación triple ideal para ti y tu familia con el mejor precio garantizado de Nicaragua.
+            </p>
+        </div>
+
+        <div class="combos-grid">
+            {% for combo in combosTrios %}
+            <article class="combo-card combo-card-featured">
+                <div class="combo-ribbon-savings">MEGA TRÍO X3</div>
+
+                <div>
+                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
+                        <img src="{{ url_for('static', filename=combo.image) }}" 
+                             alt="{{ combo.title }}" 
+                             style="max-height: 100%; object-fit: contain;"
+                             onerror="this.src='{{ url_for('static', filename='imagenes/ComboTrio/21.svg') }}'">
+                    </div>
+
+                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-royal); text-transform:uppercase;">
+                        Pack Triple Especial
+                    </span>
+                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">
+                        {{ combo.title }}
+                    </h3>
+                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">
+                        Tres servicios estables para cubrir televisión, música y películas con la mejor economía por pantalla.
+                    </p>
+
+                    <div style="display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.5rem; font-size:0.8rem; font-weight:600; color:var(--text-body);">
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
+                            <i class="bi bi-check-circle-fill" style="color:#059669;"></i> 3 Perfiles privados con PIN
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
+                            <i class="bi bi-check-circle-fill" style="color:#059669;"></i> Calidad 4K Ultra HD en todos
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.4rem;">
+                            <i class="bi bi-check-circle-fill" style="color:#059669;"></i> Máximo ahorro mensual en C$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Trío</span>
+                        <div>
+                            <span class="price-val">{{ combo.currency }} {{ "%.2f"|format(combo.price) }}</span>
+                            <span class="price-period">/{{ combo.period }}</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20Mega%20Trío%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
+                       target="_blank" 
+                       class="btn-card-contract"
+                       rel="noopener noreferrer"
+                       title="Contratar {{ combo.title }}">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>Pedir Trío</span>
+                    </a>
+                </div>
+            </article>
+            {% else %}
+            <!-- Card de respaldo con Trío Cine Total si no hay registros -->
+            <article class="combo-card combo-card-featured">
+                <div class="combo-ribbon-savings">AHORRAS C$ 70</div>
+                <div>
+                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
+                        <img src="{{ url_for('static', filename='imagenes/ComboTrio/21.svg') }}" alt="Netflix + Disney + Max" style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-royal); text-transform:uppercase;">Trío Cine Total</span>
+                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">Netflix + Disney+ + Max</h3>
+                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">Las 3 gigantes del streaming en un solo paquete con calidad 4K UHD.</p>
+                </div>
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Trío</span>
+                        <span class="price-val">C$ 290.00 <small class="price-period">/mes</small></span>
+                    </div>
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20el%20Mega%20Trío%20Netflix%20%2B%20Disney%20%2B%20Max" target="_blank" class="btn-card-contract"><i class="bi bi-whatsapp"></i> Pedir Trío</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+     7. NUEVA SECCIÓN: CALCULADORA INTERACTIVA DE COMBOS PERSONALIZADOS
+     (ALIMENTADA DIRECTAMENTE DE LA BD Y EDITABLE DESDE ADMIN)
+     ========================================================================== -->
+<section class="calculator-section" id="calculadora">
+    <div class="site-container">
+
+        <div style="text-align: center; max-width: 650px; margin: 0 auto;">
+            <span class="section-tag" style="justify-content: center;">
+                <i class="bi bi-sliders2"></i> Arma tu Paquete
+            </span>
+            <h2 class="section-title">Calculadora de Combos Inteligente</h2>
+            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
+                Selecciona las plataformas que deseas. Entre más elijas, mayor es el descuento en córdobas que obtendrás automáticamente.
+            </p>
+        </div>
+
+        <div class="calculator-layout-grid">
+
+            <!-- Selector de Plataformas (Izquierda) -->
+            <div class="calc-selector-card">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:0.75rem; border-bottom:1px solid var(--border-light);">
+                    <span style="font-size:0.78rem; font-weight:800; text-transform:uppercase; color:var(--text-muted);">
+                        Paso 1: Toca las plataformas deseadas
+                    </span>
+                    <span id="selectedCountBadge" style="font-size:0.75rem; font-weight:800; background:rgba(0,102,255,0.08); color:var(--color-blue-royal); padding:0.25rem 0.75rem; border-radius:var(--radius-pill); border:1px solid rgba(0,102,255,0.15);">
+                        0 seleccionadas
+                    </span>
+                </div>
+
+                <!-- Grid de Opciones Inyectadas Dinámicamente desde la BD -->
+                <div class="calc-pills-grid" id="platformSelectorGrid">
+                    {% for p in platforms %}
+                    <div class="calc-pill-item" 
+                         data-id="{{ p.id }}" 
+                         data-name="{{ p.title }}" 
+                         data-price="{{ p.price }}">
+                        <div style="display:flex; align-items:center; gap:0.75rem;">
+                            <div style="width:42px; height:42px; border-radius:10px; background:var(--bg-tertiary); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:3px; border:1px solid var(--border-light);">
+                                <img src="{{ url_for('static', filename=p.image) }}" 
+                                     alt="{{ p.title }}" 
+                                     style="max-height:100%; object-fit:contain;"
+                                     onerror="this.src='{{ url_for('static', filename='imagenes/Individuales/1.svg') }}'">
+                            </div>
+                            <div>
+                                <h4 style="font-size:0.9rem; font-weight:800; color:var(--color-navy-dark); line-height:1.2;">{{ p.title }}</h4>
+                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">
+                                    {{ p.currency }} {{ "%.2f"|format(p.price) }}/{{ p.period }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="pill-check-box">
+                            <i class="bi bi-check-lg" style="display:none;"></i>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Escala de Descuento Visual -->
+                <div style="padding:0.85rem 1.25rem; background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-md); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0.5rem; font-size:0.78rem; color:var(--color-blue-royal); font-weight:700;">
+                    <span style="display:flex; align-items:center; gap:0.35rem;"><i class="bi bi-tag-fill"></i> Descuentos por volumen:</span>
+                    <span>2 cuentas: <strong style="color:var(--color-navy-dark);">15% OFF</strong></span>
+                    <span>3 cuentas: <strong style="color:var(--color-navy-dark);">25% OFF</strong></span>
+                    <span>4+ cuentas: <strong style="color:var(--color-navy-dark);">35% OFF</strong></span>
+                </div>
+            </div>
+
+            <!-- Resumen de Cotización en Tiempo Real (Derecha) -->
+            <div class="calc-summary-panel">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.12);">
+                    <h3 style="font-size:1.15rem; font-weight:800; color:#ffffff;">Resumen de Tu Combo</h3>
+                    <span id="comboBadgeType" style="font-size:0.72rem; font-weight:800; padding:0.3rem 0.75rem; border-radius:var(--radius-pill); background:rgba(255,255,255,0.12); color:#38bdf8; border:1px solid rgba(255,255,255,0.2);">
+                        Selecciona cuentas
+                    </span>
+                </div>
+
+                <!-- Lista de chips interactivos -->
+                <div class="summary-items-list" id="selectedPlatformsList">
+                    <p style="color:#94a3b8; font-size:0.8rem; font-style:italic;">Aún no has marcado plataformas. Haz clic en las opciones para armar tu combo.</p>
+                </div>
+
+                <!-- Detalle de precios -->
+                <div style="padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1); display:flex; flex-direction:column; gap:0.4rem; font-size:0.85rem;">
+                    <div style="display:flex; justify-content:space-between; color:#94a3b8;">
+                        <span>Precio regular sumado:</span>
+                        <span id="calcSubtotal" style="font-family:var(--font-mono); color:#ffffff;">C$ 0.00</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; color:#34d399; font-weight:700;">
+                        <span>Ahorro aplicado:</span>
+                        <span id="calcDiscount" style="font-family:var(--font-mono);">- C$ 0.00</span>
+                    </div>
+                </div>
+
+                <!-- Total en Córdobas -->
+                <div class="summary-total-box">
+                    <div>
+                        <span style="font-size:0.72rem; text-transform:uppercase; font-weight:800; color:#38bdf8; display:block;">Total a pagar:</span>
+                        <div class="summary-total-amount" id="calcTotal">
+                            C$ 0.00 <span style="font-size:0.85rem; font-weight:normal; color:#7dd3fc;">/mes</span>
+                        </div>
+                    </div>
+                    <span style="font-size:0.75rem; font-weight:700; color:#34d399; background:rgba(16,185,129,0.15); padding:0.35rem 0.65rem; border-radius:var(--radius-sm); border:1px solid rgba(16,185,129,0.25);">
+                        Garantía 30 Días
+                    </span>
+                </div>
+
+                <!-- Botón de Orden por WhatsApp -->
+                <a id="btnOrderCustomCombo" 
+                   href="https://wa.me/50576145799?text=Hola,%20deseo%20armar%20un%20combo%20personalizado" 
+                   target="_blank" 
+                   class="btn-whatsapp-nav btn-shimmer"
+                   style="width:100%; padding:0.95rem; font-size:0.95rem; border-radius:var(--radius-lg); text-align:center;"
+                   rel="noopener noreferrer">
+                    <i class="bi bi-whatsapp" style="font-size:1.15rem;"></i>
+                    <span id="btnOrderText">Contratar Combo en WhatsApp</span>
+                </a>
+
+                <p style="font-size:0.72rem; text-align:center; color:#94a3b8; margin:0;">
+                    Al hacer clic se abre WhatsApp con tu combinación exacta para activación en 5 minutos.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+     8. SECCIÓN: ¿CÓMO FUNCIONA? (PASO A PASO EN 3 PASOS)
+     ========================================================================== -->
+<section class="how-it-works-section" id="como-funciona">
+    <div class="site-container">
+
+        <div style="text-align: center; max-width: 650px; margin: 0 auto;">
+            <span class="section-tag" style="justify-content: center;">
+                <i class="bi bi-patch-check"></i> Proceso Simple en 3 Pasos
+            </span>
+            <h2 class="section-title">¿Cómo Funciona MiPerfilNica?</h2>
+            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
+                Obtener tu perfil de streaming privado es rápido, transparente y toma menos de 5 minutos.
+            </p>
+        </div>
+
+        <div class="steps-flow-grid">
+            
+            <!-- PASO 1 -->
+            <article class="step-flow-card">
+                <span class="step-badge-pill">PASO 01</span>
+                <div>
+                    <div class="step-icon-box step-1">
+                        <i class="bi bi-collection-play-fill"></i>
+                    </div>
+                    <h3 class="step-title">1. Indícanos tu Plataforma de Preferencia</h3>
+                    <p class="step-desc">
+                        Elige tu cuenta individual favorita (Netflix, Disney+, Max, etc.) o arma tu propio paquete con descuento en nuestra calculadora web. Nos escribes por WhatsApp para confirmar tu pedido.
+                    </p>
+                </div>
+                <div>
+                    <span class="step-chip-tag">
+                        <i class="bi bi-check2-circle" style="color:var(--color-blue-electric);"></i> Catálogo o Combo a la Medida
+                    </span>
+                </div>
+            </article>
+
+            <!-- PASO 2 -->
+            <article class="step-flow-card">
+                <span class="step-badge-pill">PASO 02</span>
+                <div>
+                    <div class="step-icon-box step-2">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+                    <h3 class="step-title">2. Realiza tu Pago y Envía Comprobante</h3>
+                    <p class="step-desc">
+                        Realizas el pago en <strong>efectivo si eres de Tipitapa o Masaya</strong>, o mediante <strong>transferencia bancaria</strong> (BAC, LAFISE, Banpro, Billetera Móvil). Solo nos envías tu comprobante de pago por WhatsApp.
+                    </p>
+                </div>
+                <div>
+                    <span class="step-chip-tag" style="color:#059669; border-color:#a7f3d0; background:#f0fdf4;">
+                        <i class="bi bi-cash-stack" style="color:#059669;"></i> Efectivo Tipitapa/Masaya o Bancos C$
+                    </span>
+                </div>
+            </article>
+
+            <!-- PASO 3 -->
+            <article class="step-flow-card">
+                <span class="step-badge-pill">PASO 03</span>
+                <div>
+                    <div class="step-icon-box step-3">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <h3 class="step-title">3. Credenciales y PIN Privado de Acceso</h3>
+                    <p class="step-desc">
+                        ¡Listo! En pocos minutos tendrás tus <strong>credenciales de acceso: correo, contraseña y PIN privado</strong> de acceso exclusivo para disfrutar inmediatamente en tu Smart TV o celular con garantía de 30 días.
+                    </p>
+                </div>
+                <div>
+                    <span class="step-chip-tag" style="color:var(--color-blue-royal); border-color:#bfdbfe; background:#eff6ff;">
+                        <i class="bi bi-key-fill" style="color:var(--color-blue-royal);"></i> Correo, Clave y PIN • Garantía 30 Días
+                    </span>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Caja de Llamada a la Acción de Cierre -->
+        <div class="how-it-works-cta-box">
+            <div>
+                <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#38bdf8; display:block; margin-bottom:0.25rem;">
+                    Activación Rápida en 5 Minutos
+                </span>
+                <h3 style="font-size:1.6rem; font-weight:900; color:#ffffff; line-height:1.2;">
+                    ¿Listo para comenzar a disfrutar de tus series y películas?
+                </h3>
+                <p style="font-size:0.9rem; color:#cbd5e1; margin-top:0.35rem; max-width:550px;">
+                    Escríbenos a nuestro WhatsApp oficial y un asesor te atenderá de inmediato.
+                </p>
+            </div>
+
+            <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20un%20perfil%20de%20streaming" 
+               target="_blank" 
+               class="btn-whatsapp-nav btn-shimmer"
+               style="padding:0.95rem 1.85rem; font-size:1rem; border-radius:var(--radius-pill); white-space:nowrap;"
+               rel="noopener noreferrer">
+                <i class="bi bi-whatsapp" style="font-size:1.25rem;"></i>
+                <span>Chatear con un Asesor</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
