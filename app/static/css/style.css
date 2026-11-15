@@ -143,12 +143,20 @@ ul, ol {
 
 /* Logotipo Tipográfico Oficial: MiPerfilNica */
 .brand-link {
+  position: relative;
+  left: 1.5rem;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
   cursor: pointer;
   flex-shrink: 0;
   transition: var(--transition-fast);
+}
+
+@media (max-width: 768px) {
+  .brand-link {
+    left: 0.75rem;
+  }
 }
 
 .brand-link:hover {
@@ -375,7 +383,8 @@ ul, ol {
   gap: 0.65rem;
 }
 
-/* Contacto WhatsApp con Número en Navbar (Limpio, sin caja envolvente) */
+/* Contacto WhatsApp al lado derecho de Armar Mi Combo */
+.nav-whatsapp-link,
 .btn-whatsapp-contact-nav {
   display: inline-flex;
   align-items: center;
@@ -383,35 +392,37 @@ ul, ol {
   background: transparent;
   color: var(--color-navy-dark);
   border: none;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 800;
-  padding: 0.35rem 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
   text-decoration: none;
   transition: var(--transition-fast);
 }
 
+.nav-whatsapp-link i,
 .btn-whatsapp-contact-nav i {
   color: var(--color-emerald-wa);
-  font-size: 1.25rem;
+  font-size: 1.22rem;
   line-height: 1;
   transition: transform var(--transition-fast);
 }
 
+.nav-whatsapp-link:hover,
 .btn-whatsapp-contact-nav:hover {
   color: var(--color-blue-royal);
   transform: translateY(-1px);
 }
 
+.nav-whatsapp-link:hover i,
 .btn-whatsapp-contact-nav:hover i {
-  transform: scale(1.12);
+  transform: scale(1.15);
 }
 
 @media (max-width: 480px) {
+  .nav-whatsapp-link span,
   .btn-whatsapp-contact-nav span {
     display: none;
-  }
-  .btn-whatsapp-contact-nav {
-    padding: 0.35rem;
   }
 }
 
