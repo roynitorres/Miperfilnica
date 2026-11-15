@@ -4,6 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
+  initMobileAccordion();
   initNavDropdown();
   initSliderControls();
   initComboCalculator();
@@ -30,6 +31,20 @@ function initMobileMenu() {
       drawer.classList.remove("open");
       toggleBtn.innerHTML = '<i class="bi bi-list"></i>';
     });
+  });
+}
+
+/* 1.1 ACORDEÓN DESPLEGABLE EN MENÚ MÓVIL (CONTRAÍDO POR DEFECTO) */
+function initMobileAccordion() {
+  const toggleBtn = document.getElementById("mobileServicesToggle");
+  const accordion = document.getElementById("mobileServicesAccordion");
+
+  if (!toggleBtn || !accordion) return;
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = accordion.classList.toggle("open");
+    toggleBtn.setAttribute("aria-expanded", isOpen);
   });
 }
 

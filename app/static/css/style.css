@@ -427,6 +427,8 @@ ul, ol {
 }
 
 .btn-admin-nav {
+  position: relative;
+  left: -1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -438,6 +440,12 @@ ul, ol {
   padding: 0.5rem 0.95rem;
   border-radius: var(--radius-md);
   transition: var(--transition-fast);
+}
+
+@media (max-width: 768px) {
+  .btn-admin-nav {
+    left: -0.45rem;
+  }
 }
 
 .btn-admin-nav i {
@@ -555,17 +563,62 @@ ul, ol {
   color: var(--color-blue-royal);
 }
 
-.mobile-nav-heading {
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.75px;
+/* Acordeón Móvil: Nuestro Servicios (Contraído por defecto) */
+.mobile-nav-accordion {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.mobile-nav-accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+.mobile-nav-accordion-btn:hover,
+.mobile-nav-accordion.open .mobile-nav-accordion-btn {
+  background: #eff6ff;
   color: var(--color-blue-royal);
-  padding: 0.5rem 0.75rem 0.1rem;
+  border-color: rgba(0, 54, 159, 0.2);
+}
+
+.mobile-accordion-arrow {
+  font-size: 0.85rem;
+  transition: transform var(--transition-fast);
+  color: var(--color-blue-royal);
+}
+
+.mobile-nav-accordion.open .mobile-accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-accordion-content {
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0 0.25rem 0.5rem;
+  margin-top: 0.25rem;
+  border-left: 2px solid rgba(0, 54, 159, 0.15);
+  margin-left: 0.75rem;
+}
+
+.mobile-nav-accordion.open .mobile-nav-accordion-content {
+  display: flex;
 }
 
 .mobile-nav-sublink {
-  padding-left: 1.75rem !important;
+  padding-left: 1.25rem !important;
   font-size: 0.92rem !important;
   color: var(--text-body) !important;
 }

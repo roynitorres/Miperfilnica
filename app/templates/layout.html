@@ -68,11 +68,11 @@
                         </button>
                         <div class="nav-dropdown-menu" id="servicesDropdownMenu">
                             <a href="{{ url_for('public.inicio') }}#individuales" class="nav-dropdown-item">
-                                <i class="bi bi-collection-play"></i>
+                                <i class="bi bi-person"></i>
                                 <span>Individuales</span>
                             </a>
                             <a href="{{ url_for('public.inicio') }}#combos-duos" class="nav-dropdown-item">
-                                <i class="bi bi-layers-half"></i>
+                                <i class="bi bi-people"></i>
                                 <span>Combos X2</span>
                             </a>
                             <a href="{{ url_for('public.inicio') }}#combos-trios" class="nav-dropdown-item">
@@ -92,7 +92,7 @@
                         target="_blank" rel="noopener noreferrer" class="nav-item-link nav-whatsapp-link"
                         title="Contacto por WhatsApp: 76145799">
                         <i class="bi bi-whatsapp"></i>
-                        <span>76145799</span>
+                        <span>7614-5799</span>
                     </a>
                 </nav>
 
@@ -136,16 +136,26 @@
                 <a href="{{ url_for('public.inicio') }}#como-funciona">
                     <i class="bi bi-question-circle"></i> ¿Cómo Funciona?
                 </a>
-                <div class="mobile-nav-heading">Nuestro Servicios</div>
-                <a href="{{ url_for('public.inicio') }}#individuales" class="mobile-nav-sublink">
-                    <i class="bi bi-collection-play"></i> Individuales
-                </a>
-                <a href="{{ url_for('public.inicio') }}#combos-duos" class="mobile-nav-sublink">
-                    <i class="bi bi-layers-half"></i> Combos X2
-                </a>
-                <a href="{{ url_for('public.inicio') }}#combos-trios" class="mobile-nav-sublink">
-                    <i class="bi bi-trophy"></i> Combos X3
-                </a>
+                <!-- Desplegable Móvil: Nuestro Servicios (Contraído por defecto) -->
+                <div class="mobile-nav-accordion" id="mobileServicesAccordion">
+                    <button type="button" class="mobile-nav-accordion-btn" id="mobileServicesToggle" aria-expanded="false">
+                        <span style="display:flex; align-items:center; gap:0.5rem;">
+                            <i class="bi bi-layers" style="color:var(--color-blue-royal);"></i> Nuestro Servicios
+                        </span>
+                        <i class="bi bi-chevron-down mobile-accordion-arrow"></i>
+                    </button>
+                    <div class="mobile-nav-accordion-content" id="mobileServicesContent">
+                        <a href="{{ url_for('public.inicio') }}#individuales" class="mobile-nav-sublink">
+                            <i class="bi bi-collection-play"></i> Individuales
+                        </a>
+                        <a href="{{ url_for('public.inicio') }}#combos-duos" class="mobile-nav-sublink">
+                            <i class="bi bi-layers-half"></i> Combos X2
+                        </a>
+                        <a href="{{ url_for('public.inicio') }}#combos-trios" class="mobile-nav-sublink">
+                            <i class="bi bi-trophy"></i> Combos X3
+                        </a>
+                    </div>
+                </div>
                 <a href="{{ url_for('public.inicio') }}#calculadora" style="color:var(--color-blue-electric);">
                     <i class="bi bi-calculator"></i> Armar Mi Combo
                 </a>
