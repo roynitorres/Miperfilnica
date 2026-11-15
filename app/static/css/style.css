@@ -28,6 +28,8 @@
   --color-emerald-wa: #25d366;
   --color-emerald-dark: #1ebe5d;
   --color-amber-gold: #f59e0b;
+  --color-red: #ef4444;
+  --color-red-live: #ef4444;
   --color-red-netflix: #e50914;
 
   /* Tipografía y Escala */
@@ -217,17 +219,25 @@ ul, ol {
 }
 
 .ping-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background-color: var(--color-blue-electric);
-  box-shadow: 0 0 8px var(--color-blue-electric);
+  background-color: var(--color-red-live);
+  box-shadow: 0 0 8px var(--color-red-live);
   animation: dotPing 1.8s infinite;
 }
 
 @keyframes dotPing {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(1.3); }
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 6px var(--color-red-live);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.4);
+    box-shadow: 0 0 12px var(--color-red-live);
+  }
 }
 
 /* Enlaces de Navegación */
