@@ -279,7 +279,7 @@ ul, ol {
   width: 65%;
 }
 
-/* Botones del Navbar: Admin & WhatsApp */
+/* Acciones del Navbar: Botón Admin */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -307,7 +307,8 @@ ul, ol {
   transform: translateY(-1px);
 }
 
-.btn-whatsapp-nav {
+/* Botón de Acción Principal de WhatsApp (Reutilizable para Secciones y Calculadora) */
+.btn-whatsapp-cta {
   position: relative;
   overflow: hidden;
   display: inline-flex;
@@ -316,17 +317,19 @@ ul, ol {
   gap: 0.5rem;
   background: linear-gradient(135deg, var(--color-emerald-wa), var(--color-emerald-dark));
   color: #ffffff;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  padding: 0.6rem 1.35rem;
+  padding: 0.65rem 1.45rem;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-wa-glow);
   transition: var(--transition-smooth);
+  text-decoration: none;
 }
 
-.btn-whatsapp-nav:hover {
+.btn-whatsapp-cta:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+  color: #ffffff;
 }
 
 /* Shimmer armónico */
