@@ -4,6 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
+  initNavDropdown();
   initSliderControls();
   initComboCalculator();
 });
@@ -28,6 +29,34 @@ function initMobileMenu() {
     link.addEventListener("click", () => {
       drawer.classList.remove("open");
       toggleBtn.innerHTML = '<i class="bi bi-list"></i>';
+    });
+  });
+}
+
+/* 2. MENÚ DESPLEGABLE: NUESTRO SERVICIOS */
+function initNavDropdown() {
+  const dropdown = document.querySelector(".nav-dropdown");
+  const toggleBtn = document.getElementById("servicesDropdownBtn");
+
+  if (!dropdown || !toggleBtn) return;
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.toggle("open");
+    toggleBtn.setAttribute("aria-expanded", isOpen);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  dropdown.querySelectorAll(".nav-dropdown-item").forEach(item => {
+    item.addEventListener("click", () => {
+      dropdown.classList.remove("open");
+      toggleBtn.setAttribute("aria-expanded", "false");
     });
   });
 }

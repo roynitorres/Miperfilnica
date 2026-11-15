@@ -59,20 +59,45 @@
                     <a href="{{ url_for('public.inicio') }}#como-funciona" class="nav-item-link">
                         ¿Cómo Funciona?
                     </a>
-                    <a href="{{ url_for('public.inicio') }}#combos-duos" class="nav-item-link">
-                        Combos Duos
-                    </a>
-                    <a href="{{ url_for('public.inicio') }}#combos-trios" class="nav-item-link">
-                        Combos X3
-                    </a>
+
+                    <!-- Pestaña Desplegable: Nuestro Servicios -->
+                    <div class="nav-dropdown">
+                        <button type="button" class="nav-dropdown-btn" aria-expanded="false" id="servicesDropdownBtn">
+                            <span>Nuestro Servicios</span>
+                            <i class="bi bi-chevron-down nav-dropdown-arrow"></i>
+                        </button>
+                        <div class="nav-dropdown-menu" id="servicesDropdownMenu">
+                            <a href="{{ url_for('public.inicio') }}#individuales" class="nav-dropdown-item">
+                                <i class="bi bi-collection-play"></i>
+                                <span>Individuales</span>
+                            </a>
+                            <a href="{{ url_for('public.inicio') }}#combos-duos" class="nav-dropdown-item">
+                                <i class="bi bi-layers-half"></i>
+                                <span>Combos X2</span>
+                            </a>
+                            <a href="{{ url_for('public.inicio') }}#combos-trios" class="nav-dropdown-item">
+                                <i class="bi bi-trophy"></i>
+                                <span>Combos X3</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <a href="{{ url_for('public.inicio') }}#calculadora" class="nav-item-link"
                         style="color:var(--color-blue-electric); font-weight:700;">
                         <i class="bi bi-calculator"></i> Armar Mi Combo
                     </a>
                 </nav>
 
-                <!-- Acciones: Botón Admin + Menú Móvil -->
+                <!-- Acciones: Contacto WhatsApp + Botón Admin + Menú Móvil -->
                 <div class="nav-actions">
+                    <!-- Contacto Directo WhatsApp -->
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20información%20sobre%20las%20cuentas%20de%20streaming"
+                        target="_blank" rel="noopener noreferrer" class="btn-whatsapp-contact-nav"
+                        title="Contacto por WhatsApp: 76145799">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>76145799</span>
+                    </a>
+
                     <!-- ACCESO ADMINISTRATIVO DINÁMICO SEGÚN SESIÓN -->
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('admin.dashboard') }}" class="btn-admin-nav"
@@ -108,23 +133,24 @@
                 <a href="{{ url_for('public.inicio') }}">
                     <i class="bi bi-house-door"></i> Inicio
                 </a>
-                <a href="{{ url_for('public.inicio') }}#individuales">
-                    <i class="bi bi-collection-play"></i> Perfiles Individuales
+                <a href="{{ url_for('public.inicio') }}#como-funciona">
+                    <i class="bi bi-question-circle"></i> ¿Cómo Funciona?
                 </a>
-                <a href="{{ url_for('public.inicio') }}#combos-duos">
-                    <i class="bi bi-layers-half"></i> Combos Dúo (x2)
+                <div class="mobile-nav-heading">Nuestro Servicios</div>
+                <a href="{{ url_for('public.inicio') }}#individuales" class="mobile-nav-sublink">
+                    <i class="bi bi-collection-play"></i> Individuales
                 </a>
-                <a href="{{ url_for('public.inicio') }}#combos-trios">
-                    <i class="bi bi-trophy"></i> Mega Combos Trío (x3)
+                <a href="{{ url_for('public.inicio') }}#combos-duos" class="mobile-nav-sublink">
+                    <i class="bi bi-layers-half"></i> Combos X2
+                </a>
+                <a href="{{ url_for('public.inicio') }}#combos-trios" class="mobile-nav-sublink">
+                    <i class="bi bi-trophy"></i> Combos X3
                 </a>
                 <a href="{{ url_for('public.inicio') }}#calculadora" style="color:var(--color-blue-electric);">
-                    <i class="bi bi-calculator"></i> Calculadora de Combos
+                    <i class="bi bi-calculator"></i> Armar Mi Combo
                 </a>
                 <a href="{{ url_for('public.quienesomos') }}">
                     <i class="bi bi-info-circle"></i> Quienes Somos
-                </a>
-                <a href="{{ url_for('public.inicio') }}#como-funciona">
-                    <i class="bi bi-question-circle"></i> ¿Cómo Funciona?
                 </a>
                 <a href="{{ url_for('public.politicas') }}">
                     <i class="bi bi-shield-check"></i> Términos y Garantía

@@ -260,11 +260,158 @@ ul, ol {
   width: 65%;
 }
 
-/* Acciones del Navbar: Botón Admin */
+/* Pestaña Desplegable: Nuestro Servicios */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-body);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-smooth);
+}
+
+.nav-dropdown-btn:hover,
+.nav-dropdown.open .nav-dropdown-btn {
+  color: var(--color-blue-royal);
+  transform: translateY(-1px);
+}
+
+.nav-dropdown-arrow {
+  font-size: 0.72rem;
+  transition: transform var(--transition-fast);
+}
+
+.nav-dropdown:hover .nav-dropdown-arrow,
+.nav-dropdown.open .nav-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 195px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(0, 35, 102, 0.12);
+  padding: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: var(--transition-fast);
+  z-index: 1050;
+}
+
+/* Área de enlace continuo para evitar pérdida de hover */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.nav-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-navy-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.nav-dropdown-item i {
+  color: var(--color-blue-royal);
+  font-size: 1.1rem;
+  transition: transform var(--transition-fast);
+}
+
+.nav-dropdown-item:hover {
+  background: #eff6ff;
+  color: var(--color-blue-royal);
+  transform: translateX(2px);
+}
+
+.nav-dropdown-item:hover i {
+  color: var(--color-blue-electric);
+}
+
+/* Acciones del Navbar: WhatsApp y Botón Admin */
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+}
+
+/* Botón de Contacto WhatsApp con Número en Navbar */
+.btn-whatsapp-contact-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(37, 211, 102, 0.08);
+  color: var(--color-navy-dark);
+  border: 1px solid rgba(37, 211, 102, 0.28);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.btn-whatsapp-contact-nav i {
+  color: var(--color-emerald-wa);
+  font-size: 1.18rem;
+  line-height: 1;
+}
+
+.btn-whatsapp-contact-nav:hover {
+  background: rgba(37, 211, 102, 0.16);
+  border-color: var(--color-emerald-wa);
+  color: var(--color-navy-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.22);
+}
+
+@media (max-width: 480px) {
+  .btn-whatsapp-contact-nav span {
+    display: none;
+  }
+  .btn-whatsapp-contact-nav {
+    padding: 0.5rem 0.65rem;
+  }
 }
 
 .btn-admin-nav {
@@ -394,6 +541,25 @@ ul, ol {
 .mobile-nav-list a:hover {
   background: var(--bg-secondary);
   color: var(--color-blue-royal);
+}
+
+.mobile-nav-heading {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  color: var(--color-blue-royal);
+  padding: 0.5rem 0.75rem 0.1rem;
+}
+
+.mobile-nav-sublink {
+  padding-left: 1.75rem !important;
+  font-size: 0.92rem !important;
+  color: var(--text-body) !important;
+}
+
+.mobile-nav-sublink:hover {
+  color: var(--color-blue-royal) !important;
 }
 
 /* 5. FOOTER DE ALTO NIVEL EN AZUL PROFUNDO (#001845) */
