@@ -40,11 +40,11 @@
         <div class="site-container">
             <div class="navbar-inner">
 
-                <!-- Logotipo "M" -->
+                <!-- Logotipo: Usuario dentro del círculo -->
                 <a href="{{ url_for('public.inicio') }}" class="brand-link" title="MiPerfilNica Inicio">
-                    <div class="brand-logo-m">
-                        <div class="brand-logo-m-inner">
-                            <span>M</span>
+                    <div class="brand-logo-icon">
+                        <div class="brand-logo-icon-inner">
+                            <i class="bi bi-person-fill"></i>
                         </div>
                     </div>
                     <div class="brand-text-block">
@@ -92,8 +92,9 @@
                     </a>
                     {% else %}
                     <a href="{{ url_for('auth.login') }}" class="btn-admin-nav" title="Acceso Administrativo">
-                        <i class="bi bi-shield-lock-fill" style="color:var(--color-blue-royal);"></i>
-                        <span style="display:inline;">Mi cuenta</span>
+                        <i class="bi bi-person fs-5" ></i>
+                        <span style="display:inline;">Administrar</span>
+                   
                     </a>
                     {% endif %}
 
@@ -151,9 +152,9 @@
                 <!-- Columna 1: Marca & Misión -->
                 <div>
                     <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
-                        <div class="brand-logo-m" style="width:40px; height:40px;">
-                            <div class="brand-logo-m-inner">
-                                <span style="font-size:1.25rem;">M</span>
+                        <div class="brand-logo-icon" style="width:40px; height:40px;">
+                            <div class="brand-logo-icon-inner">
+                                <i class="bi bi-person-fill" style="font-size:1.2rem;"></i>
                             </div>
                         </div>
                         <span style="font-size:1.45rem; font-weight:900; color:#ffffff;">
