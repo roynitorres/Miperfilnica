@@ -60,14 +60,14 @@
                         ¿Cómo Funciona?
                     </a>
                     <a href="{{ url_for('public.inicio') }}#combos-duos" class="nav-item-link">
-                        Combos X2
+                        Combos Duos
                     </a>
                     <a href="{{ url_for('public.inicio') }}#combos-trios" class="nav-item-link">
                         Combos X3
                     </a>
                     <a href="{{ url_for('public.inicio') }}#calculadora" class="nav-item-link"
                         style="color:var(--color-blue-electric); font-weight:700;">
-                        <i class="bi bi-calculator"></i> Armar Mi combo
+                        <i class="bi bi-calculator"></i> Armar Mi Combo
                     </a>
                 </nav>
 
@@ -87,9 +87,8 @@
                     </a>
                     {% else %}
                     <a href="{{ url_for('auth.login') }}" class="btn-admin-nav" title="Acceso Administrativo">
-                        <i class="bi bi-person fs-5" ></i>
-                        <span style="display:inline;">Administrar</span>
-                   
+                        <i class="bi bi-person"></i>
+                        <span>Administrar</span>
                     </a>
                     {% endif %}
 
