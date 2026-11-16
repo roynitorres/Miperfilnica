@@ -48,15 +48,15 @@
 .hero-section {
   position: relative;
   z-index: 10;
-  padding-top: 3rem;
-  padding-bottom: 4.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
   overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .hero-section {
-    padding-top: 4.5rem;
-    padding-bottom: 5.5rem;
+    padding-top: 1.75rem;
+    padding-bottom: 4.5rem;
   }
 }
 
