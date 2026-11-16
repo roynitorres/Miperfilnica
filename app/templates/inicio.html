@@ -65,11 +65,6 @@
                 <div class="hero-media-glow"></div>
 
                 <div class="hero-image-frame">
-                    <div class="hero-badge-floating">
-                        <i class="bi bi-camera-fill" style="color:var(--color-cyan-glacier);"></i>
-                        <span>Banner Principal JPG</span>
-                    </div>
-
                     <div class="hero-badge-warranty">
                         <i class="bi bi-shield-fill-check" style="color:var(--color-blue-electric); font-size:1.25rem;"></i>
                         <div>
@@ -79,10 +74,10 @@
                     </div>
 
                     <div class="hero-image-container">
-                        <img src="{{ url_for('static', filename='imagenes/hero_banner.jpg') }}" 
+                        <img src="{{ url_for('static', filename='imagenes/hero_section.jpg') }}" 
                              alt="MiPerfilNica Streaming Entretenimiento Digital" 
                              loading="eager"
-                             onerror="this.src='https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=80'">
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=80';">
                     </div>
                 </div>
             </div>
@@ -137,10 +132,10 @@
 
                     <div class="card-brand-header">
                         <div class="card-brand-icon">
-                            <img src="{{ url_for('static', filename=platform.image) }}" 
+                            <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
                                  alt="{{ platform.title }}" 
                                  loading="lazy"
-                                 onerror="this.src='{{ url_for('static', filename='imagenes/Individuales/1.svg') }}'">
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                         </div>
                         <div>
                             <h3 class="card-title">{{ platform.title }}</h3>
@@ -205,10 +200,10 @@
 
                     <div class="card-brand-header">
                         <div class="card-brand-icon">
-                            <img src="{{ url_for('static', filename=platform.image) }}" 
+                            <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
                                  alt="{{ platform.title }}" 
                                  loading="lazy"
-                                 onerror="this.src='{{ url_for('static', filename='imagenes/Individuales/1.svg') }}'">
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                         </div>
                         <div>
                             <h3 class="card-title">{{ platform.title }}</h3>
@@ -327,10 +322,10 @@
 
                 <div>
                     <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
-                        <img src="{{ url_for('static', filename=combo.image) }}" 
+                        <img src="{{ url_for('static', filename=combo.image or 'imagenes/CombosDuos/netf_disney.svg') }}" 
                              alt="{{ combo.title }}" 
                              style="max-height: 100%; object-fit: contain;"
-                             onerror="this.src='{{ url_for('static', filename='imagenes/CombosDuos/netf_disney.svg') }}'">
+                             onerror="this.onerror=null; this.src='/static/imagenes/CombosDuos/netf_disney.svg';">
                     </div>
 
                     <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-electric); text-transform:uppercase; letter-spacing:0.5px;">
@@ -470,10 +465,10 @@
 
                 <div>
                     <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
-                        <img src="{{ url_for('static', filename=combo.image) }}" 
+                        <img src="{{ url_for('static', filename=combo.image or 'imagenes/ComboTrio/21.svg') }}" 
                              alt="{{ combo.title }}" 
                              style="max-height: 100%; object-fit: contain;"
-                             onerror="this.src='{{ url_for('static', filename='imagenes/ComboTrio/21.svg') }}'">
+                             onerror="this.onerror=null; this.src='/static/imagenes/ComboTrio/21.svg';">
                     </div>
 
                     <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-royal); text-transform:uppercase;">
@@ -583,10 +578,10 @@
                          data-price="{{ p.price }}">
                         <div style="display:flex; align-items:center; gap:0.75rem;">
                             <div style="width:42px; height:42px; border-radius:10px; background:var(--bg-tertiary); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:3px; border:1px solid var(--border-light);">
-                                <img src="{{ url_for('static', filename=p.image) }}" 
+                                <img src="{{ url_for('static', filename=p.image or 'imagenes/Individuales/1.svg') }}" 
                                      alt="{{ p.title }}" 
                                      style="max-height:100%; object-fit:contain;"
-                                     onerror="this.src='{{ url_for('static', filename='imagenes/Individuales/1.svg') }}'">
+                                     onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                             </div>
                             <div>
                                 <h4 style="font-size:0.9rem; font-weight:800; color:var(--color-navy-dark); line-height:1.2;">{{ p.title }}</h4>
