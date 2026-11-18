@@ -12,36 +12,7 @@
 
     <div class="admin-container">
 
-        <!-- 1. ENCABEZADO PRINCIPAL DEL PANEL -->
-        <div class="admin-header-card">
-            <div class="admin-title-group">
-                <span class="admin-pill-status">
-                    <span class="ping-dot" style="background:#10b981; width:6px; height:6px;"></span>
-                    Sesión Activa: Administrador
-                </span>
-                <h1 class="admin-heading">Catálogo de Productos</h1>
-                <p class="admin-subheading">
-                    Administra los precios oficiales, imágenes y visibilidad de las cuentas y combos en MiPerfilNica.
-                </p>
-            </div>
-
-            <div class="admin-header-actions">
-                <a href="{{ url_for('admin.new_product') }}" class="btn-adm btn-adm-primary">
-                    <i class="bi bi-plus-circle-fill"></i>
-                    <span>+ Nuevo Producto</span>
-                </a>
-                <a href="{{ url_for('public.inicio') }}" class="btn-adm btn-adm-secondary" title="Ver la tienda tal como la ven tus clientes">
-                    <i class="bi bi-shop"></i>
-                    <span>Ver Tienda</span>
-                </a>
-                <a href="{{ url_for('auth.logout') }}" class="btn-adm btn-adm-danger" title="Cerrar la sesión de administrador">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Salir</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- 2. MENSAJES FLASH DEL SISTEMA -->
+        <!-- 1. MENSAJES FLASH DEL SISTEMA -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -60,7 +31,7 @@
             {% endif %}
         {% endwith %}
 
-        <!-- 3. TARJETAS DE ESTADÍSTICAS RÁPIDAS (KPI) -->
+        <!-- 2. TARJETAS DE ESTADÍSTICAS RÁPIDAS (KPI) -->
         {% set total_count = products|length %}
         {% set active_count = products|selectattr('is_active')|list|length %}
         {% set platform_count = products|selectattr('category', 'equalto', 'platform')|list|length %}
@@ -108,29 +79,35 @@
             </div>
         </div>
 
-        <!-- 4. BARRA DE HERRAMIENTAS: BÚSQUEDA Y FILTROS -->
+        <!-- 3. BARRA DE HERRAMIENTAS: BÚSQUEDA, FILTROS Y ACCIÓN -->
         <div class="admin-toolbar-card">
-            <div class="admin-search-wrapper">
-                <i class="bi bi-search admin-search-icon"></i>
-                <input type="text" 
-                       id="adminSearchInput" 
-                       class="admin-search-input" 
-                       placeholder="Buscar por nombre, código o precio...">
+            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:1rem; flex:1;">
+                <div class="admin-search-wrapper">
+                    <i class="bi bi-search admin-search-icon"></i>
+                    <input type="text" 
+                           id="adminSearchInput" 
+                           class="admin-search-input" 
+                           placeholder="Buscar por nombre, código o precio...">
+                </div>
+
+                <div class="admin-filter-tabs">
+                    <button type="button" class="admin-tab-btn active" data-category="platform">
+                        <i class="bi bi-person"></i> Individuales
+                    </button>
+                    <button type="button" class="admin-tab-btn" data-category="combosDuo">
+                        <i class="bi bi-layers-half"></i> Combos Dúo
+                    </button>
+                    <button type="button" class="admin-tab-btn" data-category="combotres">
+                        <i class="bi bi-stars"></i> Combos Trío
+                    </button>
+                </div>
             </div>
 
-            <div class="admin-filter-tabs">
-                <button type="button" class="admin-tab-btn active" data-category="all">
-                    Todos (<span id="visibleCount">{{ total_count }}</span>)
-                </button>
-                <button type="button" class="admin-tab-btn" data-category="platform">
-                    Individuales
-                </button>
-                <button type="button" class="admin-tab-btn" data-category="combosDuo">
-                    Combos Dúo
-                </button>
-                <button type="button" class="admin-tab-btn" data-category="combotres">
-                    Combos Trío
-                </button>
+            <div>
+                <a href="{{ url_for('admin.new_product') }}" class="btn-adm btn-adm-primary">
+                    <i class="bi bi-plus-circle-fill"></i>
+                    <span>+ Nuevo Producto</span>
+                </a>
             </div>
         </div>
 

@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const visibleCountElem = document.getElementById("visibleCount");
   const tableCard = document.getElementById("adminTableCard");
 
-  let activeCategory = "all";
+  const initialActiveTab = document.querySelector(".admin-tab-btn.active");
+  let activeCategory = initialActiveTab ? (initialActiveTab.dataset.category || "platform") : "platform";
   let searchQuery = "";
 
   const applyFilters = () => {
@@ -66,10 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       tabButtons.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      activeCategory = btn.dataset.category || "all";
+      activeCategory = btn.dataset.category || "platform";
       applyFilters();
     });
   });
+
+  // Aplicar filtro inicial según pestaña activa
+  applyFilters();
 
   // 2. PREVISUALIZACIÓN DE IMÁGENES EN TIEMPO REAL (FORMULARIO)
   const fileInput = document.getElementById("imageFileInput");
