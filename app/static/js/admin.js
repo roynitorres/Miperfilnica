@@ -1,0 +1,114 @@
+/**
+ * MIPERFILNICA - JavaScript Interactivo del Panel Administrativo
+ * Vanilla JS Puro (Sin Bootstrap, Sin jQuery)
+ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. FILTRADO Y BÚSQUEDA EN TIEMPO REAL
+  const searchInput = document.getElementById("adminSearchInput");
+  const tabButtons = document.querySelectorAll(".admin-tab-btn");
+  const tableRows = document.querySelectorAll(".admin-product-row");
+  const emptyState = document.getElementById("adminEmptyState");
+  const visibleCountElem = document.getElementById("visibleCount");
+  const tableCard = document.getElementById("adminTableCard");
+
+  let activeCategory = "all";
+  let searchQuery = "";
+
+  const applyFilters = () => {
+    let visibleCount = 0;
+
+    tableRows.forEach((row) => {
+      const title = (row.dataset.title || "").toLowerCase();
+      const category = row.dataset.category || "";
+      const code = (row.dataset.code || "").toLowerCase();
+
+      const matchesCategory =
+        activeCategory === "all" || category === activeCategory;
+      const matchesSearch =
+        !searchQuery ||
+        title.includes(searchQuery) ||
+        code.includes(searchQuery);
+
+      if (matchesCategory && matchesSearch) {
+        row.style.display = "";
+        visibleCount++;
+      } else {
+        row.style.display = "none";
+      }
+    });
+
+    // Actualizar contador
+    if (visibleCountElem) {
+      visibleCountElem.textContent = visibleCount;
+    }
+
+    // Mostrar estado vacío si no hay coincidencias
+    if (emptyState) {
+      if (visibleCount === 0 && tableRows.length > 0) {
+        emptyState.style.display = "flex";
+      } else {
+        emptyState.style.display = "none";
+      }
+    }
+  };
+
+  // Evento de búsqueda por texto
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
+
+  // Evento de pestañas de categoría
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.dataset.category || "all";
+      applyFilters();
+    });
+  });
+
+  // 2. PREVISUALIZACIÓN DE IMÁGENES EN TIEMPO REAL (FORMULARIO)
+  const fileInput = document.getElementById("imageFileInput");
+  const previewImg = document.getElementById("imageLivePreview");
+  const previewContainer = document.getElementById("imagePreviewContainer");
+
+  if (fileInput && previewImg) {
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        // Validar tipo de imagen
+        if (!file.type.startsWith("image/")) {
+          alert("Por favor selecciona un archivo de imagen válido (.png, .jpg, .svg, .webp)");
+          fileInput.value = "";
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          previewImg.src = event.target.result;
+          if (previewContainer) {
+            previewContainer.style.display = "flex";
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  // 3. CIERRE DE ALERTAS
+  const closeAlertBtns = document.querySelectorAll(".admin-alert-close");
+  closeAlertBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const alert = btn.closest(".admin-alert");
+      if (alert) {
+        alert.style.opacity = "0";
+        alert.style.transform = "translateY(-8px)";
+        setTimeout(() => alert.remove(), 250);
+      }
+    });
+  });
+});

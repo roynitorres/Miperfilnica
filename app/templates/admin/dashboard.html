@@ -1,76 +1,291 @@
 {% extends "layout.html" %}
 
+{% block title %}Panel de Control | MiPerfilNica{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
 {% block content %}
-<div class="container my-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold text-dark mb-0">Panel de Control de Productos</h2>
-            <p class="text-muted mb-0">Administra precios e imágenes de plataformas y combos</p>
-        </div>
-        <div>
-            <a href="{{ url_for('admin.new_product') }}" class="btn btn-success me-2">+ Nuevo Producto</a>
-            <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger">Cerrar Sesión</a>
-        </div>
+<div class="admin-page-wrapper">
+    <!-- Luces Ambientales Suaves -->
+    <div class="admin-ambient-wrapper" aria-hidden="true">
+        <div class="admin-orb-1"></div>
+        <div class="admin-orb-2"></div>
     </div>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    <div class="admin-container">
 
-    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Título</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                        <th>Estado</th>
-                        <th class="text-end">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for p in products %}
-                    <tr>
-                        <td style="width: 70px;">
-                            <img src="{{ url_for('static', filename=p.image_url) }}" alt="{{ p.title }}" class="img-thumbnail rounded" style="width: 50px; height: 50px; object-fit: contain;">
-                        </td>
-                        <td class="fw-bold">{{ p.title }}</td>
-                        <td><span class="badge bg-secondary">{{ p.category }}</span></td>
-                        <td class="fs-5 fw-bold text-primary">{{ p.currency }} {{ "%.2f"|format(p.price) }} / {{ p.period }}</td>
-                        <td>
-                            {% if p.is_active %}
-                                <span class="badge bg-success">Activo</span>
-                            {% else %}
-                                <span class="badge bg-danger">Inactivo</span>
-                            {% endif %}
-                        </td>
-                        <td class="text-end">
-                            <a href="{{ url_for('admin.edit_product', product_id=p.id) }}" class="btn btn-sm btn-primary me-1"> Editar Precio / Imagen</a>
-                            <form action="{{ url_for('admin.toggle_product', product_id=p.id) }}" method="POST" class="d-inline">
-                                <button type="submit" class="btn btn-sm btn-warning">
-                                    {% if p.is_active %} Ocultar{% else %} Mostrar{% endif %}
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr>
-                        <td colspan="6" class="text-center py-4 text-muted">
-                            No hay productos en la base de datos. ¡Haz clic en "+ Nuevo Producto" para agregar el primero!
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <!-- 1. ENCABEZADO PRINCIPAL DEL PANEL -->
+        <div class="admin-header-card">
+            <div class="admin-title-group">
+                <span class="admin-pill-status">
+                    <span class="ping-dot" style="background:#10b981; width:6px; height:6px;"></span>
+                    Sesión Activa: Administrador
+                </span>
+                <h1 class="admin-heading">Catálogo de Productos</h1>
+                <p class="admin-subheading">
+                    Administra los precios oficiales, imágenes y visibilidad de las cuentas y combos en MiPerfilNica.
+                </p>
+            </div>
+
+            <div class="admin-header-actions">
+                <a href="{{ url_for('admin.new_product') }}" class="btn-adm btn-adm-primary">
+                    <i class="bi bi-plus-circle-fill"></i>
+                    <span>+ Nuevo Producto</span>
+                </a>
+                <a href="{{ url_for('public.inicio') }}" class="btn-adm btn-adm-secondary" title="Ver la tienda tal como la ven tus clientes">
+                    <i class="bi bi-shop"></i>
+                    <span>Ver Tienda</span>
+                </a>
+                <a href="{{ url_for('auth.logout') }}" class="btn-adm btn-adm-danger" title="Cerrar la sesión de administrador">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Salir</span>
+                </a>
+            </div>
         </div>
+
+        <!-- 2. MENSAJES FLASH DEL SISTEMA -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% set alert_type = 'danger' if category in ['danger', 'error'] else ('success' if category == 'success' else 'info') %}
+                    {% set icon_type = 'bi-exclamation-triangle-fill' if alert_type == 'danger' else ('bi-check-circle-fill' if alert_type == 'success' else 'bi-info-circle-fill') %}
+                    <div class="admin-alert admin-alert-{{ alert_type }}" role="alert">
+                        <div class="admin-alert-content">
+                            <i class="bi {{ icon_type }}"></i>
+                            <span>{{ message }}</span>
+                        </div>
+                        <button type="button" class="admin-alert-close" aria-label="Cerrar">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- 3. TARJETAS DE ESTADÍSTICAS RÁPIDAS (KPI) -->
+        {% set total_count = products|length %}
+        {% set active_count = products|selectattr('is_active')|list|length %}
+        {% set platform_count = products|selectattr('category', 'equalto', 'platform')|list|length %}
+        {% set combos_count = products|rejectattr('category', 'equalto', 'platform')|list|length %}
+
+        <div class="admin-kpi-grid">
+            <div class="admin-kpi-card">
+                <div class="kpi-icon-box kpi-icon-blue">
+                    <i class="bi bi-box-seam-fill"></i>
+                </div>
+                <div class="kpi-data">
+                    <span class="kpi-num">{{ total_count }}</span>
+                    <span class="kpi-label">Total Productos</span>
+                </div>
+            </div>
+
+            <div class="admin-kpi-card">
+                <div class="kpi-icon-box kpi-icon-cyan">
+                    <i class="bi bi-person-badge-fill"></i>
+                </div>
+                <div class="kpi-data">
+                    <span class="kpi-num">{{ platform_count }}</span>
+                    <span class="kpi-label">Individuales</span>
+                </div>
+            </div>
+
+            <div class="admin-kpi-card">
+                <div class="kpi-icon-box kpi-icon-purple">
+                    <i class="bi bi-collection-play-fill"></i>
+                </div>
+                <div class="kpi-data">
+                    <span class="kpi-num">{{ combos_count }}</span>
+                    <span class="kpi-label">Combos Dúo / x3</span>
+                </div>
+            </div>
+
+            <div class="admin-kpi-card">
+                <div class="kpi-icon-box kpi-icon-green">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <div class="kpi-data">
+                    <span class="kpi-num">{{ active_count }}</span>
+                    <span class="kpi-label">Activos en Web</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. BARRA DE HERRAMIENTAS: BÚSQUEDA Y FILTROS -->
+        <div class="admin-toolbar-card">
+            <div class="admin-search-wrapper">
+                <i class="bi bi-search admin-search-icon"></i>
+                <input type="text" 
+                       id="adminSearchInput" 
+                       class="admin-search-input" 
+                       placeholder="Buscar por nombre, código o precio...">
+            </div>
+
+            <div class="admin-filter-tabs">
+                <button type="button" class="admin-tab-btn active" data-category="all">
+                    Todos (<span id="visibleCount">{{ total_count }}</span>)
+                </button>
+                <button type="button" class="admin-tab-btn" data-category="platform">
+                    Individuales
+                </button>
+                <button type="button" class="admin-tab-btn" data-category="combosDuo">
+                    Combos Dúo
+                </button>
+                <button type="button" class="admin-tab-btn" data-category="combotres">
+                    Combos Trío
+                </button>
+            </div>
+        </div>
+
+        <!-- 5. TABLA DE PRODUCTOS -->
+        <div class="admin-table-card" id="adminTableCard">
+            <div class="admin-table-container">
+                <table class="admin-data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 70px;">Imagen</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Precio Oficial</th>
+                            <th>Estado</th>
+                            <th style="text-align: right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                        {% for p in products %}
+                        <tr class="admin-product-row" 
+                            data-title="{{ p.title|lower }}" 
+                            data-category="{{ p.category }}" 
+                            data-code="{{ p.code or p.id }}">
+                            
+                            <!-- Miniatura -->
+                            <td>
+                                <div class="admin-prod-thumb" title="{{ p.title }}">
+                                    <img src="{{ url_for('static', filename=p.image_url or 'imagenes/Individuales/1.svg') }}" 
+                                         alt="{{ p.title }}" 
+                                         loading="lazy"
+                                         onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                                </div>
+                            </td>
+
+                            <!-- Nombre y Código -->
+                            <td>
+                                <div class="admin-prod-info">
+                                    <span class="admin-prod-title">{{ p.title }}</span>
+                                    <div class="admin-prod-meta">
+                                        <span class="admin-code-badge">#{{ p.code or p.id }}</span>
+                                        <span>• {{ p.period or 'mes' }}</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <!-- Categoría -->
+                            <td>
+                                {% if p.category == 'platform' %}
+                                    <span class="cat-badge cat-badge-platform">
+                                        <i class="bi bi-person"></i> Individual
+                                    </span>
+                                {% elif p.category == 'combosDuo' %}
+                                    <span class="cat-badge cat-badge-duo">
+                                        <i class="bi bi-layers-half"></i> Combo Dúo
+                                    </span>
+                                {% elif p.category == 'combotres' %}
+                                    <span class="cat-badge cat-badge-trio">
+                                        <i class="bi bi-stars"></i> Combo Trío
+                                    </span>
+                                {% else %}
+                                    <span class="cat-badge cat-badge-platform">{{ p.category }}</span>
+                                {% endif %}
+                            </td>
+
+                            <!-- Precio -->
+                            <td class="admin-price-cell">
+                                <span class="admin-price-val">{{ p.currency }} {{ "%.2f"|format(p.price) }}</span>
+                                <span class="admin-price-period">/ {{ p.period or 'mes' }}</span>
+                            </td>
+
+                            <!-- Estado de Visibilidad -->
+                            <td>
+                                {% if p.is_active %}
+                                    <span class="status-badge status-badge-active" title="Visible para clientes">
+                                        <span class="status-ping"></span> Activo
+                                    </span>
+                                {% else %}
+                                    <span class="status-badge status-badge-inactive" title="Oculto en la tienda">
+                                        <span class="status-ping"></span> Oculto
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <!-- Botones de Acción -->
+                            <td>
+                                <div class="admin-actions-cell">
+                                    <a href="{{ url_for('admin.edit_product', product_id=p.id) }}" 
+                                       class="btn-action-edit" 
+                                       title="Editar precio, título o imagen">
+                                        <i class="bi bi-pencil-square"></i>
+                                        <span>Editar</span>
+                                    </a>
+
+                                    <form action="{{ url_for('admin.toggle_product', product_id=p.id) }}" 
+                                          method="POST" 
+                                          style="display:inline; margin:0;">
+                                        {% if p.is_active %}
+                                            <button type="submit" 
+                                                    class="btn-action-toggle btn-hide" 
+                                                    title="Ocultar producto de la tienda pública">
+                                                <i class="bi bi-eye-slash"></i>
+                                                <span>Ocultar</span>
+                                            </button>
+                                        {% else %}
+                                            <button type="submit" 
+                                                    class="btn-action-toggle btn-show" 
+                                                    title="Mostrar producto en la tienda pública">
+                                                <i class="bi bi-eye"></i>
+                                                <span>Mostrar</span>
+                                            </button>
+                                        {% endif %}
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6">
+                                <div class="admin-empty-state">
+                                    <div class="admin-empty-icon">
+                                        <i class="bi bi-inbox"></i>
+                                    </div>
+                                    <h3 class="admin-empty-title">No hay productos registrados</h3>
+                                    <p class="admin-empty-desc">Comienza agregando tu primera cuenta o combo al catálogo.</p>
+                                    <a href="{{ url_for('admin.new_product') }}" class="btn-adm btn-adm-primary" style="margin-top:0.5rem;">
+                                        <i class="bi bi-plus-circle-fill"></i> Crear Primer Producto
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Estado Vacío al Filtrar por Búsqueda -->
+            <div id="adminEmptyState" class="admin-empty-state" style="display:none;">
+                <div class="admin-empty-icon">
+                    <i class="bi bi-search"></i>
+                </div>
+                <h3 class="admin-empty-title">No se encontraron productos</h3>
+                <p class="admin-empty-desc">
+                    No hay productos que coincidan con el término de búsqueda o categoría seleccionada.
+                </p>
+            </div>
+        </div>
+
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
 {% endblock %}
