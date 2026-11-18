@@ -25,48 +25,67 @@
 
 <body class="admin-body">
 
-    <!-- TOPBAR EXCLUSIVA DEL PANEL DE ADMINISTRACIÓN (NO HEREDA EL NAVBAR PÚBLICO) -->
+    <!-- TOPBAR PRIVADA DEL PANEL DE ADMINISTRACIÓN -->
     <header class="admin-topbar">
         <div class="admin-topbar-inner">
 
-            <!-- Logotipo Admin -->
-            <a href="{{ url_for('admin.dashboard') }}" class="admin-topbar-brand" title="Dashboard Administrativo">
-                <span class="admin-brand-logo">MiPerfil<span>Nica</span></span>
-                <span class="admin-topbar-badge">
-                    <i class="bi bi-shield-lock-fill"></i> Panel Admin
-                </span>
+            <!-- Lado Izquierdo: Solo "Panel de Administración" -->
+            <a href="{{ url_for('admin.dashboard') }}" class="admin-topbar-brand" title="Ir al Dashboard de Administración">
+                <div class="admin-brand-icon-box">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+                <span class="admin-panel-title">Panel de Administración</span>
             </a>
 
-            <!-- Navegación y Acciones del Administrador -->
-            <nav class="admin-topbar-nav" aria-label="Navegación Administrativa">
-                <a href="{{ url_for('admin.dashboard') }}" 
-                   class="admin-topbar-link {% if request.endpoint == 'admin.dashboard' %}active{% endif %}"
-                   title="Catálogo de Productos">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Productos</span>
-                </a>
+            <!-- Lado Derecho: Icono de Usuario con Menú Desplegable -->
+            <div class="admin-user-dropdown-wrapper" id="adminUserDropdown">
+                <button type="button" 
+                        class="admin-user-btn" 
+                        id="adminUserBtn" 
+                        aria-expanded="false" 
+                        aria-haspopup="true"
+                        title="Opciones de cuenta">
+                    <div class="admin-user-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <span class="admin-user-name">{{ current_user.username if current_user.is_authenticated else 'Administrador' }}</span>
+                    <i class="bi bi-chevron-down admin-user-chevron"></i>
+                </button>
 
-                <a href="{{ url_for('public.inicio') }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="admin-topbar-link" 
-                   title="Abrir la tienda en una pestaña nueva">
-                    <i class="bi bi-box-arrow-up-right"></i>
-                    <span>Ver Tienda</span>
-                </a>
+                <!-- Menú Desplegable -->
+                <div class="admin-dropdown-menu" id="adminDropdownMenu" role="menu">
+                    <div class="admin-dropdown-header">
+                        <span class="admin-dropdown-user-role">
+                            <span class="ping-dot" style="background:#10b981; width:5px; height:5px;"></span> En Línea
+                        </span>
+                        <span class="admin-dropdown-user-title">{{ current_user.username if current_user.is_authenticated else 'Administrador' }}</span>
+                    </div>
 
-                <!-- Identificador de Usuario -->
-                <div class="admin-user-pill">
-                    <i class="bi bi-person-circle"></i>
-                    <span>{{ current_user.username if current_user.is_authenticated else 'Administrador' }}</span>
+                    <div class="admin-dropdown-divider"></div>
+
+                    <!-- Item 1: Ver Tienda -->
+                    <a href="{{ url_for('public.inicio') }}" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="admin-dropdown-item" 
+                       role="menuitem"
+                       title="Abrir tienda pública en nueva pestaña">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                        <span>Ver Tienda</span>
+                    </a>
+
+                    <div class="admin-dropdown-divider"></div>
+
+                    <!-- Item 2: Salir -->
+                    <a href="{{ url_for('auth.logout') }}" 
+                       class="admin-dropdown-item admin-dropdown-logout" 
+                       role="menuitem"
+                       title="Cerrar sesión de administrador">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Salir</span>
+                    </a>
                 </div>
-
-                <!-- Botón de Salida -->
-                <a href="{{ url_for('auth.logout') }}" class="btn-topbar-logout" title="Cerrar Sesión Segura">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Salir</span>
-                </a>
-            </nav>
+            </div>
 
         </div>
     </header>

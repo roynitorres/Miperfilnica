@@ -115,4 +115,33 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // 4. MENÚ DESPLEGABLE DE USUARIO EN TOPBAR
+  const userDropdown = document.getElementById("adminUserDropdown");
+  const userBtn = document.getElementById("adminUserBtn");
+
+  if (userDropdown && userBtn) {
+    userBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = userDropdown.classList.toggle("active");
+      userBtn.setAttribute("aria-expanded", isActive ? "true" : "false");
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener("click", (e) => {
+      if (!userDropdown.contains(e.target)) {
+        userDropdown.classList.remove("active");
+        userBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && userDropdown.classList.contains("active")) {
+        userDropdown.classList.remove("active");
+        userBtn.setAttribute("aria-expanded", "false");
+        userBtn.focus();
+      }
+    });
+  }
 });
