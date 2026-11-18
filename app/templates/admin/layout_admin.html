@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Estilos de Diseño Puros -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
     {% block extra_css %}{% endblock %}
@@ -32,7 +33,8 @@
             <!-- Lado Izquierdo: Solo "Panel de Administración" -->
             <a href="{{ url_for('admin.dashboard') }}" class="admin-topbar-brand" title="Ir al Dashboard de Administración">
                 <div class="admin-brand-icon-box">
-                    <i class="bi bi-shield-lock-fill"></i>
+                    
+                    <i class="bi bi-gear-fill"></i>
                 </div>
                 <span class="admin-panel-title">Panel de Administración</span>
             </a>
@@ -56,7 +58,7 @@
                 <div class="admin-dropdown-menu" id="adminDropdownMenu" role="menu">
                     <div class="admin-dropdown-header">
                         <span class="admin-dropdown-user-role">
-                            <span class="ping-dot" style="background:#10b981; width:5px; height:5px;"></span> En Línea
+                            
                         </span>
                         <span class="admin-dropdown-user-title">{{ current_user.username if current_user.is_authenticated else 'Administrador' }}</span>
                     </div>

@@ -2,6 +2,10 @@
 
 {% block title %}Mi Perfil Nica | Cuentas y Combos de Streaming en Nicaragua{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/begin.css') }}">
+{% endblock %}
+
 {% block content %}
 <!-- Luces ambientales de fondo -->
 <div class="ambient-glow-wrapper" aria-hidden="true">

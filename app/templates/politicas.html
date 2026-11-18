@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Politicas {%endblock%}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css') }}">
+{% endblock %}
+
 {% block content %}
 <section class="policies-hero py-5">
     <div class="container text-center text-white">

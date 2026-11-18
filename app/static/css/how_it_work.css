@@ -1,3 +1,5 @@
+@import url("variables.css");
+
 /* Header con degradado horizontal */
 .how-it-works-header {
     background: linear-gradient(90deg, #004aad 0%, #03dcec 100%);
