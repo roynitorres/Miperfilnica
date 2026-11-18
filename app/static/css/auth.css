@@ -1,0 +1,428 @@
+/* ==========================================================================
+   MIPERFILNICA - ESTILOS DEL MÓDULO DE AUTENTICACIÓN (LOGIN)
+   Paleta 60/30/20: Blanco Puro, Azul Real Zafiro, Acentos Eléctricos
+   ========================================================================== */
+
+/* 1. CONTENEDOR PRINCIPAL Y AMBIENTACIÓN */
+.auth-page-wrapper {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.auth-ambient-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.auth-orb-1 {
+  position: absolute;
+  top: -10rem;
+  left: -8rem;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.18);
+  filter: blur(120px);
+}
+
+.auth-orb-2 {
+  position: absolute;
+  bottom: -8rem;
+  right: -8rem;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  background: rgba(0, 54, 159, 0.15);
+  filter: blur(130px);
+}
+
+/* 2. TARJETA GLASSMORPHIC */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 54, 159, 0.12);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 50px -12px rgba(0, 35, 102, 0.14), 
+              0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  padding: 2.5rem 2.25rem;
+  position: relative;
+  z-index: 10;
+  animation: authCardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes authCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Efecto de temblor en caso de error de validación */
+.auth-card.shake {
+  animation: authShake 0.45s ease-in-out;
+}
+
+@keyframes authShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* 3. ENCABEZADO DE LA TARJETA */
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-icon-badge {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.25rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(56, 189, 248, 0.15));
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--color-blue-royal);
+  box-shadow: 0 8px 20px -4px rgba(0, 102, 255, 0.16);
+  position: relative;
+}
+
+.auth-icon-badge::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), transparent);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.auth-title {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--color-navy-dark);
+  letter-spacing: -0.5px;
+  margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.auth-security-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #059669;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* 4. MENSAJES FLASH */
+.auth-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-alert-danger {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.auth-alert-danger i {
+  color: #dc2626;
+  font-size: 1.15rem;
+}
+
+.auth-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.auth-alert-success i {
+  color: #16a34a;
+  font-size: 1.15rem;
+}
+
+.auth-alert-info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+/* 5. CAMPOS DEL FORMULARIO */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.auth-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.auth-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-navy-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 1rem;
+  font-size: 1.1rem;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.85rem;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: var(--text-body);
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.auth-input::placeholder {
+  color: #94a3b8;
+}
+
+.auth-input:focus {
+  border-color: var(--color-blue-electric);
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
+}
+
+.auth-input:focus + .auth-input-icon,
+.auth-input-container:focus-within .auth-input-icon {
+  color: var(--color-blue-royal);
+}
+
+/* Estados de Validación */
+.auth-input.is-invalid {
+  border-color: var(--color-red) !important;
+  background-color: #fffaf9;
+}
+
+.auth-input.is-invalid:focus {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14) !important;
+}
+
+.auth-input.is-valid {
+  border-color: #10b981;
+}
+
+/* Botón Revelar Contraseña */
+.auth-pwd-toggle {
+  position: absolute;
+  right: 0.85rem;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 1.15rem;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.auth-pwd-toggle:hover {
+  color: var(--color-blue-royal);
+  background: rgba(0, 54, 159, 0.06);
+}
+
+/* Mensajes de Validación Inline */
+.auth-field-error {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-red);
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.auth-field-error.active {
+  display: flex;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Alerta de Bloq Mayús */
+.auth-caps-warning {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #b45309;
+  background: #fef3c7;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.25rem;
+}
+
+.auth-caps-warning.active {
+  display: inline-flex;
+}
+
+/* 6. BOTÓN DE INGRESO */
+.btn-auth-submit {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-blue-royal), var(--color-blue-electric));
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -4px rgba(0, 102, 255, 0.4);
+  transition: all var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.btn-auth-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -4px rgba(0, 102, 255, 0.55);
+}
+
+.btn-auth-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-auth-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+/* Spinner Animado */
+.auth-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 0.8s linear infinite;
+  display: none;
+}
+
+.btn-auth-submit.loading .auth-spinner {
+  display: inline-block;
+}
+
+.btn-auth-submit.loading .auth-btn-text {
+  opacity: 0.9;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 7. ENLACES Y PIE DE TARJETA */
+.auth-footer {
+  text-align: center;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--color-blue-royal);
+  transition: all var(--transition-fast);
+}
+
+.auth-back-link:hover {
+  color: var(--color-blue-electric);
+  transform: translateX(-3px);
+}
+
+.auth-audit-badge {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}

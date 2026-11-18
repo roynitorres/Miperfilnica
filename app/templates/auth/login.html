@@ -1,33 +1,124 @@
 {% extends "layout.html" %}
 
+{% block title %}Acceso Administrativo | MiPerfilNica{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
 {% block content %}
-<div class="container my-5" style="max-width: 450px;">
-    <div class="card shadow-sm border-0 rounded-4 p-4">
-        <h3 class="text-center mb-4 fw-bold">Acceso Administrativo</h3>
+<div class="auth-page-wrapper">
+    <!-- Luces Ambientales Suaves de Fondo -->
+    <div class="auth-ambient-wrapper" aria-hidden="true">
+        <div class="auth-orb-1"></div>
+        <div class="auth-orb-2"></div>
+    </div>
+
+    <!-- Tarjeta Principal Glassmorphic -->
+    <div class="auth-card">
         
+        <!-- Encabezado con Icono y Marca -->
+        <div class="auth-header">
+            <div class="auth-icon-badge">
+                <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <h1 class="auth-title">Acceso Administrativo</h1>
+            <p class="auth-subtitle">
+                Inicia sesión para gestionar el catálogo de productos, combos y precios de MiPerfilNica.
+            </p>
+            <div>
+                <span class="auth-security-pill">
+                    <i class="bi bi-patch-check-fill"></i> Sesión Segura
+                </span>
+            </div>
+        </div>
+
+        <!-- Mensajes Flash de Retroalimentación -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                        {{ message }}
+                    {% set alert_type = 'danger' if category in ['danger', 'error', 'warning'] else ('success' if category == 'success' else 'info') %}
+                    {% set icon_type = 'bi-exclamation-triangle-fill' if alert_type == 'danger' else ('bi-check-circle-fill' if alert_type == 'success' else 'bi-info-circle-fill') %}
+                    <div class="auth-alert auth-alert-{{ alert_type }}" role="alert">
+                        <i class="bi {{ icon_type }}"></i>
+                        <span>{{ message }}</span>
                     </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
-        <form method="POST" action="{{ url_for('auth.login') }}">
-            <div class="mb-3">
-                <label for="username" class="form-label font-weight-bold">Usuario</label>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Ej: admin" required>
-            </div>
+        <!-- Formulario de Inicio de Sesión -->
+        <form method="POST" action="{{ url_for('auth.login') }}" id="loginForm" class="auth-form" novalidate autocomplete="on">
             
-            <div class="mb-4">
-                <label for="password" class="form-label font-weight-bold">Contraseña</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required>
+            <!-- Campo: Nombre de Usuario -->
+            <div class="auth-field-group">
+                <label for="username" class="auth-label">
+                    <span>Usuario</span>
+                </label>
+                <div class="auth-input-container">
+                    <i class="bi bi-person auth-input-icon"></i>
+                    <input type="text" 
+                           name="username" 
+                           id="username" 
+                           class="auth-input" 
+                           placeholder="Ingresa tu usuario" 
+                           required 
+                           autocomplete="username"
+                           autofocus>
+                </div>
+                <div class="auth-field-error" id="usernameError" role="alert"></div>
             </div>
-            
-            <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-bold">Ingresar al Panel</button>
+
+            <!-- Campo: Contraseña -->
+            <div class="auth-field-group">
+                <label for="password" class="auth-label">
+                    <span>Contraseña</span>
+                </label>
+                <div class="auth-input-container">
+                    <i class="bi bi-key auth-input-icon"></i>
+                    <input type="password" 
+                           name="password" 
+                           id="password" 
+                           class="auth-input" 
+                           placeholder="••••••••" 
+                           required 
+                           autocomplete="current-password">
+                    <button type="button" 
+                            id="togglePwdBtn" 
+                            class="auth-pwd-toggle" 
+                            aria-label="Ver u ocultar contraseña"
+                            tabindex="-1">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+                <div class="auth-caps-warning" id="capsWarning">
+                    <i class="bi bi-arrow-up-circle-fill"></i> Bloq Mayús está activado
+                </div>
+                <div class="auth-field-error" id="passwordError" role="alert"></div>
+            </div>
+
+            <!-- Botón de Envío -->
+            <button type="submit" class="btn-auth-submit" id="submitBtn">
+                <span class="auth-spinner" aria-hidden="true"></span>
+                <span class="auth-btn-text">Ingresar al Panel</span>
+                <i class="bi bi-arrow-right" style="font-size:1.1rem;"></i>
+            </button>
         </form>
+
+        <!-- Pie de Tarjeta: Enlace a Tienda y Seguridad -->
+        <div class="auth-footer">
+            <a href="{{ url_for('public.inicio') }}" class="auth-back-link">
+                <i class="bi bi-arrow-left"></i> Volver a la Tienda Pública
+            </a>
+            <div class="auth-audit-badge">
+                <i class="bi bi-lock-fill"></i> Cifrado de credenciales activo
+            </div>
+        </div>
+
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 {% endblock %}
