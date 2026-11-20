@@ -85,30 +85,55 @@
 <!-- ==========================================================================
      2. SECCIÓN 1: CUENTAS INDIVIDUALES (CARRUSEL SLIDER DINÁMICO)
      ========================================================================== -->
-<section class="individual-section" id="individuales" style="padding: 3.5rem 0; background:#ffffff; border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);">
+<section class="individual-section" id="individuales">
     <div class="site-container">
         
-        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.25rem;">
-           
-            <h2 class="section-title">Perfiles Individuales</h2>
-            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
-                Elige tu plataforma favorita. Acceso personal con PIN privado en moneda local córdobas (C$).
-            </p>
+        <div class="individual-section-header">
+            <div>
+                <h2 class="section-title">Perfiles Individuales</h2>
+                <p class="section-subtitle">
+                    Elige tu plataforma favorita. Acceso personal con PIN privado en moneda local córdobas (C$).
+                </p>
+            </div>
+
+            <!-- Controles Manuales de Navegación (Control del Usuario) -->
+            <div class="slider-controls-toolbar">
+                <span class="slider-counter-badge" id="sliderCounter">1 / {{ platforms|length }}</span>
+                <div class="slider-nav-btns">
+                    <button type="button" class="slider-nav-btn" id="sliderPrevBtn" aria-label="Perfil anterior" title="Anterior">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button type="button" class="slider-nav-btn" id="sliderNextBtn" aria-label="Perfil siguiente" title="Siguiente">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
-    </div>
-
-    <!-- Pista del Carrusel Deslizante Continuo -->
-    <div class="slider-container-track">
-        <div class="slider-track" id="carouselTrack">
+        <!-- Pista de Navegación Manual (No transitiva) -->
+        <div class="slider-scroll-viewport" id="sliderViewport">
+            <div class="slider-track" id="carouselTrack">
             
             {% for platform in platforms %}
-            <article class="ux-product-card">
+            {% set is_featured = ('netflix' in platform.title|lower and '150' in (platform.price|string)) or ('netflix' in platform.title|lower and platform.price == 150.0) or ('netflix' in platform.title|lower and 'premium' in platform.title|lower) %}
+            <article class="ux-product-card {% if is_featured %}is-best-seller{% endif %}">
+                {% if is_featured %}
+                <div class="card-featured-ribbon">
+                    <i class="bi bi-fire"></i> MÁS VENDIDO EN NICARAGUA
+                </div>
+                {% endif %}
+
                 <div>
                     <div class="card-top-row">
+                        {% if is_featured %}
+                        <span class="badge-top-tag badge-top-tag--featured">
+                            <i class="bi bi-star-fill"></i> TOP VENTAS
+                        </span>
+                        {% else %}
                         <span class="badge-top-tag">
                             <i class="bi bi-fire" style="color:var(--color-amber-gold);"></i> DISPONIBLE
                         </span>
+                        {% endif %}
                         <span class="card-code">#{{ platform.code or platform.id }}</span>
                     </div>
 
@@ -154,7 +179,7 @@
 
                     <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
                        target="_blank" 
-                       class="btn-card-contract"
+                       class="btn-card-contract {% if is_featured %}btn-card-contract--featured{% endif %}"
                        rel="noopener noreferrer"
                        title="Contratar {{ platform.title }} por WhatsApp">
                         <i class="bi bi-whatsapp"></i>
@@ -167,72 +192,9 @@
                 <p>No hay plataformas registradas en el catálogo en este momento.</p>
             </div>
             {% endfor %}
-
-            <!-- Repetición para Carrusel Infinito Fluido (Si hay plataformas) -->
-            {% if platforms|length > 0 %}
-            {% for platform in platforms %}
-            <article class="ux-product-card" aria-hidden="true">
-                <div>
-                    <div class="card-top-row">
-                        <span class="badge-top-tag">
-                            <i class="bi bi-fire" style="color:var(--color-amber-gold);"></i> DISPONIBLE
-                        </span>
-                        <span class="card-code">#{{ platform.code or platform.id }}</span>
-                    </div>
-
-                    <div class="card-brand-header">
-                        <div class="card-brand-icon">
-                            <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
-                                 alt="{{ platform.title }}" 
-                                 loading="lazy"
-                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                        </div>
-                        <div>
-                            <h3 class="card-title">{{ platform.title }}</h3>
-                            <span class="card-stock-status">
-                                <span class="ping-dot" style="background:#10b981; width:5px; height:5px;"></span> Entrega Inmediata
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="card-chips-group">
-                        {% if platform.features %}
-                            {% for key, val in platform.features.items() %}
-                            <span class="chip-spec">
-                                <i class="bi bi-check2-circle" style="color:var(--color-blue-electric);"></i> {{ val }}
-                            </span>
-                            {% endfor %}
-                        {% else %}
-                            <span class="chip-spec"><i class="bi bi-badge-4k" style="color:var(--color-blue-electric);"></i> 4K Ultra HD</span>
-                            <span class="chip-spec"><i class="bi bi-tv" style="color:var(--color-blue-electric);"></i> 1 Pantalla</span>
-                            <span class="chip-spec"><i class="bi bi-pin-angle" style="color:var(--color-blue-electric);"></i> Con PIN</span>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Mensual</span>
-                        <div>
-                            <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
-                            <span class="price-period">/{{ platform.period }}</span>
-                        </div>
-                    </div>
-
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
-                       target="_blank" 
-                       class="btn-card-contract"
-                       rel="noopener noreferrer">
-                        <i class="bi bi-whatsapp"></i>
-                        <span>Contratar</span>
-                    </a>
-                </div>
-            </article>
-            {% endfor %}
-            {% endif %}
-
-        </div>
-    </div>
+            </div><!-- end #carouselTrack -->
+        </div><!-- end #sliderViewport -->
+    </div><!-- end .site-container -->
 </section>
 
 <!-- ==========================================================================

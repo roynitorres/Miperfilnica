@@ -76,27 +76,80 @@ function initNavDropdown() {
   });
 }
 
-/* 2. CONTROLES DEL CARRUSEL DE TARJETAS */
+/* 2. CONTROLES MANUALES DEL SLIDER DE TARJETAS (Control total del usuario) */
 function initSliderControls() {
-  const track = document.getElementById("carouselTrack");
-  const btnLeft = document.getElementById("slideLeftBtn");
-  const btnRight = document.getElementById("slideRightBtn");
+  const viewport = document.getElementById("sliderViewport");
+  const btnPrev = document.getElementById("sliderPrevBtn");
+  const btnNext = document.getElementById("sliderNextBtn");
+  const counterEl = document.getElementById("sliderCounter");
 
-  if (!track) return;
+  if (!viewport) return;
 
-  const scrollAmount = 330;
+  const cards = viewport.querySelectorAll(".ux-product-card");
+  const totalCards = cards.length;
+  if (totalCards === 0) return;
 
-  if (btnLeft) {
-    btnLeft.addEventListener("click", () => {
-      track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  const getScrollStep = () => {
+    const firstCard = cards[0];
+    if (!firstCard) return 334;
+    const cardRect = firstCard.getBoundingClientRect();
+    const track = viewport.querySelector(".slider-track");
+    const gap = track ? parseFloat(window.getComputedStyle(track).gap) || 24 : 24;
+    return cardRect.width + gap;
+  };
+
+  const updateControls = () => {
+    const scrollStep = getScrollStep();
+    const scrollLeft = viewport.scrollLeft;
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+
+    // Calcular índice aproximado del card activo
+    const currentIndex = Math.min(
+      totalCards,
+      Math.max(1, Math.round(scrollLeft / scrollStep) + 1)
+    );
+
+    if (counterEl) {
+      counterEl.textContent = `${currentIndex} / ${totalCards}`;
+    }
+
+    if (btnPrev) {
+      const isStart = scrollLeft <= 8;
+      btnPrev.disabled = isStart;
+      btnPrev.classList.toggle("is-disabled", isStart);
+      btnPrev.setAttribute("aria-disabled", isStart ? "true" : "false");
+    }
+
+    if (btnNext) {
+      const isEnd = maxScroll === 0 || scrollLeft >= maxScroll - 8;
+      btnNext.disabled = isEnd;
+      btnNext.classList.toggle("is-disabled", isEnd);
+      btnNext.setAttribute("aria-disabled", isEnd ? "true" : "false");
+    }
+  };
+
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      viewport.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
     });
   }
 
-  if (btnRight) {
-    btnRight.addEventListener("click", () => {
-      track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      viewport.scrollBy({ left: getScrollStep(), behavior: "smooth" });
     });
   }
+
+  // Escuchar scroll para sincronizar contador y estado de botones
+  let scrollTimer;
+  viewport.addEventListener("scroll", () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateControls, 40);
+  }, { passive: true });
+
+  // Inicializar estado de botones y contador
+  updateControls();
+  window.addEventListener("resize", updateControls, { passive: true });
 }
 
 /* 3. CALCULADORA INTELIGENTE DE COMBOS CON DATOS DINÁMICOS */

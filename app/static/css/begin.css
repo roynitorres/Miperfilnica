@@ -339,6 +339,26 @@
 
 
 
+.individual-section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.individual-section-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .individual-section-header {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
 .section-title {
   font-size: clamp(1.75rem, 3.2vw, 2.4rem);
   font-weight: 900;
@@ -362,60 +382,98 @@
   margin-top: 0.25rem;
 }
 
-.slider-controls-group {
+/* Toolbar de Controles Manuales para el Usuario */
+.slider-controls-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.slider-counter-badge {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-blue-royal);
+  background: rgba(0, 102, 255, 0.08);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 102, 255, 0.18);
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.slider-nav-btns {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .slider-nav-btn {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--bg-tertiary);
+  background: #ffffff;
   border: 1px solid var(--border-light);
-  color: var(--color-blue-royal);
+  color: var(--color-navy-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 1.1rem;
+  box-shadow: var(--shadow-sm);
   transition: var(--transition-fast);
+  user-select: none;
 }
 
-.slider-nav-btn:hover {
+.slider-nav-btn:hover:not(:disabled) {
   background: var(--color-blue-royal);
   color: #ffffff;
   border-color: var(--color-blue-royal);
-  transform: scale(1.05);
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
 }
 
-/* 4. CARRUSEL DE TARJETAS INDIVIDUALES */
-.slider-container-track {
+.slider-nav-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.slider-nav-btn:disabled,
+.slider-nav-btn.is-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  border-color: var(--border-light);
+  box-shadow: none;
+  transform: none;
+}
+
+/* 4. CARRUSEL MANUAL DE TARJETAS INDIVIDUALES (Control del Usuario, No Transitivo) */
+.slider-scroll-viewport {
   width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 1rem 0 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.75rem 0.25rem 1.75rem;
+}
+
+.slider-scroll-viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .slider-track {
   display: flex;
   width: max-content;
   gap: 1.5rem;
-  animation: marqueeScroll 30s linear infinite;
-  will-change: transform;
+  padding: 0.25rem;
+  animation: none !important; /* Sin auto-scroll transitivo */
 }
 
-.slider-container-track:hover .slider-track {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeScroll {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
-}
-
-/* Tarjeta UX Individual */
+/* Tarjeta UX Individual Minimalista */
 .ux-product-card {
   width: 310px;
   flex-shrink: 0;
@@ -429,12 +487,53 @@
   box-shadow: var(--shadow-sm);
   transition: var(--transition-spring);
   position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 .ux-product-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(0, 102, 255, 0.4);
+  transform: translateY(-6px);
+  border-color: rgba(0, 102, 255, 0.35);
   box-shadow: var(--shadow-lg);
+}
+
+/* Destacado Especial: Más Vendido (Netflix Premium 150 C$) */
+.ux-product-card.is-best-seller {
+  border: 2px solid var(--color-blue-royal);
+  box-shadow: 0 10px 32px rgba(0, 102, 255, 0.16);
+  padding-top: 2.35rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+}
+
+.ux-product-card.is-best-seller:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 42px rgba(0, 102, 255, 0.26);
+  border-color: var(--color-blue-royal);
+}
+
+/* Cinta Distintiva 'Más Vendido en Nicaragua' */
+.card-featured-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-align: center;
+  padding: 0.38rem 0.5rem;
+  border-top-left-radius: calc(var(--radius-xl) - 2px);
+  border-top-right-radius: calc(var(--radius-xl) - 2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+  text-transform: uppercase;
 }
 
 .card-top-row {
@@ -455,6 +554,14 @@
   background: rgba(0, 102, 255, 0.08);
   color: var(--color-blue-royal);
   border: 1px solid rgba(0, 102, 255, 0.15);
+}
+
+.badge-top-tag--featured {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(217, 119, 6, 0.22));
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.45);
+  font-weight: 900;
+  letter-spacing: 0.3px;
 }
 
 .card-code {
@@ -581,6 +688,16 @@
 .btn-card-contract:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+}
+
+.btn-card-contract--featured {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.btn-card-contract--featured:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
 }
 
 /* 5. DESCANSOS VISUALES EN 3D (COMBOS DÚO Y TRÍO) */
