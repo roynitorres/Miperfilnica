@@ -78,7 +78,7 @@ function initNavDropdown() {
 
 
 
-/* 2.1 SLIDER HORIZONTAL DE PERFILES CON CONTROLES CHEVRON */
+/* 2.1 SLIDER HORIZONTAL DE PERFILES CON CONTROLES CHEVRON (AVANCE DE 4 EN 4 CARDS) */
 function initPlatformsSlider() {
   const viewport = document.getElementById("platformsViewport");
   const btnPrev = document.getElementById("platformsPrevBtn");
@@ -88,9 +88,14 @@ function initPlatformsSlider() {
 
   const getScrollStep = () => {
     const firstCard = viewport.querySelector(".platform-card");
-    if (!firstCard) return 306;
-    const gap = 24;
-    return firstCard.offsetWidth + gap;
+    if (!firstCard) return viewport.clientWidth || 1200;
+    const track = viewport.querySelector(".platforms-track");
+    const gap = track ? parseFloat(window.getComputedStyle(track).gap) || 24 : 24;
+    const singleCardStep = firstCard.offsetWidth + gap;
+    
+    // Determinar cuántas cards caben visibles por bloque (4 en desktop, 2 en tablet, 1 en móvil)
+    const cardsPerView = Math.max(1, Math.round(viewport.clientWidth / singleCardStep));
+    return singleCardStep * cardsPerView;
   };
 
   const updateButtons = () => {
@@ -98,14 +103,14 @@ function initPlatformsSlider() {
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
 
     if (btnPrev) {
-      const isStart = scrollLeft <= 6;
+      const isStart = scrollLeft <= 8;
       btnPrev.disabled = isStart;
       btnPrev.classList.toggle("is-disabled", isStart);
       btnPrev.setAttribute("aria-disabled", isStart ? "true" : "false");
     }
 
     if (btnNext) {
-      const isEnd = maxScroll === 0 || scrollLeft >= maxScroll - 6;
+      const isEnd = maxScroll === 0 || scrollLeft >= maxScroll - 8;
       btnNext.disabled = isEnd;
       btnNext.classList.toggle("is-disabled", isEnd);
       btnNext.setAttribute("aria-disabled", isEnd ? "true" : "false");

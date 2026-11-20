@@ -392,23 +392,13 @@
   scroll-snap-stop: normal;
 }
 
-/* 4 cards visibles simultáneas en pantallas de escritorio (>= 1200px) */
-@media (min-width: 1200px) {
+/* 4 cards visibles simultáneas en pantallas de escritorio y laptop (>= 992px) */
+@media (min-width: 992px) {
   .platform-card {
     width: calc((100% - 72px) / 4);
     flex: 0 0 calc((100% - 72px) / 4);
     min-width: calc((100% - 72px) / 4);
     max-width: calc((100% - 72px) / 4);
-  }
-}
-
-/* 3 cards en laptops (992px - 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .platform-card {
-    width: calc((100% - 48px) / 3);
-    flex: 0 0 calc((100% - 48px) / 3);
-    min-width: calc((100% - 48px) / 3);
-    max-width: calc((100% - 48px) / 3);
   }
 }
 
