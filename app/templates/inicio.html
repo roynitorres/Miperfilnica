@@ -85,6 +85,89 @@
 
 
 <!-- ==========================================================================
+     2. SECCIÓN: CUENTAS INDIVIDUALES (DINÁMICAS DESDE BASE DE DATOS / ADMIN)
+     ========================================================================== -->
+<section class="individual-section" id="individuales" style="padding: 4.25rem 0; background: #ffffff; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+    <div class="site-container">
+        
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
+            <span class="section-tag" style="justify-content: center;">
+                <i class="bi bi-person-badge"></i> Catálogo Individual
+            </span>
+            <h2 class="section-title">Perfiles Individuales</h2>
+            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
+                Elige tu plataforma favorita con acceso personal, PIN privado y garantía completa en córdobas (C$).
+            </p>
+        </div>
+
+        <div class="platforms-grid">
+            {% for platform in platforms %}
+            {% set is_bestseller = 'netflix' in platform.title|lower and 'premium' in platform.title|lower %}
+            <article class="platform-card {% if is_bestseller %}platform-card--featured{% endif %}">
+                {% if is_bestseller %}
+                <div class="combo-ribbon-savings" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+                    <i class="bi bi-star-fill"></i> MÁS VENDIDO
+                </div>
+                {% endif %}
+
+                <div>
+                    <!-- Imagen de la plataforma cargada dinámicamente desde el admin -->
+                    <div class="platform-image-box">
+                        <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
+                             alt="{{ platform.title }}" 
+                             onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                    </div>
+
+                    <span class="platform-badge">
+                        <i class="bi bi-shield-check"></i> Entrega Inmediata
+                    </span>
+
+                    <h3 class="platform-title">{{ platform.title }}</h3>
+
+                    <ul class="platform-features">
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i> Perfil exclusivo con PIN privado
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i> Calidad Ultra HD / Multi-dispositivo
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i> Garantía y soporte 30 días
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-footer-row">
+                    <div class="price-meta">
+                        <span class="price-subtext">Precio Mensual</span>
+                        <div>
+                            <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
+                            <span class="price-period">/{{ platform.period }}</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
+                       target="_blank" 
+                       class="btn-card-contract {% if is_bestseller %}btn-card-contract--featured{% endif %}"
+                       rel="noopener noreferrer"
+                       title="Adquirir {{ platform.title }}">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>Pedir Perfil</span>
+                    </a>
+                </div>
+            </article>
+            {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                <i class="bi bi-inbox" style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;"></i>
+                <p>No hay plataformas activas en este momento. Agrega una desde el Panel de Administración.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
      3. DESCANSO VISUAL 1: ILUSTRACIÓN EN 3D PARA COMBOS DÚO
      ========================================================================== -->
 <section class="visual-break-section">

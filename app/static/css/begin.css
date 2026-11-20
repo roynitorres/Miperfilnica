@@ -341,7 +341,201 @@
 
 
 
-/* 5. DESCANSOS VISUALES EN 3D (COMBOS DÚO Y TRÍO) */
+/* ==========================================================================
+   4. SECCIÓN: CUENTAS Y PERFILES INDIVIDUALES (GRID DINÁMICA DESDE ADMIN)
+   ========================================================================== */
+.platforms-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 600px) {
+  .platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .platforms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .platforms-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.platform-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.65rem 1.45rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-spring);
+}
+
+.platform-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(0, 102, 255, 0.4);
+  box-shadow: var(--shadow-lg);
+}
+
+.platform-card--featured {
+  border: 2px solid var(--color-blue-royal);
+  box-shadow: 0 10px 28px rgba(0, 54, 159, 0.12);
+}
+
+.platform-card--featured:hover {
+  border-color: var(--color-blue-royal);
+  box-shadow: 0 16px 36px rgba(0, 54, 159, 0.22);
+}
+
+.platform-image-box {
+  width: 100%;
+  height: 125px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.platform-image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.platform-card:hover .platform-image-box img {
+  transform: scale(1.08);
+}
+
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--color-blue-royal);
+  background: rgba(0, 54, 159, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.45rem;
+}
+
+.platform-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+.platform-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0 0 1.35rem 0;
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.platform-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.platform-features li i {
+  color: var(--color-blue-royal);
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   ELEMENTOS COMPARTIDOS DE TARJETAS (FOOTER, PRECIOS Y BOTONES CTA)
+   ========================================================================== */
+.card-footer-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  margin-top: auto;
+}
+
+.price-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-subtext {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.price-val {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--color-navy-dark);
+}
+
+.price-period {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.btn-card-contract {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: linear-gradient(135deg, var(--color-emerald-wa), var(--color-emerald-dark));
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-card-contract:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+  color: #ffffff;
+}
+
+.btn-card-contract--featured {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.btn-card-contract--featured:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+}
 .visual-break-section {
   padding: 3rem 0;
   position: relative;
