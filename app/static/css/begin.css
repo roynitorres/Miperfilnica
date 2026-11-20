@@ -50,17 +50,18 @@
 .hero-section {
   position: relative;
   z-index: 10;
-  padding-top: 2.25rem;
-  padding-bottom: 4.5rem;
-  background: linear-gradient(135deg, var(--color-navy-deep), var(--color-navy-dark), var(--color-blue-royal));
-  color: #ffffff;
+  padding-top: 3.25rem;
+  padding-bottom: 4.75rem;
+  background: var(--hero-bg);
+  border-bottom: var(--hero-border-bottom);
+  color: var(--text-body);
   overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .hero-section {
-    padding-top: 2.5rem;
-    padding-bottom: 5rem;
+    padding-top: 3.75rem;
+    padding-bottom: 5.25rem;
   }
 }
 
@@ -114,19 +115,19 @@
   font-size: clamp(2.2rem, 4.5vw, 3.6rem);
   font-weight: 900;
   line-height: 1.12;
-  color: #ffffff;
+  color: var(--color-navy-dark);
   letter-spacing: -1px;
 }
 
 .hero-title-gradient {
-  background: linear-gradient(135deg, var(--color-cyan-glacier), #93c5fd);
+  background: linear-gradient(135deg, var(--color-blue-royal), var(--color-blue-electric), var(--color-cyan-glacier));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
   font-size: 1.1rem;
-  color: #cbd5e1;
+  color: var(--text-body);
   max-width: 580px;
   margin-left: auto;
   margin-right: auto;
@@ -159,41 +160,42 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--color-blue-electric);
+  background: var(--gradient-electric);
   color: #ffffff;
   font-size: 0.95rem;
   font-weight: 800;
   padding: 0.95rem 2rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-blue-glow);
+  border: none;
   transition: var(--transition-smooth);
 }
 
 .btn-primary-hero:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 102, 255, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 102, 255, 0.45);
+  color: #ffffff;
 }
 
 .btn-secondary-hero {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--bg-surface);
+  color: var(--color-navy-dark);
+  border: 1.5px solid var(--border-medium);
   font-size: 0.95rem;
   font-weight: 800;
   padding: 0.95rem 1.85rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
   transition: var(--transition-smooth);
 }
 
 .btn-secondary-hero:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #ffffff;
+  background: var(--bg-tertiary);
+  border-color: var(--color-blue-royal);
+  color: var(--color-blue-royal);
   transform: translateY(-2px);
 }
 
@@ -202,7 +204,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0.85rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid var(--border-light);
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
@@ -216,26 +218,27 @@
 }
 
 .metric-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 0.85rem;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
 }
 
 .metric-num {
   font-size: 1.45rem;
   font-weight: 900;
-  color: #ffffff;
+  color: var(--color-navy-dark);
 }
 
-
+.metric-num.highlight-green {
+  color: var(--state-success);
+}
 
 .metric-label {
   font-size: 0.75rem;
-  color: #cbd5e1;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -249,7 +252,7 @@
 .hero-media-glow {
   position: absolute;
   inset: -15px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(0, 102, 255, 0.18) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(0, 102, 255, 0.12) 50%, transparent 70%);
   border-radius: var(--radius-xl);
   filter: blur(28px);
   z-index: 1;
@@ -260,12 +263,11 @@
   z-index: 2;
   width: 100%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--bg-surface);
+  border: 1px solid rgba(0, 54, 159, 0.12);
   border-radius: var(--radius-xl);
   padding: 0.75rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 45px -10px rgba(0, 35, 102, 0.12);
   animation: heroFloat 6s ease-in-out infinite;
 }
 

@@ -66,12 +66,21 @@
   --state-info-text: #1e40af;
 
   /* ------------------------------------------------------------------------
-     5. GRADIENTES CORPORATIVOS REUTILIZABLES
+     5. GRADIENTES CORPORATIVOS Y THEMING DE COMPONENTES
      ------------------------------------------------------------------------ */
   --gradient-hero: linear-gradient(135deg, var(--color-navy-deep), var(--color-navy-dark), var(--color-blue-royal));
+  --gradient-navy: linear-gradient(135deg, var(--color-navy-deep), var(--color-navy-dark), var(--color-blue-royal));
   --gradient-electric: linear-gradient(135deg, var(--color-blue-electric), var(--color-blue-royal));
   --gradient-text: linear-gradient(135deg, var(--color-blue-electric) 0%, var(--color-cyan-glacier) 100%);
   --gradient-badge: linear-gradient(135deg, rgba(0, 102, 255, 0.12), rgba(56, 189, 248, 0.12));
+
+  /* Theming Navbar y Hero Section (Clean Code Tokens) */
+  --navbar-bg: linear-gradient(135deg, var(--color-navy-deep), var(--color-navy-dark), var(--color-blue-royal));
+  --navbar-border: rgba(255, 255, 255, 0.12);
+  --navbar-shadow: 0 4px 25px rgba(0, 24, 69, 0.35);
+
+  --hero-bg: linear-gradient(180deg, #eff6ff 0%, #f8fafc 55%, #ffffff 100%);
+  --hero-border-bottom: 1px solid var(--border-light);
 
   /* ------------------------------------------------------------------------
      6. TIPOGRAFÍA Y ESCALA DE TEXTO

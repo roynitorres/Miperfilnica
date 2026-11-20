@@ -83,7 +83,7 @@
                     </div>
 
                     <a href="{{ url_for('public.inicio') }}#calculadora" class="nav-item-link"
-                        style="color:var(--color-blue-electric); font-weight:700;">
+                        style="color:var(--color-cyan-glacier); font-weight:800;">
                         <i class="bi bi-calculator"></i> Armar Mi Combo
                     </a>
 
@@ -101,12 +101,13 @@
                     <!-- ACCESO ADMINISTRATIVO DINÁMICO SEGÚN SESIÓN -->
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('admin.dashboard') }}" class="btn-admin-nav"
-                        style="background:#eff6ff; color:#00369f; border-color:#93c5fd;"
+                        style="background:rgba(56, 189, 248, 0.15); color:var(--color-cyan-glacier); border-color:rgba(56, 189, 248, 0.35);"
                         title="Panel de Administración">
                         <i class="bi bi-speedometer2"></i>
                         <span style="display:inline;">Panel</span>
                     </a>
-                    <a href="{{ url_for('auth.logout') }}" class="btn-admin-nav" style="color:#dc2626;"
+                    <a href="{{ url_for('auth.logout') }}" class="btn-admin-nav" 
+                        style="color:#f87171; background:rgba(239, 68, 68, 0.12); border-color:rgba(239, 68, 68, 0.3);"
                         title="Cerrar Sesión">
                         <i class="bi bi-box-arrow-right"></i>
                     </a>

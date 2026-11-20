@@ -69,16 +69,16 @@ ul, ol {
   padding-right: 1.5rem;
 }
 
-/* 4. NAVBAR BLANCO CON AZUL (GLASSMORPHIC & INDEPENDIENTE) */
+/* 4. NAVBAR ROYAL NAVY (GLASSMORPHIC & INDEPENDIENTE) */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.94);
+  z-index: var(--z-sticky);
+  background: var(--navbar-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 54, 159, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(0, 35, 102, 0.04);
+  border-bottom: var(--navbar-border);
+  box-shadow: var(--navbar-shadow);
   transition: var(--transition-smooth);
 }
 
@@ -121,18 +121,18 @@ ul, ol {
   font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: -0.6px;
-  color: var(--color-navy-dark);
+  color: #ffffff;
   line-height: 1.15;
   transition: var(--transition-fast);
 }
 
 .brand-name span {
-  color: var(--color-blue-electric);
+  color: var(--color-cyan-glacier);
   transition: var(--transition-fast);
 }
 
 .brand-link:hover .brand-name span {
-  color: var(--color-blue-royal);
+  color: #ffffff;
 }
 
 .brand-badge {
@@ -140,7 +140,7 @@ ul, ol {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.75px;
-  color: var(--color-blue-royal);
+  color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -173,8 +173,8 @@ ul, ol {
   display: none;
   align-items: center;
   gap: 0.25rem;
-  background: rgba(241, 245, 249, 0.7);
-  border: 1px solid rgba(0, 54, 159, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-pill);
   padding: 0.3rem 0.85rem;
 }
@@ -189,7 +189,7 @@ ul, ol {
   position: relative;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--text-body);
+  color: rgba(255, 255, 255, 0.9);
   padding: 0.45rem 1rem;
   border-radius: var(--radius-pill);
   transition: var(--transition-smooth);
@@ -202,14 +202,14 @@ ul, ol {
   left: 50%;
   width: 0%;
   height: 2.5px;
-  background: linear-gradient(90deg, var(--color-blue-royal), var(--color-blue-electric));
+  background: linear-gradient(90deg, var(--color-cyan-glacier), var(--color-blue-electric));
   border-radius: var(--radius-pill);
   transition: var(--transition-smooth);
   transform: translateX(-50%);
 }
 
 .nav-item-link:hover, .nav-item-link.active {
-  color: var(--color-blue-royal);
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
@@ -234,7 +234,7 @@ ul, ol {
   font-family: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--text-body);
+  color: rgba(255, 255, 255, 0.9);
   padding: 0.45rem 1rem;
   border-radius: var(--radius-pill);
   transition: var(--transition-smooth);
@@ -242,12 +242,13 @@ ul, ol {
 
 .nav-dropdown-btn:hover,
 .nav-dropdown.open .nav-dropdown-btn {
-  color: var(--color-blue-royal);
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
 .nav-dropdown-arrow {
   font-size: 0.72rem;
+  color: var(--color-cyan-glacier);
   transition: transform var(--transition-fast);
 }
 
@@ -261,12 +262,14 @@ ul, ol {
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(8px);
-  min-width: 195px;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
+  min-width: 205px;
+  background: rgba(0, 24, 69, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-md);
-  box-shadow: 0 12px 32px rgba(0, 35, 102, 0.12);
-  padding: 0.45rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -300,9 +303,9 @@ ul, ol {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.55rem 0.85rem;
+  padding: 0.6rem 0.85rem;
   border-radius: var(--radius-sm);
-  color: var(--color-navy-dark);
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 700;
   text-decoration: none;
@@ -310,19 +313,19 @@ ul, ol {
 }
 
 .nav-dropdown-item i {
-  color: var(--color-blue-royal);
+  color: var(--color-cyan-glacier);
   font-size: 1.1rem;
   transition: transform var(--transition-fast);
 }
 
 .nav-dropdown-item:hover {
-  background: #eff6ff;
-  color: var(--color-blue-royal);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-cyan-glacier);
   transform: translateX(2px);
 }
 
 .nav-dropdown-item:hover i {
-  color: var(--color-blue-electric);
+  color: #ffffff;
 }
 
 /* Acciones del Navbar: WhatsApp y Botón Admin */
@@ -339,7 +342,7 @@ ul, ol {
   align-items: center;
   gap: 0.45rem;
   background: transparent;
-  color: var(--color-navy-dark);
+  color: #ffffff;
   border: none;
   font-size: 0.86rem;
   font-weight: 800;
@@ -359,7 +362,7 @@ ul, ol {
 
 .nav-whatsapp-link:hover,
 .btn-whatsapp-contact-nav:hover {
-  color: var(--color-blue-royal);
+  color: var(--color-cyan-glacier);
   transform: translateY(-1px);
 }
 
@@ -381,9 +384,9 @@ ul, ol {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   font-size: 0.82rem;
   font-weight: 700;
   padding: 0.5rem 0.95rem;
@@ -403,12 +406,13 @@ ul, ol {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-cyan-glacier);
 }
 
 .btn-admin-nav:hover {
-  background: rgba(0, 54, 159, 0.08);
-  color: var(--color-blue-royal);
-  border-color: rgba(0, 54, 159, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-1px);
 }
 
@@ -463,12 +467,16 @@ ul, ol {
   width: 42px;
   height: 42px;
   border-radius: var(--radius-md);
-  background: var(--bg-tertiary);
-  color: var(--color-navy-dark);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   font-size: 1.4rem;
   cursor: pointer;
-  border: 1px solid var(--border-light);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: var(--transition-fast);
+}
+
+.mobile-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 @media (min-width: 900px) {
@@ -480,10 +488,10 @@ ul, ol {
 /* Drawer / Menú Móvil Desplegable */
 .mobile-nav-drawer {
   display: none;
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(180deg, var(--color-navy-dark), var(--color-navy-deep));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding: 1rem 1.5rem 1.5rem;
-  box-shadow: 0 16px 28px rgba(0, 35, 102, 0.08);
+  box-shadow: 0 16px 28px rgba(0, 24, 69, 0.4);
 }
 
 .mobile-nav-drawer.open {
@@ -499,7 +507,7 @@ ul, ol {
 .mobile-nav-list a {
   font-weight: 700;
   font-size: 1rem;
-  color: var(--text-primary);
+  color: #ffffff;
   padding: 0.65rem 0.75rem;
   border-radius: var(--radius-md);
   display: flex;
@@ -508,8 +516,8 @@ ul, ol {
 }
 
 .mobile-nav-list a:hover {
-  background: var(--bg-secondary);
-  color: var(--color-blue-royal);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-cyan-glacier);
 }
 
 /* Acordeón Móvil: Nuestro Servicios (Contraído por defecto) */
@@ -523,11 +531,11 @@ ul, ol {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   font-weight: 700;
   font-size: 1rem;
-  color: var(--text-primary);
+  color: #ffffff;
   padding: 0.75rem 0.85rem;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -537,15 +545,15 @@ ul, ol {
 
 .mobile-nav-accordion-btn:hover,
 .mobile-nav-accordion.open .mobile-nav-accordion-btn {
-  background: #eff6ff;
-  color: var(--color-blue-royal);
-  border-color: rgba(0, 54, 159, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-cyan-glacier);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .mobile-accordion-arrow {
   font-size: 0.85rem;
   transition: transform var(--transition-fast);
-  color: var(--color-blue-royal);
+  color: var(--color-cyan-glacier);
 }
 
 .mobile-nav-accordion.open .mobile-accordion-arrow {
