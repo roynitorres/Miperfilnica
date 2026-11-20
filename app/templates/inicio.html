@@ -83,105 +83,105 @@
 </section>
 
 <!-- ==========================================================================
-     2. SECCIÓN 1: CUENTAS INDIVIDUALES (CARRUSEL SLIDER DINÁMICO)
+     2. SECCIÓN 1: CUENTAS INDIVIDUALES (CARRUSEL SLIDER 4 CARDS - FONDO BLANCO)
      ========================================================================== -->
 <section class="individual-section individual-section--white" id="individuales">
     <div class="site-container">
         
-        <!-- Encabezado en Fondo Blanco -->
-        <div class="individual-section-header-clean">
-            <span class="section-tag-pill"><i class="bi bi-shield-check"></i> Moneda Local Córdobas (C$)</span>
-            <h2 class="individual-section-title">Perfiles Individuales</h2>
-            <p class="individual-section-subtitle">
-                Elige tu plataforma favorita. Acceso personal con PIN privado y entrega inmediata.
+        <!-- Encabezado de la Sección -->
+        <div class="section-top-header">
+            <div class="section-top-logo">
+                <svg viewBox="0 0 24 24" fill="#e50914" width="38" height="38" aria-label="Streaming Logo">
+                    <path d="M5.398 0v24L9.8 15.582V0H5.398zm8.802 0v8.418L18.602 0h-4.402zm0 15.582V24h4.402V0l-8.802 15.582h4.402z"/>
+                </svg>
+            </div>
+            <h2 class="section-main-title">Nuestros Planes</h2>
+            <p class="section-main-subtitle">
+                Elige el plan ideal para ti y disfruta de todo el contenido sin cortes.
             </p>
         </div>
 
         <!-- Slider Wrapper con Flechas Laterales y Pista de 4 Cards -->
-        <div class="clean-slider-wrapper">
-            <!-- Botón Flecha Anterior -->
-            <button type="button" class="slider-arrow-btn slider-arrow-btn--prev" id="sliderPrevBtn" aria-label="Perfil anterior" title="Anterior">
+        <div class="slider-outer-wrapper">
+            <!-- Botón Flecha Anterior (Avance 1 a 1 hacia la izquierda) -->
+            <button type="button" class="arrow-nav-btn arrow-nav-btn--prev" id="sliderPrevBtn" aria-label="Plan anterior" title="Anterior">
                 <i class="bi bi-chevron-left"></i>
             </button>
 
-            <!-- Pista de Navegación Manual (4 cards visibles en desktop) -->
-            <div class="clean-slider-viewport" id="sliderViewport">
-                <div class="clean-slider-track" id="carouselTrack">
+            <!-- Pista de Navegación (4 cards visibles simultáneos en desktop) -->
+            <div class="slider-viewport-box" id="sliderViewport">
+                <div class="slider-cards-track" id="carouselTrack">
                 
                 {% for platform in platforms %}
                 {% set p_title = platform.title|lower %}
                 {% set is_featured = ('netflix' in p_title and '150' in (platform.price|string)) or ('netflix' in p_title and platform.price == 150.0) or ('netflix' in p_title and 'premium' in p_title) or (platform.id == 1 and 'netflix' in p_title) %}
 
-                {# Mapeo de imagen de póster cinematográfico al ancho total #}
+                {# Asignación de póster cinemático y descripción según plataforma #}
                 {% if 'netflix' in p_title and is_featured %}
                     {% set poster_img = 'imagenes/posters/netflix_wednesday.jpg' %}
-                    {% set plan_desc = 'Disfruta en 4 pantallas simultáneas + 4K Ultra HD.' %}
+                    {% set plan_desc = 'Disfruta en 4 pantallas simultáneas + Ultra HD.' %}
                 {% elif 'netflix' in p_title %}
                     {% set poster_img = 'imagenes/posters/netflix_heist.jpg' %}
                     {% set plan_desc = 'Disfruta en 1 dispositivo exclusivo con PIN.' %}
                 {% elif 'disney' in p_title and 'premium' in p_title %}
                     {% set poster_img = 'imagenes/posters/disney_marvel.jpg' %}
-                    {% set plan_desc = 'Disfruta en 4 pantallas simultáneas en 4K UHD.' %}
+                    {% set plan_desc = 'Disfruta en 4 pantallas en 4K UHD.' %}
                 {% elif 'disney' in p_title %}
                     {% set poster_img = 'imagenes/posters/disney_mando.jpg' %}
-                    {% set plan_desc = 'Mira en 2 pantallas en Full HD sin anuncios.' %}
+                    {% set plan_desc = 'Mira en 2 dispositivos simultáneos.' %}
                 {% elif 'hbo' in p_title or 'max' in p_title %}
                     {% set poster_img = 'imagenes/posters/hbo_dragon.jpg' %}
-                    {% set plan_desc = 'Series exclusivas de HBO, Max y Warner Bros.' %}
+                    {% set plan_desc = 'Series exclusivas de HBO, Max y WB.' %}
                 {% elif 'prime' in p_title %}
                     {% set poster_img = 'imagenes/posters/prime_western.jpg' %}
-                    {% set plan_desc = 'Mira en hasta 3 dispositivos en alta resolución.' %}
+                    {% set plan_desc = 'Mira en hasta 3 dispositivos en HD.' %}
                 {% elif 'spotify' in p_title %}
                     {% set poster_img = 'imagenes/posters/spotify_music.jpg' %}
-                    {% set plan_desc = 'Música ilimitada sin anuncios y descarga offline.' %}
+                    {% set plan_desc = 'Música ilimitada sin anuncios offline.' %}
                 {% elif 'crunchy' in p_title %}
                     {% set poster_img = 'imagenes/posters/crunchy_anime.jpg' %}
-                    {% set plan_desc = 'Anime ilimitado y estrenos simultáneos desde Japón.' %}
+                    {% set plan_desc = 'Anime ilimitado y estrenos de Japón.' %}
                 {% elif 'youtube' in p_title %}
                     {% set poster_img = 'imagenes/posters/youtube_squid.jpg' %}
-                    {% set plan_desc = 'Videos y música en segundo plano sin publicidad.' %}
+                    {% set plan_desc = 'Videos y música sin publicidad.' %}
                 {% else %}
                     {% set poster_img = platform.image or 'imagenes/posters/netflix_wednesday.jpg' %}
                     {% set plan_desc = 'Acceso personal garantizado con PIN privado.' %}
                 {% endif %}
 
-                <article class="profile-card {% if is_featured %}is-best-seller{% endif %}" data-index="{{ loop.index0 }}">
+                <article class="plan-card {% if is_featured %}is-featured{% endif %}" data-index="{{ loop.index0 }}">
                     {% if is_featured %}
-                    <div class="card-badge-bestseller">
+                    <div class="bestseller-floating-badge">
                         <i class="bi bi-star-fill"></i> Más Vendido
                     </div>
                     {% endif %}
 
-                    <!-- Imagen ocupando el ancho del card -->
-                    <div class="card-banner-wrapper">
-                        <span class="card-status-pill"><span class="status-dot"></span> Entrega Inmediata</span>
+                    <!-- Imagen ocupando el ancho del card con fade continuo -->
+                    <div class="card-art-holder">
                         <img src="{{ url_for('static', filename=poster_img) }}" 
                              alt="{{ platform.title }}" 
-                             class="card-banner-img"
+                             class="card-art-img"
                              loading="lazy"
                              onerror="this.onerror=null; this.src='/static/imagenes/posters/netflix_wednesday.jpg';">
-                        <div class="card-banner-gradient"></div>
+                        <div class="card-art-fade"></div>
                     </div>
 
                     <!-- Información al frente -->
-                    <div class="card-body-content">
-                        <h3 class="card-title">{{ platform.title }}</h3>
-                        
-                        <p class="card-desc">{{ plan_desc }}</p>
+                    <div class="card-content-area">
+                        <h3 class="card-title-text">{{ platform.title }}</h3>
+                        <p class="card-desc-text">{{ plan_desc }}</p>
 
-                        <div class="card-price-container">
-                            <span class="price-currency">{{ platform.currency }}</span>
-                            <span class="price-value">{{ "%.0f"|format(platform.price) }}</span>
-                            <span class="price-frequency">/{{ platform.period }}</span>
+                        <div class="card-price-row">
+                            <span class="card-price-num">{{ platform.currency }} {{ "%.0f"|format(platform.price) }}</span>
+                            <span class="card-price-unit">/{{ platform.period }}</span>
                         </div>
 
                         <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})"
                            target="_blank"
-                           class="btn-select-profile {% if is_featured %}btn-select-profile--featured{% endif %}"
+                           class="card-select-btn"
                            rel="noopener noreferrer"
-                           title="Seleccionar {{ platform.title }} por WhatsApp">
-                            <i class="bi bi-whatsapp"></i>
-                            <span>Seleccionar</span>
+                           title="Seleccionar {{ platform.title }}">
+                            Seleccionar
                         </a>
                     </div>
                 </article>
@@ -193,17 +193,14 @@
                 </div><!-- end #carouselTrack -->
             </div><!-- end #sliderViewport -->
 
-            <!-- Botón Flecha Siguiente -->
-            <button type="button" class="slider-arrow-btn slider-arrow-btn--next" id="sliderNextBtn" aria-label="Perfil siguiente" title="Siguiente">
+            <!-- Botón Flecha Siguiente (Avance 1 a 1 hacia la derecha) -->
+            <button type="button" class="arrow-nav-btn arrow-nav-btn--next" id="sliderNextBtn" aria-label="Plan siguiente" title="Siguiente">
                 <i class="bi bi-chevron-right"></i>
             </button>
-        </div><!-- end .clean-slider-wrapper -->
+        </div><!-- end .slider-outer-wrapper -->
 
-        <!-- Dots de Paginación Centrados (Control del Usuario) -->
-        <div class="slider-dots-box" id="sliderDots" aria-label="Navegación por puntos"></div>
-
-    </div><!-- end .site-container -->
-</section>
+        <!-- Dots de Paginación Centrados (Navegación Interactiva) -->
+        <div class="slider-dots-wrapper" id="sliderDots" aria-label="Navegación por puntos"></div>
 
     </div><!-- end .site-container -->
 </section>

@@ -87,7 +87,7 @@ function initSliderControls() {
 
   if (!viewport) return;
 
-  const cards = viewport.querySelectorAll(".profile-card, .cinema-card, .ux-product-card");
+  const cards = viewport.querySelectorAll(".plan-card, .profile-card, .cinema-card, .ux-product-card");
   const totalCards = cards.length;
   if (totalCards === 0) return;
 
