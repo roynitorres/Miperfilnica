@@ -85,115 +85,125 @@
 <!-- ==========================================================================
      2. SECCIÓN 1: CUENTAS INDIVIDUALES (CARRUSEL SLIDER DINÁMICO)
      ========================================================================== -->
-<section class="individual-section" id="individuales">
+<section class="individual-section cinema-mode" id="individuales">
     <div class="site-container">
         
-        <div class="individual-section-header">
-            <div>
-                <h2 class="section-title">Perfiles Individuales</h2>
-                <p class="section-subtitle">
-                    Elige tu plataforma favorita. Acceso personal con PIN privado en moneda local córdobas (C$).
-                </p>
+        <!-- Encabezado Estilo Streaming Cinema (Nuestros Planes) -->
+        <div class="cinema-section-header">
+            <div class="cinema-brand-icon">
+                <svg viewBox="0 0 111 30" fill="#e50914" xmlns="http://www.w3.org/2000/svg" aria-label="Netflix">
+                    <path d="M105.062 14.28L111 30c-1.75-.48-3.488-.88-5.282-1.21l-3.37-8.932-3.37 8.932c-1.794.33-3.532.73-5.282 1.21L99.638 14.28 94.22 0h4.868l3.197 9.07 3.197-9.07h4.868l-5.288 14.28zm-22.38 13.91c-1.928.23-3.868.43-5.836.59V0h4.86v27.69c.328.16.653.33.976.5zm-15.01-4.83v4.83c-1.896-.08-3.793-.11-5.69-.11V0h14.544v4.46h-9.684v7.35h8.86v4.39h-8.86v7.16h.83zm-14.86-1.57c-1.874-.32-3.725-.69-5.556-1.11V4.46h-4.86V0h15.276v4.46h-4.86v20.23zm-15.35-7.46V0h4.86v13.82c1.928-.23 3.868-.43 5.836-.59V0h4.86v18.73c-4.998.66-10.155 1.54-15.556 2.62zm-14.86 3.81c-1.896-.08-3.793-.11-5.69-.11V0h14.544v4.46h-9.684v7.35h8.86v4.39h-8.86v7.16h.83zM0 0h5.278l8.32 22.06V0h4.63v29.58c-4.868.96-9.878 1.94-15.01 2.92L0 8.87V0z"/>
+                </svg>
             </div>
-
-            <!-- Controles Manuales de Navegación (Control del Usuario) -->
-            <div class="slider-controls-toolbar">
-                <span class="slider-counter-badge" id="sliderCounter">1 / {{ platforms|length }}</span>
-                <div class="slider-nav-btns">
-                    <button type="button" class="slider-nav-btn" id="sliderPrevBtn" aria-label="Perfil anterior" title="Anterior">
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-                    <button type="button" class="slider-nav-btn" id="sliderNextBtn" aria-label="Perfil siguiente" title="Siguiente">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
+            <h2 class="cinema-section-title">Nuestros Planes</h2>
+            <p class="cinema-section-subtitle">
+                Elige el plan ideal para ti y disfruta de todo el contenido.
+            </p>
         </div>
 
-        <!-- Pista de Navegación Manual (No transitiva) -->
-        <div class="slider-scroll-viewport" id="sliderViewport">
-            <div class="slider-track" id="carouselTrack">
-            
-            {% for platform in platforms %}
-            {% set is_featured = ('netflix' in platform.title|lower and '150' in (platform.price|string)) or ('netflix' in platform.title|lower and platform.price == 150.0) or ('netflix' in platform.title|lower and 'premium' in platform.title|lower) %}
-            <article class="ux-product-card {% if is_featured %}is-best-seller{% endif %}">
-                {% if is_featured %}
-                <div class="card-featured-ribbon">
-                    <i class="bi bi-fire"></i> MÁS VENDIDO EN NICARAGUA
-                </div>
+        <!-- Slider Wrapper con Flechas Laterales y Pista de 5 Cards -->
+        <div class="cinema-slider-wrapper">
+            <!-- Botón Flecha Anterior -->
+            <button type="button" class="cinema-nav-arrow cinema-nav-arrow--prev" id="sliderPrevBtn" aria-label="Perfil anterior" title="Anterior">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+
+            <!-- Pista de Navegación Manual (5 cards visibles) -->
+            <div class="cinema-slider-viewport" id="sliderViewport">
+                <div class="cinema-slider-track" id="carouselTrack">
+                
+                {% for platform in platforms %}
+                {% set p_title = platform.title|lower %}
+                {% set is_featured = ('netflix' in p_title and '150' in (platform.price|string)) or ('netflix' in p_title and platform.price == 150.0) or ('netflix' in p_title and 'premium' in p_title) or (platform.id == 1 and 'netflix' in p_title) %}
+
+                {# Mapeo de imagen de póster cinematográfico al ancho total #}
+                {% if 'netflix' in p_title and is_featured %}
+                    {% set poster_img = 'imagenes/posters/netflix_wednesday.jpg' %}
+                    {% set plan_desc = 'Disfruta en 4 dispositivos + Ultra HD.' %}
+                {% elif 'netflix' in p_title %}
+                    {% set poster_img = 'imagenes/posters/netflix_heist.jpg' %}
+                    {% set plan_desc = 'Disfruta en 1 dispositivo exclusivo.' %}
+                {% elif 'disney' in p_title and 'premium' in p_title %}
+                    {% set poster_img = 'imagenes/posters/disney_marvel.jpg' %}
+                    {% set plan_desc = 'Disfruta en 4 pantallas + 4K UHD.' %}
+                {% elif 'disney' in p_title %}
+                    {% set poster_img = 'imagenes/posters/disney_mando.jpg' %}
+                    {% set plan_desc = 'Mira en 2 pantallas en Full HD.' %}
+                {% elif 'hbo' in p_title or 'max' in p_title %}
+                    {% set poster_img = 'imagenes/posters/hbo_dragon.jpg' %}
+                    {% set plan_desc = 'Disfruta en 3 pantallas simultáneas.' %}
+                {% elif 'prime' in p_title %}
+                    {% set poster_img = 'imagenes/posters/prime_western.jpg' %}
+                    {% set plan_desc = 'Mira en hasta 3 dispositivos.' %}
+                {% elif 'spotify' in p_title %}
+                    {% set poster_img = 'imagenes/posters/spotify_music.jpg' %}
+                    {% set plan_desc = 'Música ilimitada sin anuncios.' %}
+                {% elif 'crunchy' in p_title %}
+                    {% set poster_img = 'imagenes/posters/crunchy_anime.jpg' %}
+                    {% set plan_desc = 'Anime ilimitado y simulcast.' %}
+                {% elif 'youtube' in p_title %}
+                    {% set poster_img = 'imagenes/posters/youtube_squid.jpg' %}
+                    {% set plan_desc = 'Videos y música en segundo plano.' %}
+                {% else %}
+                    {% set poster_img = platform.image or 'imagenes/posters/netflix_wednesday.jpg' %}
+                    {% set plan_desc = 'Acceso personal garantizado con PIN.' %}
                 {% endif %}
 
-                <div>
-                    <div class="card-top-row">
-                        {% if is_featured %}
-                        <span class="badge-top-tag badge-top-tag--featured">
-                            <i class="bi bi-star-fill"></i> TOP VENTAS
-                        </span>
-                        {% else %}
-                        <span class="badge-top-tag">
-                            <i class="bi bi-fire" style="color:var(--color-amber-gold);"></i> DISPONIBLE
-                        </span>
-                        {% endif %}
-                        <span class="card-code">#{{ platform.code or platform.id }}</span>
+                <article class="cinema-card {% if is_featured %}is-best-seller{% endif %}" data-index="{{ loop.index0 }}">
+                    {% if is_featured %}
+                    <div class="card-featured-badge">
+                        <i class="bi bi-star-fill"></i> Más Vendido
+                    </div>
+                    {% endif %}
+
+                    <!-- Imagen ocupando el ancho del card -->
+                    <div class="card-poster-wrapper">
+                        <img src="{{ url_for('static', filename=poster_img) }}" 
+                             alt="{{ platform.title }}" 
+                             class="card-poster-img"
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='/static/imagenes/posters/netflix_wednesday.jpg';">
+                        <div class="card-poster-gradient-overlay"></div>
                     </div>
 
-                    <div class="card-brand-header">
-                        <div class="card-brand-icon">
-                            <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
-                                 alt="{{ platform.title }}" 
-                                 loading="lazy"
-                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                        </div>
-                        <div>
-                            <h3 class="card-title">{{ platform.title }}</h3>
-                            <span class="card-stock-status">
-                                <span class="ping-dot" style="background:#10b981; width:5px; height:5px;"></span> Entrega Inmediata
-                            </span>
-                        </div>
-                    </div>
+                    <!-- Información al frente -->
+                    <div class="card-front-content">
+                        <h3 class="card-plan-title">{{ platform.title }}</h3>
+                        
+                        <p class="card-plan-desc">{{ plan_desc }}</p>
 
-                    <!-- Micro-chips de Especificaciones -->
-                    <div class="card-chips-group">
-                        {% if platform.features %}
-                            {% for key, val in platform.features.items() %}
-                            <span class="chip-spec">
-                                <i class="bi bi-check2-circle" style="color:var(--color-blue-electric);"></i> {{ val }}
-                            </span>
-                            {% endfor %}
-                        {% else %}
-                            <span class="chip-spec"><i class="bi bi-badge-4k" style="color:var(--color-blue-electric);"></i> 4K Ultra HD</span>
-                            <span class="chip-spec"><i class="bi bi-tv" style="color:var(--color-blue-electric);"></i> 1 Pantalla</span>
-                            <span class="chip-spec"><i class="bi bi-pin-angle" style="color:var(--color-blue-electric);"></i> Con PIN</span>
-                        {% endif %}
+                        <div class="card-price-block">
+                            <span class="card-price-currency">{{ platform.currency }}</span>
+                            <span class="card-price-amount">{{ "%.0f"|format(platform.price) }}</span>
+                            <span class="card-price-period">/{{ platform.period }}</span>
+                        </div>
+
+                        <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})"
+                           target="_blank"
+                           class="btn-plan-action {% if is_featured %}btn-plan-action--featured{% endif %}"
+                           rel="noopener noreferrer"
+                           title="Seleccionar {{ platform.title }} por WhatsApp">
+                            Seleccionar
+                        </a>
                     </div>
+                </article>
+                {% else %}
+                <div style="padding: 2rem; text-align: center; width: 100%; color: var(--text-muted);">
+                    <p>No hay plataformas registradas en el catálogo en este momento.</p>
                 </div>
+                {% endfor %}
+                </div><!-- end #carouselTrack -->
+            </div><!-- end #sliderViewport -->
 
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Mensual</span>
-                        <div>
-                            <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
-                            <span class="price-period">/{{ platform.period }}</span>
-                        </div>
-                    </div>
+            <!-- Botón Flecha Siguiente -->
+            <button type="button" class="cinema-nav-arrow cinema-nav-arrow--next" id="sliderNextBtn" aria-label="Perfil siguiente" title="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div><!-- end .cinema-slider-wrapper -->
 
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
-                       target="_blank" 
-                       class="btn-card-contract {% if is_featured %}btn-card-contract--featured{% endif %}"
-                       rel="noopener noreferrer"
-                       title="Contratar {{ platform.title }} por WhatsApp">
-                        <i class="bi bi-whatsapp"></i>
-                        <span>Contratar</span>
-                    </a>
-                </div>
-            </article>
-            {% else %}
-            <div style="padding: 2rem; text-align: center; width: 100%; color: var(--text-muted);">
-                <p>No hay plataformas registradas en el catálogo en este momento.</p>
-            </div>
-            {% endfor %}
-            </div><!-- end #carouselTrack -->
-        </div><!-- end #sliderViewport -->
+        <!-- Dots de Paginación Centrados (Control del Usuario) -->
+        <div class="cinema-dots-container" id="sliderDots" aria-label="Navegación por puntos"></div>
+
     </div><!-- end .site-container -->
 </section>
 
