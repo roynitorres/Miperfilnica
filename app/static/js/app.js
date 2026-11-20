@@ -76,7 +76,7 @@ function initNavDropdown() {
   });
 }
 
-/* 2. CONTROLES DEL SLIDER CINEMA DE 5 CARDS (Avanza 1 a 1 con Dots y Flechas) */
+/* 2. CONTROLES DEL SLIDER DE PERFILES (4 CARDS, AVANCE 1 A 1 CON DOTS Y FLECHAS) */
 function initSliderControls() {
   const viewport = document.getElementById("sliderViewport");
   const track = document.getElementById("carouselTrack");
@@ -87,17 +87,17 @@ function initSliderControls() {
 
   if (!viewport) return;
 
-  const cards = viewport.querySelectorAll(".cinema-card, .ux-product-card");
+  const cards = viewport.querySelectorAll(".profile-card, .cinema-card, .ux-product-card");
   const totalCards = cards.length;
   if (totalCards === 0) return;
 
-  // Calcular el ancho de avance de exactamente 1 tarjeta (width + gap)
+  // Calcular el ancho de avance de exactamente 1 tarjeta (ancho + gap) de izquierda a derecha
   const getScrollStep = () => {
     const firstCard = cards[0];
-    if (!firstCard) return 244;
+    if (!firstCard) return 308;
     const cardRect = firstCard.getBoundingClientRect();
-    const trackEl = track || viewport.querySelector(".cinema-slider-track") || viewport.querySelector(".slider-track");
-    const gap = trackEl ? parseFloat(window.getComputedStyle(trackEl).gap) || 16 : 16;
+    const trackEl = track || viewport.querySelector(".clean-slider-track") || viewport.querySelector(".cinema-slider-track") || viewport.querySelector(".slider-track");
+    const gap = trackEl ? parseFloat(window.getComputedStyle(trackEl).gap) || 24 : 24;
     return cardRect.width + gap;
   };
 
@@ -111,7 +111,7 @@ function initSliderControls() {
 
     for (let i = 0; i < totalSteps; i++) {
       const dot = document.createElement("button");
-      dot.className = "cinema-dot" + (i === 0 ? " active" : "");
+      dot.className = "slider-dot" + (i === 0 ? " active" : "");
       dot.setAttribute("type", "button");
       dot.setAttribute("aria-label", `Ir a la posición ${i + 1}`);
       dot.addEventListener("click", () => {
@@ -153,7 +153,7 @@ function initSliderControls() {
 
     // Sincronizar dot activo
     if (dotsContainer) {
-      const dots = dotsContainer.querySelectorAll(".cinema-dot");
+      const dots = dotsContainer.querySelectorAll(".slider-dot, .cinema-dot");
       if (dots.length > 0) {
         const activeStep = Math.min(dots.length - 1, Math.max(0, Math.round(scrollLeft / scrollStep)));
         dots.forEach((dot, idx) => {
