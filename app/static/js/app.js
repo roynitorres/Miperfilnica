@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initMobileAccordion();
   initNavDropdown();
-  initSliderControls();
   initComboCalculator();
 });
 
@@ -76,122 +75,7 @@ function initNavDropdown() {
   });
 }
 
-/* 2. CONTROLES DEL SLIDER DE PERFILES (4 CARDS, AVANCE 1 A 1 CON DOTS Y FLECHAS) */
-function initSliderControls() {
-  const viewport = document.getElementById("sliderViewport");
-  const track = document.getElementById("carouselTrack");
-  const btnPrev = document.getElementById("sliderPrevBtn");
-  const btnNext = document.getElementById("sliderNextBtn");
-  const dotsContainer = document.getElementById("sliderDots");
-  const counterEl = document.getElementById("sliderCounter");
 
-  if (!viewport) return;
-
-  const cards = viewport.querySelectorAll(".plan-card, .profile-card, .cinema-card, .ux-product-card");
-  const totalCards = cards.length;
-  if (totalCards === 0) return;
-
-  // Calcular el ancho de avance de exactamente 1 tarjeta (ancho + gap) de izquierda a derecha
-  const getScrollStep = () => {
-    const firstCard = cards[0];
-    if (!firstCard) return 308;
-    const cardRect = firstCard.getBoundingClientRect();
-    const trackEl = track || viewport.querySelector(".clean-slider-track") || viewport.querySelector(".cinema-slider-track") || viewport.querySelector(".slider-track");
-    const gap = trackEl ? parseFloat(window.getComputedStyle(trackEl).gap) || 24 : 24;
-    return cardRect.width + gap;
-  };
-
-  // Crear y actualizar dots de paginación dinámicos
-  const renderDots = () => {
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = "";
-    const step = getScrollStep();
-    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-    const totalSteps = Math.max(1, Math.round(maxScroll / step) + 1);
-
-    for (let i = 0; i < totalSteps; i++) {
-      const dot = document.createElement("button");
-      dot.className = "slider-dot" + (i === 0 ? " active" : "");
-      dot.setAttribute("type", "button");
-      dot.setAttribute("aria-label", `Ir a la posición ${i + 1}`);
-      dot.addEventListener("click", () => {
-        viewport.scrollTo({ left: i * step, behavior: "smooth" });
-      });
-      dotsContainer.appendChild(dot);
-    }
-  };
-
-  const updateControls = () => {
-    const scrollStep = getScrollStep();
-    const scrollLeft = viewport.scrollLeft;
-    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-
-    // Calcular índice aproximado del card activo
-    const currentIndex = Math.min(
-      totalCards,
-      Math.max(1, Math.round(scrollLeft / scrollStep) + 1)
-    );
-
-    if (counterEl) {
-      counterEl.textContent = `${currentIndex} / ${totalCards}`;
-    }
-
-    // Actualizar flechas prev / next
-    if (btnPrev) {
-      const isStart = scrollLeft <= 8;
-      btnPrev.disabled = isStart;
-      btnPrev.classList.toggle("is-disabled", isStart);
-      btnPrev.setAttribute("aria-disabled", isStart ? "true" : "false");
-    }
-
-    if (btnNext) {
-      const isEnd = maxScroll === 0 || scrollLeft >= maxScroll - 8;
-      btnNext.disabled = isEnd;
-      btnNext.classList.toggle("is-disabled", isEnd);
-      btnNext.setAttribute("aria-disabled", isEnd ? "true" : "false");
-    }
-
-    // Sincronizar dot activo
-    if (dotsContainer) {
-      const dots = dotsContainer.querySelectorAll(".slider-dot, .cinema-dot");
-      if (dots.length > 0) {
-        const activeStep = Math.min(dots.length - 1, Math.max(0, Math.round(scrollLeft / scrollStep)));
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle("active", idx === activeStep);
-        });
-      }
-    }
-  };
-
-  // Flecha anterior (avanza de 1 en 1 hacia la izquierda)
-  if (btnPrev) {
-    btnPrev.addEventListener("click", () => {
-      viewport.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
-    });
-  }
-
-  // Flecha siguiente (avanza de 1 en 1 hacia la derecha)
-  if (btnNext) {
-    btnNext.addEventListener("click", () => {
-      viewport.scrollBy({ left: getScrollStep(), behavior: "smooth" });
-    });
-  }
-
-  // Escuchar scroll para sincronizar dots y botones
-  let scrollTimer;
-  viewport.addEventListener("scroll", () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateControls, 30);
-  }, { passive: true });
-
-  // Inicializar
-  renderDots();
-  updateControls();
-  window.addEventListener("resize", () => {
-    renderDots();
-    updateControls();
-  }, { passive: true });
-}
 
 /* 3. CALCULADORA INTELIGENTE DE COMBOS CON DATOS DINÁMICOS */
 function initComboCalculator() {
