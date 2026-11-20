@@ -78,29 +78,101 @@ function initNavDropdown() {
 
 
 
-/* 2.1 SLIDER HORIZONTAL DE PERFILES CON CONTROLES CHEVRON (AVANCE DE 4 EN 4 CARDS) */
+/* 2.1 SLIDER HORIZONTAL DE PERFILES CON CONTROLES CHEVRON Y DOTS (AVANCE EXACTO DE 4 EN 4 CARDS) */
 function initPlatformsSlider() {
   const viewport = document.getElementById("platformsViewport");
+  const track = document.getElementById("platformsTrack");
   const btnPrev = document.getElementById("platformsPrevBtn");
   const btnNext = document.getElementById("platformsNextBtn");
+  const dotsContainer = document.getElementById("platformsDotsWrapper");
 
-  if (!viewport) return;
+  if (!viewport || !track) return;
 
-  const getScrollStep = () => {
-    const firstCard = viewport.querySelector(".platform-card");
-    if (!firstCard) return viewport.clientWidth || 1200;
-    const track = viewport.querySelector(".platforms-track");
-    const gap = track ? parseFloat(window.getComputedStyle(track).gap) || 24 : 24;
-    const singleCardStep = firstCard.offsetWidth + gap;
-    
-    // Determinar cuántas cards caben visibles por bloque (4 en desktop, 2 en tablet, 1 en móvil)
-    const cardsPerView = Math.max(1, Math.round(viewport.clientWidth / singleCardStep));
-    return singleCardStep * cardsPerView;
+  const getCards = () => Array.from(track.querySelectorAll(".platform-card"));
+
+  const getMetrics = () => {
+    const availableWidth = viewport.clientWidth;
+    let cardsPerView = 4;
+    let gap = 20;
+
+    if (availableWidth < 600) {
+      cardsPerView = 1;
+      gap = 12;
+    } else if (availableWidth < 992) {
+      cardsPerView = 2;
+      gap = 16;
+    } else {
+      cardsPerView = 4;
+      gap = 20;
+    }
+
+    const totalGaps = (cardsPerView - 1) * gap;
+    const cardWidth = Math.max(180, Math.floor((availableWidth - totalGaps) / cardsPerView));
+
+    return { availableWidth, cardsPerView, gap, cardWidth };
   };
 
-  const updateButtons = () => {
+  const applyCardSizing = () => {
+    const cards = getCards();
+    if (cards.length === 0) return;
+
+    const { cardWidth, gap, cardsPerView } = getMetrics();
+
+    track.style.gap = `${gap}px`;
+    track.style.setProperty("--platform-gap", `${gap}px`);
+    track.style.setProperty("--platform-card-width", `${cardWidth}px`);
+
+    cards.forEach((card) => {
+      card.style.width = `${cardWidth}px`;
+      card.style.flex = `0 0 ${cardWidth}px`;
+      card.style.minWidth = `${cardWidth}px`;
+      card.style.maxWidth = `${cardWidth}px`;
+    });
+
+    renderDots();
+    updateControls();
+  };
+
+  const renderDots = () => {
+    if (!dotsContainer) return;
+    const cards = getCards();
+    if (cards.length === 0) return;
+
+    const { cardsPerView, cardWidth, gap } = getMetrics();
+    const totalPages = Math.ceil(cards.length / cardsPerView);
+
+    if (totalPages <= 1) {
+      dotsContainer.style.display = "none";
+      return;
+    }
+    dotsContainer.style.display = "flex";
+    dotsContainer.innerHTML = "";
+
+    const scrollStep = (cardWidth + gap) * cardsPerView;
+    const currentScroll = viewport.scrollLeft;
+    const currentPage = Math.min(
+      totalPages - 1,
+      Math.max(0, Math.round(currentScroll / scrollStep))
+    );
+
+    for (let i = 0; i < totalPages; i++) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = `platform-dot ${i === currentPage ? "is-active" : ""}`;
+      dot.setAttribute("aria-label", `Página ${i + 1} de ${totalPages}`);
+      dot.addEventListener("click", () => {
+        const targetLeft = i * scrollStep;
+        viewport.scrollTo({ left: targetLeft, behavior: "smooth" });
+      });
+      dotsContainer.appendChild(dot);
+    }
+  };
+
+  const updateControls = () => {
+    const { cardsPerView, cardWidth, gap } = getMetrics();
     const scrollLeft = viewport.scrollLeft;
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const scrollStep = (cardWidth + gap) * cardsPerView;
 
     if (btnPrev) {
       const isStart = scrollLeft <= 8;
@@ -115,28 +187,57 @@ function initPlatformsSlider() {
       btnNext.classList.toggle("is-disabled", isEnd);
       btnNext.setAttribute("aria-disabled", isEnd ? "true" : "false");
     }
+
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll(".platform-dot");
+      const activeIdx = Math.min(
+        dots.length - 1,
+        Math.max(0, Math.round(scrollLeft / scrollStep))
+      );
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle("is-active", idx === activeIdx);
+      });
+    }
   };
 
   if (btnPrev) {
     btnPrev.addEventListener("click", () => {
-      viewport.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+      const { cardWidth, gap, cardsPerView } = getMetrics();
+      const scrollStep = (cardWidth + gap) * cardsPerView;
+      viewport.scrollBy({ left: -scrollStep, behavior: "smooth" });
     });
   }
 
   if (btnNext) {
     btnNext.addEventListener("click", () => {
-      viewport.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+      const { cardWidth, gap, cardsPerView } = getMetrics();
+      const scrollStep = (cardWidth + gap) * cardsPerView;
+      viewport.scrollBy({ left: scrollStep, behavior: "smooth" });
     });
   }
 
   let scrollTimer;
-  viewport.addEventListener("scroll", () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateButtons, 30);
-  }, { passive: true });
+  viewport.addEventListener(
+    "scroll",
+    () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(updateControls, 25);
+    },
+    { passive: true }
+  );
 
-  updateButtons();
-  window.addEventListener("resize", updateButtons, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      applyCardSizing();
+    },
+    { passive: true }
+  );
+
+  // Inicialización inmediata y con retraso para asegurar que los estilos de layout ya computaron
+  applyCardSizing();
+  setTimeout(applyCardSizing, 100);
+  setTimeout(applyCardSizing, 300);
 }
 function initComboCalculator() {
   const pills = document.querySelectorAll(".calc-pill-item");

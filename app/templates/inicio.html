@@ -87,16 +87,16 @@
 <!-- ==========================================================================
      2. SECCIÓN: CUENTAS INDIVIDUALES (DINÁMICAS DESDE BASE DE DATOS / ADMIN)
      ========================================================================== -->
-<section class="individual-section" id="individuales" style="padding: 4.25rem 0; background: #ffffff; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+<section class="individual-section" id="individuales" style="padding: 4.5rem 0; background: #ffffff; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
     <div class="site-container">
         
-        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
-            <span class="section-tag" style="justify-content: center;">
-                <i class="bi bi-person-badge"></i> Catálogo Individual
-            </span>
-            <h2 class="section-title">Perfiles Individuales</h2>
-            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
-                Elige tu plataforma favorita con acceso personal, PIN privado y garantía completa en córdobas (C$).
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 2.5rem;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(229, 9, 20, 0.1); color: #e50914; font-size: 1.5rem; margin-bottom: 0.75rem;">
+                <i class="bi bi-play-btn-fill"></i>
+            </div>
+            <h2 class="section-title" style="margin-bottom: 0.45rem;">Nuestros Planes</h2>
+            <p class="section-subtitle" style="margin: 0 auto;">
+                Elige el plan ideal para ti y disfruta de todo el contenido.
             </p>
         </div>
 
@@ -119,14 +119,15 @@
                             <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
                                  alt="{{ platform.title }}" 
                                  class="platform-card-bg-img"
+                                 loading="lazy"
                                  onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                             <!-- Degradado de la mitad hacia abajo; parte superior clara -->
                             <div class="platform-card-overlay"></div>
                         </div>
 
                         {% if is_bestseller %}
-                        <div class="combo-ribbon-savings" style="background: linear-gradient(135deg, #dc2626, #b91c1c); z-index: 3;">
-                            <i class="bi bi-star-fill"></i> MÁS VENDIDO
+                        <div class="platform-card-badge-top">
+                            <i class="bi bi-star-fill"></i> Más Vendido
                         </div>
                         {% endif %}
 
@@ -134,6 +135,27 @@
                         <div class="platform-card-info-center">
                             <!-- Título en el centro, color blanco -->
                             <h3 class="platform-card-title-center">{{ platform.title }}</h3>
+
+                            <!-- Subtítulo / Dispositivos / Beneficio clave -->
+                            <p class="platform-card-desc-center">
+                                {% if 'netflix' in platform.title|lower %}
+                                    {% if 'premium' in platform.title|lower %}Disfruta en 4 dispositivos + Ultra HD.{% elif 'privado' in platform.title|lower %}Cuenta privada 100% personal.{% else %}Disfruta en tu pantalla favorita.{% endif %}
+                                {% elif 'disney' in platform.title|lower %}
+                                    {% if 'premium' in platform.title|lower %}Acceso 4K UHD + Star & ESPN.{% else %}Contenido estándar para toda la familia.{% endif %}
+                                {% elif 'hbo' in platform.title|lower or 'max' in platform.title|lower %}
+                                    Películas de estreno y series Max.
+                                {% elif 'prime' in platform.title|lower %}
+                                    Series exclusivas y contenido Amazon.
+                                {% elif 'spotify' in platform.title|lower %}
+                                    Música sin anuncios y modo offline.
+                                {% elif 'crunchyroll' in platform.title|lower %}
+                                    El mejor anime en simultáneo con Japón.
+                                {% elif 'youtube' in platform.title|lower %}
+                                    Videos sin anuncios y YouTube Music.
+                                {% else %}
+                                    Garantía total y soporte en Nicaragua.
+                                {% endif %}
+                            </p>
 
                             <!-- Precio por mes centrado -->
                             <div class="platform-card-price-center">
@@ -166,6 +188,9 @@
                 <i class="bi bi-chevron-right"></i>
             </button>
         </div>
+
+        <!-- Indicador de Dots de Paginación Centrado -->
+        <div class="platforms-dots-wrapper" id="platformsDotsWrapper"></div>
 
     </div>
 </section>
