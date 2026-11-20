@@ -346,6 +346,15 @@
   letter-spacing: -0.5px;
 }
 
+/* Título de Perfiles Individuales con el tono degradado del Navbar */
+.individual-section .section-title {
+  background: var(--navbar-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-blue-royal);
+  display: inline-block;
+}
+
 .section-subtitle {
   font-size: 0.95rem;
   color: var(--text-muted);
