@@ -370,104 +370,172 @@
 }
 
 .platform-card {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
+  position: relative;
+  min-height: 440px;
   border-radius: var(--radius-xl);
-  padding: 1.65rem 1.45rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 35, 102, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 35, 102, 0.08);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-  transition: var(--transition-spring);
+  background: #0b132b;
 }
 
 .platform-card:hover {
-  transform: translateY(-7px);
-  border-color: rgba(0, 102, 255, 0.4);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(0, 35, 102, 0.22);
+  border-color: rgba(0, 102, 255, 0.5);
 }
 
 .platform-card--featured {
   border: 2px solid var(--color-blue-royal);
-  box-shadow: 0 10px 28px rgba(0, 54, 159, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 54, 159, 0.2);
 }
 
 .platform-card--featured:hover {
   border-color: var(--color-blue-royal);
-  box-shadow: 0 16px 36px rgba(0, 54, 159, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 54, 159, 0.3);
 }
 
-.platform-image-box {
+/* Imagen de Fondo Ocupando TODO el Card (100% Ancho y 100% Alto) */
+.platform-card-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 125px;
-  border-radius: var(--radius-lg);
-  background: var(--bg-tertiary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem;
-  margin-bottom: 1.25rem;
+  height: 100%;
+  z-index: 1;
   overflow: hidden;
-  border: 1px solid var(--border-light);
 }
 
-.platform-image-box img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: transform 0.35s ease;
+.platform-card-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.platform-card:hover .platform-image-box img {
+.platform-card:hover .platform-card-bg-img {
   transform: scale(1.08);
 }
 
-.platform-badge {
+/* Capa de Gradiente para Máxima Legibilidad */
+.platform-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 19, 43, 0.3) 0%,
+    rgba(11, 19, 43, 0.55) 45%,
+    rgba(11, 19, 43, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+/* Contenido Superior al Frente */
+.platform-card-content-top {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 1.4rem 0.5rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.platform-card-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #34d399;
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--color-blue-royal);
-  background: rgba(0, 54, 159, 0.08);
-  padding: 0.25rem 0.65rem;
+  padding: 0.32rem 0.8rem;
   border-radius: var(--radius-pill);
   text-transform: uppercase;
-  letter-spacing: 0.4px;
-  margin-bottom: 0.45rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-.platform-title {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--color-navy-dark);
-  margin-bottom: 0.5rem;
-  line-height: 1.25;
-}
-
-.platform-features {
+/* Contenido Inferior al Frente */
+.platform-card-content-bottom {
+  position: relative;
+  z-index: 2;
+  padding: 1rem 1.4rem 1.5rem 1.4rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin: 0 0 1.35rem 0;
+}
+
+.platform-card-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 0.45rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+}
+
+.platform-card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 1.25rem 0;
   padding: 0;
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--text-body);
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
-.platform-features li {
+.platform-card-features li {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   list-style: none;
 }
 
-.platform-features li i {
-  color: var(--color-blue-royal);
+.platform-card-features li i {
+  color: var(--color-cyan-glacier);
   font-size: 0.85rem;
+}
+
+.platform-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.platform-card-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform-card-price .price-subtext {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.platform-card-price .price-val {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.platform-card-price .price-period {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
 }
 
 /* ==========================================================================

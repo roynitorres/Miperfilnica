@@ -104,27 +104,34 @@
             {% for platform in platforms %}
             {% set is_bestseller = 'netflix' in platform.title|lower and 'premium' in platform.title|lower %}
             <article class="platform-card {% if is_bestseller %}platform-card--featured{% endif %}">
+                
+                <!-- Imagen que ocupa TODO el ancho y alto del card -->
+                <div class="platform-card-bg">
+                    <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
+                         alt="{{ platform.title }}" 
+                         class="platform-card-bg-img"
+                         onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                    <div class="platform-card-overlay"></div>
+                </div>
+
                 {% if is_bestseller %}
-                <div class="combo-ribbon-savings" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+                <div class="combo-ribbon-savings" style="background: linear-gradient(135deg, #dc2626, #b91c1c); z-index: 3;">
                     <i class="bi bi-star-fill"></i> MÁS VENDIDO
                 </div>
                 {% endif %}
 
-                <div>
-                    <!-- Imagen de la plataforma cargada dinámicamente desde el admin -->
-                    <div class="platform-image-box">
-                        <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
-                             alt="{{ platform.title }}" 
-                             onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                    </div>
-
-                    <span class="platform-badge">
+                <!-- Contenido Superior al Frente -->
+                <div class="platform-card-content-top">
+                    <span class="platform-card-pill">
                         <i class="bi bi-shield-check"></i> Entrega Inmediata
                     </span>
+                </div>
 
-                    <h3 class="platform-title">{{ platform.title }}</h3>
+                <!-- Contenido Inferior al Frente -->
+                <div class="platform-card-content-bottom">
+                    <h3 class="platform-card-title">{{ platform.title }}</h3>
 
-                    <ul class="platform-features">
+                    <ul class="platform-card-features">
                         <li>
                             <i class="bi bi-check-circle-fill"></i> Perfil exclusivo con PIN privado
                         </li>
@@ -135,26 +142,27 @@
                             <i class="bi bi-check-circle-fill"></i> Garantía y soporte 30 días
                         </li>
                     </ul>
-                </div>
 
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Mensual</span>
-                        <div>
-                            <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
-                            <span class="price-period">/{{ platform.period }}</span>
+                    <div class="platform-card-footer">
+                        <div class="platform-card-price">
+                            <span class="price-subtext">Precio Mensual</span>
+                            <div>
+                                <span class="price-val">{{ platform.currency }} {{ "%.2f"|format(platform.price) }}</span>
+                                <span class="price-period">/{{ platform.period }}</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
-                       target="_blank" 
-                       class="btn-card-contract {% if is_bestseller %}btn-card-contract--featured{% endif %}"
-                       rel="noopener noreferrer"
-                       title="Adquirir {{ platform.title }}">
-                        <i class="bi bi-whatsapp"></i>
-                        <span>Pedir Perfil</span>
-                    </a>
+                        <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
+                           target="_blank" 
+                           class="btn-card-contract {% if is_bestseller %}btn-card-contract--featured{% endif %}"
+                           rel="noopener noreferrer"
+                           title="Adquirir {{ platform.title }}">
+                            <i class="bi bi-whatsapp"></i>
+                            <span>Pedir Perfil</span>
+                        </a>
+                    </div>
                 </div>
+
             </article>
             {% else %}
             <div style="grid-column: 1 / -1; text-align: center; padding: 2.5rem; color: var(--text-muted);">
