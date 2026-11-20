@@ -342,37 +342,43 @@
 
 
 /* ==========================================================================
-   4. SECCIÓN: CUENTAS Y PERFILES INDIVIDUALES (GRID DINÁMICA DESDE ADMIN)
+   4. SECCIÓN: CUENTAS Y PERFILES INDIVIDUALES (SLIDER HORIZONTAL DINÁMICO)
    ========================================================================== */
-.platforms-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 1.75rem;
+.platforms-slider-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
 }
 
-@media (min-width: 600px) {
-  .platforms-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.platforms-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 1.5rem 0.35rem;
 }
 
-@media (min-width: 992px) {
-  .platforms-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.platforms-viewport::-webkit-scrollbar {
+  display: none;
 }
 
-@media (min-width: 1200px) {
-  .platforms-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.platforms-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  align-items: stretch;
 }
 
 .platform-card {
-  position: relative;
-  min-height: 410px;
+  width: 282px;
+  flex: 0 0 282px;
+  min-width: 282px;
+  max-width: 282px;
   height: 420px;
+  position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid rgba(0, 35, 102, 0.12);
@@ -382,6 +388,48 @@
   flex-direction: column;
   justify-content: flex-end;
   background: #0b132b;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* 4 cards visibles simultáneas en pantallas de escritorio (>= 1200px) */
+@media (min-width: 1200px) {
+  .platform-card {
+    width: calc((100% - 72px) / 4);
+    flex: 0 0 calc((100% - 72px) / 4);
+    min-width: calc((100% - 72px) / 4);
+    max-width: calc((100% - 72px) / 4);
+  }
+}
+
+/* 3 cards en laptops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .platform-card {
+    width: calc((100% - 48px) / 3);
+    flex: 0 0 calc((100% - 48px) / 3);
+    min-width: calc((100% - 48px) / 3);
+    max-width: calc((100% - 48px) / 3);
+  }
+}
+
+/* 2 cards en tablets (640px - 991px) */
+@media (min-width: 640px) and (max-width: 991px) {
+  .platform-card {
+    width: calc((100% - 24px) / 2);
+    flex: 0 0 calc((100% - 24px) / 2);
+    min-width: calc((100% - 24px) / 2);
+    max-width: calc((100% - 24px) / 2);
+  }
+}
+
+/* 1.15 cards en móviles (< 640px) para permitir swipe natural */
+@media (max-width: 639px) {
+  .platform-card {
+    width: calc(85% - 12px);
+    flex: 0 0 calc(85% - 12px);
+    min-width: calc(85% - 12px);
+    max-width: calc(85% - 12px);
+  }
 }
 
 .platform-card:hover {
@@ -527,6 +575,64 @@
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 6px 22px rgba(229, 9, 20, 0.65);
+}
+
+/* Botones Chevrons a los Lados */
+.platforms-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  color: var(--color-navy-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 4px 16px rgba(0, 35, 102, 0.15);
+  transition: all 0.25s ease;
+}
+
+.platforms-nav-btn:hover:not(:disabled) {
+  background: var(--color-blue-royal);
+  border-color: var(--color-blue-royal);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 54, 159, 0.35);
+}
+
+.platforms-nav-btn:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.platforms-nav-btn:disabled,
+.platforms-nav-btn.is-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+  cursor: default;
+}
+
+.platforms-nav-btn--prev {
+  left: -24px;
+}
+
+.platforms-nav-btn--next {
+  right: -24px;
+}
+
+@media (max-width: 1280px) {
+  .platforms-nav-btn--prev { left: -12px; }
+  .platforms-nav-btn--next { right: -12px; }
+}
+
+@media (max-width: 768px) {
+  .platforms-nav-btn { display: none; }
+  .platforms-viewport { padding: 1.25rem 0.5rem; }
 }
 
 /* ==========================================================================

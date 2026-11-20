@@ -100,55 +100,71 @@
             </p>
         </div>
 
-        <div class="platforms-grid">
-            {% for platform in platforms %}
-            {% set is_bestseller = 'netflix' in platform.title|lower and 'premium' in platform.title|lower %}
-            <article class="platform-card {% if is_bestseller %}platform-card--featured{% endif %}">
-                
-                <!-- Imagen ocupando TODO el ancho y alto del card -->
-                <div class="platform-card-bg">
-                    <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
-                         alt="{{ platform.title }}" 
-                         class="platform-card-bg-img"
-                         onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                    <!-- Degradado de la mitad hacia abajo; parte superior clara -->
-                    <div class="platform-card-overlay"></div>
-                </div>
+        <!-- Slider Horizontal de Plataformas con Chevrons Laterales -->
+        <div class="platforms-slider-wrapper">
+            <!-- Chevron Izquierdo -->
+            <button type="button" class="platforms-nav-btn platforms-nav-btn--prev" id="platformsPrevBtn" aria-label="Mover hacia la izquierda" title="Anterior">
+                <i class="bi bi-chevron-left"></i>
+            </button>
 
-                {% if is_bestseller %}
-                <div class="combo-ribbon-savings" style="background: linear-gradient(135deg, #dc2626, #b91c1c); z-index: 3;">
-                    <i class="bi bi-star-fill"></i> MÁS VENDIDO
-                </div>
-                {% endif %}
+            <!-- Viewport Horizontal Deslizante -->
+            <div class="platforms-viewport" id="platformsViewport">
+                <div class="platforms-track" id="platformsTrack">
+                    {% for platform in platforms %}
+                    {% set is_bestseller = 'netflix' in platform.title|lower and 'premium' in platform.title|lower %}
+                    <article class="platform-card {% if is_bestseller %}platform-card--featured{% endif %}">
+                        
+                        <!-- Imagen ocupando TODO el ancho y alto del card -->
+                        <div class="platform-card-bg">
+                            <img src="{{ url_for('static', filename=platform.image or 'imagenes/Individuales/1.svg') }}" 
+                                 alt="{{ platform.title }}" 
+                                 class="platform-card-bg-img"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                            <!-- Degradado de la mitad hacia abajo; parte superior clara -->
+                            <div class="platform-card-overlay"></div>
+                        </div>
 
-                <!-- Contenido inferior centrado sobre el degradado -->
-                <div class="platform-card-info-center">
-                    <!-- Título en el centro, color blanco -->
-                    <h3 class="platform-card-title-center">{{ platform.title }}</h3>
+                        {% if is_bestseller %}
+                        <div class="combo-ribbon-savings" style="background: linear-gradient(135deg, #dc2626, #b91c1c); z-index: 3;">
+                            <i class="bi bi-star-fill"></i> MÁS VENDIDO
+                        </div>
+                        {% endif %}
 
-                    <!-- Precio por mes centrado -->
-                    <div class="platform-card-price-center">
-                        <span class="price-val-main">{{ platform.currency }} {{ "%.0f"|format(platform.price) }}</span>
-                        <span class="price-unit-main">/{{ platform.period }}</span>
+                        <!-- Contenido inferior centrado sobre el degradado -->
+                        <div class="platform-card-info-center">
+                            <!-- Título en el centro, color blanco -->
+                            <h3 class="platform-card-title-center">{{ platform.title }}</h3>
+
+                            <!-- Precio por mes centrado -->
+                            <div class="platform-card-price-center">
+                                <span class="price-val-main">{{ platform.currency }} {{ "%.0f"|format(platform.price) }}</span>
+                                <span class="price-unit-main">/{{ platform.period }}</span>
+                            </div>
+
+                            <!-- Botón tipo píldora centrado: Contratar -->
+                            <a href="https://wa.me/50576145799?text=Hola,%20deseo%20contratar%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
+                               target="_blank" 
+                               class="btn-pill-contract {% if is_bestseller %}btn-pill-contract--featured{% endif %}"
+                               rel="noopener noreferrer"
+                               title="Contratar {{ platform.title }}">
+                                <span>Contratar</span>
+                            </a>
+                        </div>
+
+                    </article>
+                    {% else %}
+                    <div style="padding: 2.5rem; text-align: center; color: var(--text-muted); width: 100%;">
+                        <i class="bi bi-inbox" style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;"></i>
+                        <p>No hay plataformas activas en este momento. Agrega una desde el Panel de Administración.</p>
                     </div>
-
-                    <!-- Botón tipo píldora centrado: Contratar -->
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20contratar%20el%20perfil%20de%20{{ platform.title }}%20({{ platform.currency }}%20{{ '%.2f'|format(platform.price) }})" 
-                       target="_blank" 
-                       class="btn-pill-contract {% if is_bestseller %}btn-pill-contract--featured{% endif %}"
-                       rel="noopener noreferrer"
-                       title="Contratar {{ platform.title }}">
-                        <span>Contratar</span>
-                    </a>
+                    {% endfor %}
                 </div>
-
-            </article>
-            {% else %}
-            <div style="grid-column: 1 / -1; text-align: center; padding: 2.5rem; color: var(--text-muted);">
-                <i class="bi bi-inbox" style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;"></i>
-                <p>No hay plataformas activas en este momento. Agrega una desde el Panel de Administración.</p>
             </div>
-            {% endfor %}
+
+            <!-- Chevron Derecho -->
+            <button type="button" class="platforms-nav-btn platforms-nav-btn--next" id="platformsNextBtn" aria-label="Mover hacia la derecha" title="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
         </div>
 
     </div>

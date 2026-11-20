@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initMobileAccordion();
   initNavDropdown();
+  initPlatformsSlider();
   initComboCalculator();
 });
 
@@ -77,7 +78,61 @@ function initNavDropdown() {
 
 
 
-/* 3. CALCULADORA INTELIGENTE DE COMBOS CON DATOS DINÁMICOS */
+/* 2.1 SLIDER HORIZONTAL DE PERFILES CON CONTROLES CHEVRON */
+function initPlatformsSlider() {
+  const viewport = document.getElementById("platformsViewport");
+  const btnPrev = document.getElementById("platformsPrevBtn");
+  const btnNext = document.getElementById("platformsNextBtn");
+
+  if (!viewport) return;
+
+  const getScrollStep = () => {
+    const firstCard = viewport.querySelector(".platform-card");
+    if (!firstCard) return 306;
+    const gap = 24;
+    return firstCard.offsetWidth + gap;
+  };
+
+  const updateButtons = () => {
+    const scrollLeft = viewport.scrollLeft;
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+
+    if (btnPrev) {
+      const isStart = scrollLeft <= 6;
+      btnPrev.disabled = isStart;
+      btnPrev.classList.toggle("is-disabled", isStart);
+      btnPrev.setAttribute("aria-disabled", isStart ? "true" : "false");
+    }
+
+    if (btnNext) {
+      const isEnd = maxScroll === 0 || scrollLeft >= maxScroll - 6;
+      btnNext.disabled = isEnd;
+      btnNext.classList.toggle("is-disabled", isEnd);
+      btnNext.setAttribute("aria-disabled", isEnd ? "true" : "false");
+    }
+  };
+
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      viewport.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      viewport.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+    });
+  }
+
+  let scrollTimer;
+  viewport.addEventListener("scroll", () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateButtons, 30);
+  }, { passive: true });
+
+  updateButtons();
+  window.addEventListener("resize", updateButtons, { passive: true });
+}
 function initComboCalculator() {
   const pills = document.querySelectorAll(".calc-pill-item");
   const countBadge = document.getElementById("selectedCountBadge");
