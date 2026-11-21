@@ -78,17 +78,24 @@ function initNavDropdown() {
 
 
 
-/* 2.1 SLIDER HORIZONTAL DE PERFILES CON CONTROLES CHEVRON Y DOTS (AVANCE EXACTO DE 4 EN 4 CARDS) */
-function initPlatformsSlider() {
-  const viewport = document.getElementById("platformsViewport");
-  const track = document.getElementById("platformsTrack");
-  const btnPrev = document.getElementById("platformsPrevBtn");
-  const btnNext = document.getElementById("platformsNextBtn");
-  const dotsContainer = document.getElementById("platformsDotsWrapper");
+/* 2.1 MOTOR DE SLIDERS HORIZONTALES (INDIVIDUALES Y COMBOS DÚO) */
+function setupCardSlider({
+  viewportId,
+  trackId,
+  prevBtnId,
+  nextBtnId,
+  dotsId,
+  cardSelector = ".platform-card",
+}) {
+  const viewport = document.getElementById(viewportId);
+  const track = document.getElementById(trackId);
+  const btnPrev = document.getElementById(prevBtnId);
+  const btnNext = document.getElementById(nextBtnId);
+  const dotsContainer = document.getElementById(dotsId);
 
   if (!viewport || !track) return;
 
-  const getCards = () => Array.from(track.querySelectorAll(".platform-card"));
+  const getCards = () => Array.from(track.querySelectorAll(cardSelector));
 
   const getMetrics = () => {
     const availableWidth = viewport.clientWidth;
@@ -234,10 +241,31 @@ function initPlatformsSlider() {
     { passive: true }
   );
 
-  // Inicialización inmediata y con retraso para asegurar que los estilos de layout ya computaron
   applyCardSizing();
   setTimeout(applyCardSizing, 100);
   setTimeout(applyCardSizing, 300);
+}
+
+function initPlatformsSlider() {
+  // 1. Slider de Perfiles Individuales
+  setupCardSlider({
+    viewportId: "platformsViewport",
+    trackId: "platformsTrack",
+    prevBtnId: "platformsPrevBtn",
+    nextBtnId: "platformsNextBtn",
+    dotsId: "platformsDotsWrapper",
+    cardSelector: ".platform-card",
+  });
+
+  // 2. Slider de Combos Dúo
+  setupCardSlider({
+    viewportId: "combosDuoViewport",
+    trackId: "combosDuoTrack",
+    prevBtnId: "combosDuoPrevBtn",
+    nextBtnId: "combosDuoNextBtn",
+    dotsId: "combosDuoDotsWrapper",
+    cardSelector: ".combo-duo-card",
+  });
 }
 function initComboCalculator() {
   const pills = document.querySelectorAll(".calc-pill-item");
