@@ -610,11 +610,11 @@
 }
 
 .platforms-nav-btn:hover:not(:disabled) {
-  background: #e50914;
-  border-color: #e50914;
+  background: linear-gradient(135deg, var(--color-navy-dark, #002366), var(--color-blue-royal, #00369f));
+  border-color: var(--color-blue-electric, #0066ff);
   color: #ffffff;
   transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 54, 159, 0.45);
 }
 
 .platforms-nav-btn:active:not(:disabled) {
@@ -668,14 +668,15 @@
 }
 
 .platform-dot:hover {
-  background: #94a3b8;
+  background: var(--color-blue-royal, #00369f);
+  opacity: 0.75;
   transform: scale(1.2);
 }
 
 .platform-dot.is-active {
-  background: #e50914;
+  background: linear-gradient(135deg, var(--color-navy-deep, #001845), var(--color-blue-royal, #00369f));
   transform: scale(1.35);
-  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+  box-shadow: 0 0 12px rgba(0, 54, 159, 0.55);
 }
 
 /* ==========================================================================
