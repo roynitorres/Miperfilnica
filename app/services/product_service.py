@@ -50,7 +50,9 @@ def update_product_price_and_image(product_id, new_price=None, new_image_url=Non
         product.title = title
 
     if features is not None:
-        product.features = features
+        current_features = dict(product.features) if product.features else {}
+        current_features.update(features)
+        product.features = current_features
 
     db.session.commit()
     return product

@@ -132,14 +132,26 @@
                             data-category="{{ p.category }}" 
                             data-code="{{ p.code or p.id }}">
                             
-                            <!-- Miniatura -->
+                            <!-- Miniatura (Doble para Combos Dúo con 2 imágenes) -->
                             <td>
+                                {% if p.category == 'combosDuo' and p.image_2 %}
+                                <div style="display:inline-flex; align-items:center; gap:4px;" title="{{ p.title }} (2 Plataformas)">
+                                    <div class="admin-prod-thumb" style="width:34px; height:34px;">
+                                        <img src="{{ url_for('static', filename=p.image_1) }}" alt="Plat 1" loading="lazy" onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                                    </div>
+                                    <span style="font-weight:900; color:var(--color-blue-royal); font-size:0.75rem;">+</span>
+                                    <div class="admin-prod-thumb" style="width:34px; height:34px;">
+                                        <img src="{{ url_for('static', filename=p.image_2) }}" alt="Plat 2" loading="lazy" onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                                    </div>
+                                </div>
+                                {% else %}
                                 <div class="admin-prod-thumb" title="{{ p.title }}">
                                     <img src="{{ url_for('static', filename=p.image_url or 'imagenes/Individuales/1.svg') }}" 
                                          alt="{{ p.title }}" 
                                          loading="lazy"
                                          onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                                 </div>
+                                {% endif %}
                             </td>
 
                             <!-- Nombre y Código -->

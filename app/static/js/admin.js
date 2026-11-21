@@ -75,32 +75,55 @@ document.addEventListener("DOMContentLoaded", () => {
   // Aplicar filtro inicial según pestaña activa
   applyFilters();
 
-  // 2. PREVISUALIZACIÓN DE IMÁGENES EN TIEMPO REAL (FORMULARIO)
-  const fileInput = document.getElementById("imageFileInput");
-  const previewImg = document.getElementById("imageLivePreview");
-  const previewContainer = document.getElementById("imagePreviewContainer");
+  // 2. PREVISUALIZACIÓN DE IMÁGENES EN TIEMPO REAL (FORMULARIO: IMAGEN 1 E IMAGEN 2)
+  const setupImagePreview = (inputId, previewImgId, containerId) => {
+    const fileInput = document.getElementById(inputId);
+    const previewImg = document.getElementById(previewImgId);
+    const previewContainer = document.getElementById(containerId);
 
-  if (fileInput && previewImg) {
-    fileInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        // Validar tipo de imagen
-        if (!file.type.startsWith("image/")) {
-          alert("Por favor selecciona un archivo de imagen válido (.png, .jpg, .svg, .webp)");
-          fileInput.value = "";
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          previewImg.src = event.target.result;
-          if (previewContainer) {
-            previewContainer.style.display = "flex";
+    if (fileInput && previewImg) {
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          if (!file.type.startsWith("image/")) {
+            alert("Por favor selecciona un archivo de imagen válido (.png, .jpg, .svg, .webp)");
+            fileInput.value = "";
+            return;
           }
-        };
-        reader.readAsDataURL(file);
+
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            previewImg.src = event.target.result;
+            if (previewContainer) {
+              previewContainer.style.display = "flex";
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  };
+
+  setupImagePreview("imageFileInput", "imageLivePreview", "imagePreviewContainer");
+  setupImagePreview("imageFileInput2", "imageLivePreview2", "imagePreviewContainer2");
+
+  // 2.1 CONMUTADOR DINÁMICO DE CAMPOS SEGÚN CATEGORÍA (COMBOS DÚO = 2 IMÁGENES)
+  const categorySelect = document.getElementById("categorySelect");
+  const image2FieldGroup = document.getElementById("image2FieldGroup");
+  const image1Label = document.getElementById("image1Label");
+
+  if (categorySelect && image2FieldGroup) {
+    const handleCategoryChange = () => {
+      const isDuo = categorySelect.value === "combosDuo";
+      image2FieldGroup.style.display = isDuo ? "block" : "none";
+      if (image1Label) {
+        image1Label.innerHTML = isDuo
+          ? '<i class="bi bi-image"></i> Imagen 1 (Primera Plataforma del Combo Dúo) *'
+          : 'Imagen / Portada Oficial *';
       }
-    });
+    };
+
+    categorySelect.addEventListener("change", handleCategoryChange);
   }
 
   // 3. CIERRE DE ALERTAS

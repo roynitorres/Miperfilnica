@@ -44,6 +44,8 @@ class Product(db.Model):
             "currency": self.currency,
             "period": self.period,
             "image": self.image_url,
+            "image_1": self.image_1,
+            "image_2": self.image_2,
             "features": self.features,
             "is_active": self.is_active
         }
@@ -51,3 +53,11 @@ class Product(db.Model):
     @property
     def image(self):
         return self.image_url
+
+    @property
+    def image_1(self):
+        return self.features.get('image_1') or self.image_url
+
+    @property
+    def image_2(self):
+        return self.features.get('image_2')

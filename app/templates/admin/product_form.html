@@ -55,19 +55,20 @@
                 <!-- Categoría -->
                 <div class="form-field-group">
                     <label class="form-field-label">Categoría *</label>
-                    <select name="category" class="form-control-select" required {% if product %}disabled{% endif %}>
+                    <select name="category" id="categorySelect" class="form-control-select" required {% if product %}disabled{% endif %}>
                         <option value="platform" {% if product and product.category == 'platform' %}selected{% endif %}>
                             Plataforma Individual (Cuenta personal)
                         </option>
                         <option value="combosDuo" {% if product and product.category == 'combosDuo' %}selected{% endif %}>
-                            Combo Dúo (Paquete 2 en 1)
+                            Combo Dúo (Paquete 2 en 1 - Dos Imágenes)
                         </option>
                         <option value="combotres" {% if product and product.category == 'combotres' %}selected{% endif %}>
                             Combo Trío (Mega Pack x3)
                         </option>
                     </select>
                     {% if product %}
-                        <small style="font-size:0.75rem; color:#64748b; margin-top:0.25rem;">
+                        <input type="hidden" name="category" value="{{ product.category }}">
+                        <small style="font-size:0.75rem; color:#64748b; margin-top:0.25rem; display:block;">
                             * La categoría original está bloqueada para preservar la integridad de los combos.
                         </small>
                     {% endif %}
@@ -95,14 +96,20 @@
                     </div>
                 </div>
 
-                <!-- Imagen del Producto y Previsualizador en Vivo -->
+                <!-- Imagen 1: Principal o Primera Plataforma para Combo Dúo -->
                 <div class="form-field-group">
-                    <label class="form-field-label">Imagen / Logo Oficial</label>
+                    <label class="form-field-label" id="image1Label">
+                        {% if product and product.category == 'combosDuo' %}
+                            <i class="bi bi-image"></i> Imagen 1 (Primera Plataforma del Combo Dúo) *
+                        {% else %}
+                            Imagen / Portada Oficial *
+                        {% endif %}
+                    </label>
                     
                     <div class="image-upload-box" onclick="document.getElementById('imageFileInput').click();">
                         <i class="bi bi-cloud-arrow-up-fill" style="font-size: 2rem; color: var(--color-blue-royal);"></i>
                         <p style="font-size: 0.88rem; font-weight: 700; color: var(--color-navy-dark); margin: 0.35rem 0;">
-                            Haz clic aquí para seleccionar o reemplazar la imagen
+                            Haz clic aquí para seleccionar o reemplazar la Imagen 1
                         </p>
                         <p style="font-size: 0.78rem; color: #64748b; margin: 0;">
                             Formatos soportados: SVG, PNG, JPG o WEBP (máx. 5MB)
@@ -115,12 +122,46 @@
                                accept="image/*" 
                                style="display: none;">
                         
-                        <!-- Previsualización en Vivo -->
+                        <!-- Previsualización en Vivo Imagen 1 -->
                         <div class="image-preview-previewer" id="imagePreviewContainer" 
-                             style="{% if not (product and product.image_url) %}display: none;{% endif %}">
+                             style="{% if not (product and (product.image_1 or product.image_url)) %}display: none;{% endif %}">
                             <img id="imageLivePreview" 
-                                 src="{% if product and product.image_url %}{{ url_for('static', filename=product.image_url) }}{% endif %}" 
-                                 alt="Previsualización"
+                                 src="{% if product and (product.image_1 or product.image_url) %}{{ url_for('static', filename=product.image_1 or product.image_url) }}{% endif %}" 
+                                 alt="Previsualización Imagen 1"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen 2: Segunda Plataforma Exclusiva para Combo Dúo -->
+                <div class="form-field-group" id="image2FieldGroup" 
+                     style="{% if not (product and product.category == 'combosDuo') %}display: none;{% endif %}">
+                    <label class="form-field-label" style="color: var(--color-blue-royal);">
+                        <i class="bi bi-layers-half"></i> Imagen 2 (Segunda Plataforma del Combo Dúo) *
+                    </label>
+                    
+                    <div class="image-upload-box" onclick="document.getElementById('imageFileInput2').click();" style="border-color: rgba(0, 102, 255, 0.4); background: rgba(0, 102, 255, 0.02);">
+                        <i class="bi bi-cloud-arrow-up-fill" style="font-size: 2rem; color: var(--color-blue-electric);"></i>
+                        <p style="font-size: 0.88rem; font-weight: 700; color: var(--color-navy-dark); margin: 0.35rem 0;">
+                            Haz clic aquí para seleccionar o reemplazar la Imagen 2
+                        </p>
+                        <p style="font-size: 0.78rem; color: #64748b; margin: 0;">
+                            Formatos soportados: SVG, PNG, JPG o WEBP (máx. 5MB)
+                        </p>
+                        
+                        <!-- Input oculto Imagen 2 -->
+                        <input type="file" 
+                               name="image_2" 
+                               id="imageFileInput2" 
+                               accept="image/*" 
+                               style="display: none;">
+                        
+                        <!-- Previsualización en Vivo Imagen 2 -->
+                        <div class="image-preview-previewer" id="imagePreviewContainer2" 
+                             style="{% if not (product and product.image_2) %}display: none;{% endif %}">
+                            <img id="imageLivePreview2" 
+                                 src="{% if product and product.image_2 %}{{ url_for('static', filename=product.image_2) }}{% endif %}" 
+                                 alt="Previsualización Imagen 2"
                                  onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                         </div>
                     </div>

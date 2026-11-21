@@ -27,7 +27,7 @@ def new_product():
         code = request.form.get('code')
         currency = request.form.get('currency', 'C$')
 
-        # Procesar imagen subida desde el formulario
+        # Procesar Imagen 1 (principal)
         image_file = request.files.get('image')
         image_url = "imagenes/Individuales/1.svg" # Imagen por defecto si no sube una
         if image_file and image_file.filename != '':
@@ -37,13 +37,26 @@ def new_product():
                 flash(str(e), 'danger')
                 return render_template('admin/product_form.html', action='Crear')
 
+        features = {'image_1': image_url}
+
+        # Procesar Imagen 2 (segunda plataforma para combos duo)
+        image_file_2 = request.files.get('image_2')
+        if image_file_2 and image_file_2.filename != '':
+            try:
+                image_2_url = save_uploaded_image(image_file_2)
+                features['image_2'] = image_2_url
+            except ValueError as e:
+                flash(f'Error en Imagen 2: {str(e)}', 'danger')
+                return render_template('admin/product_form.html', action='Crear')
+
         create_product(
             title=title,
             category=category,
             price=price,
             image_url=image_url,
             code=code,
-            currency=currency
+            currency=currency,
+            features=features
         )
         flash('Producto creado exitosamente.', 'success')
         return redirect(url_for('admin.dashboard'))
@@ -62,7 +75,7 @@ def edit_product(product_id):
         title = request.form.get('title')
         price = request.form.get('price')
         
-        # Verificar si subió una nueva imagen
+        # Verificar si subió una nueva Imagen 1
         image_file = request.files.get('image')
         new_image_url = None
         if image_file and image_file.filename != '':
@@ -72,11 +85,26 @@ def edit_product(product_id):
                 flash(str(e), 'danger')
                 return render_template('admin/product_form.html', action='Editar', product=product)
 
+        # Verificar si subió una nueva Imagen 2
+        image_file_2 = request.files.get('image_2')
+        features_update = {}
+        if new_image_url:
+            features_update['image_1'] = new_image_url
+            
+        if image_file_2 and image_file_2.filename != '':
+            try:
+                new_image_2_url = save_uploaded_image(image_file_2)
+                features_update['image_2'] = new_image_2_url
+            except ValueError as e:
+                flash(f'Error en Imagen 2: {str(e)}', 'danger')
+                return render_template('admin/product_form.html', action='Editar', product=product)
+
         update_product_price_and_image(
             product_id=product.id,
             new_price=price,
             new_image_url=new_image_url,
-            title=title
+            title=title,
+            features=features_update if features_update else None
         )
         flash('Producto actualizado correctamente.', 'success')
         return redirect(url_for('admin.dashboard'))

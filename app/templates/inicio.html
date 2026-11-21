@@ -242,96 +242,96 @@
 </section>
 
 <!-- ==========================================================================
-     4. SECCIÓN 2: CATÁLOGO DE COMBOS DÚO (2 PLATAFORMAS)
+     4. SECCIÓN 2: CATÁLOGO DE COMBOS DÚO (2 PLATAFORMAS CON DOBLE IMAGEN)
      ========================================================================== -->
-<section class="combos-section" id="combos-duos" style="padding: 3rem 0; background: var(--bg-secondary);">
+<section class="combos-section" id="combos-duos" style="padding: 4.5rem 0; background: #ffffff; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
     <div class="site-container">
 
-        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
-            <span class="section-tag" style="justify-content: center;">
-                <i class="bi bi-collection-play-fill"></i> Catálogo Combos Dúo
-            </span>
-            <h2 class="section-title">Nuestros Paquetes Dúo Más Pedidos</h2>
-            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
-                Plataformas activadas al instante, con soporte garantizado y el mayor ahorro en Nicaragua.
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 2.75rem;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(0, 54, 159, 0.08); color: var(--color-blue-royal); font-size: 1.5rem; margin-bottom: 0.75rem;">
+                <i class="bi bi-collection-play-fill"></i>
+            </div>
+            <h2 class="section-title" style="margin-bottom: 0.45rem;">Combos Dúo de Streaming</h2>
+            <p class="section-subtitle" style="margin: 0 auto;">
+                Tus dos plataformas favoritas en un solo paquete, con acceso independiente y el mayor ahorro en Nicaragua.
             </p>
         </div>
 
         <div class="combos-grid">
             {% for combo in combosDuos %}
-            <article class="combo-card">
-                <div class="combo-ribbon-savings">AHORRO DÚO</div>
-
-                <div>
-                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
-                        <img src="{{ url_for('static', filename=combo.image or 'imagenes/CombosDuos/netf_disney.svg') }}" 
-                             alt="{{ combo.title }}" 
-                             style="max-height: 100%; object-fit: contain;"
-                             onerror="this.onerror=null; this.src='/static/imagenes/CombosDuos/netf_disney.svg';">
-                    </div>
-
-                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-electric); text-transform:uppercase; letter-spacing:0.5px;">
-                        Paquete 2 en 1
-                    </span>
-                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">
-                        {{ combo.title }}
-                    </h3>
-                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">
-                        Acceso simultáneo a tus 2 plataformas preferidas con perfiles separados y soporte directo en Nicaragua.
-                    </p>
-
-                    <div style="display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.5rem; font-size:0.8rem; font-weight:600; color:var(--text-body);">
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <i class="bi bi-check-circle-fill" style="color:var(--color-blue-electric);"></i> 2 Cuentas / Perfiles independientes
+            <article class="combo-duo-card">
+                
+                <!-- Fondo con 2 Imágenes Divididas o 1 si no hay segunda imagen -->
+                <div class="combo-duo-bg">
+                    {% if combo.image_2 %}
+                        <div class="combo-duo-panel combo-duo-panel--left">
+                            <img src="{{ url_for('static', filename=combo.image_1) }}" 
+                                 alt="{{ combo.title }} - Plataforma 1" 
+                                 class="combo-duo-bg-img"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                         </div>
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <i class="bi bi-check-circle-fill" style="color:var(--color-blue-electric);"></i> Smart TV, Celular, Laptop y Tablet
+                        <div class="combo-duo-divider">
+                            <span class="combo-duo-plus-badge">+</span>
                         </div>
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <i class="bi bi-check-circle-fill" style="color:var(--color-blue-electric);"></i> Facturación unificada en C$
+                        <div class="combo-duo-panel combo-duo-panel--right">
+                            <img src="{{ url_for('static', filename=combo.image_2) }}" 
+                                 alt="{{ combo.title }} - Plataforma 2" 
+                                 class="combo-duo-bg-img"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="combo-duo-panel" style="width: 100%;">
+                            <img src="{{ url_for('static', filename=combo.image_1 or combo.image or 'imagenes/CombosDuos/netf_disney.svg') }}" 
+                                 alt="{{ combo.title }}" 
+                                 class="combo-duo-bg-img"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/CombosDuos/netf_disney.svg';">
+                        </div>
+                    {% endif %}
+                    <div class="combo-duo-overlay"></div>
                 </div>
 
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Combo</span>
-                        <div>
-                            <span class="price-val">{{ combo.currency }} {{ "%.2f"|format(combo.price) }}</span>
-                            <span class="price-period">/{{ combo.period }}</span>
-                        </div>
+                <!-- Badge Superior -->
+                <div class="combo-duo-badge-top">
+                    <i class="bi bi-stars"></i> Paquete Dúo 2 en 1
+                </div>
+
+                <!-- Contenido Inferior Centrado sobre el Degradado -->
+                <div class="combo-duo-info">
+                    <h3 class="combo-duo-title">{{ combo.title }}</h3>
+                    <p class="combo-duo-desc">
+                        Acceso simultáneo a tus 2 plataformas con perfiles separados y soporte directo en Nicaragua.
+                    </p>
+
+                    <div class="combo-duo-pills">
+                        <span class="combo-pill-tag"><i class="bi bi-display"></i> 2 Pantallas</span>
+                        <span class="combo-pill-tag"><i class="bi bi-key-fill"></i> PIN Privado</span>
+                        <span class="combo-pill-tag"><i class="bi bi-shield-check"></i> Garantía</span>
                     </div>
 
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20Combo%20Dúo%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
+                    <div class="combo-duo-price">
+                        <span class="price-val-main">{{ combo.currency }} {{ "%.0f"|format(combo.price) }}</span>
+                        <span class="price-unit-main">/{{ combo.period }}</span>
+                    </div>
+
+                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20contratar%20el%20Combo%20Dúo%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
                        target="_blank" 
-                       class="btn-card-contract"
+                       class="btn-pill-contract btn-pill-contract--duo"
                        rel="noopener noreferrer"
                        title="Contratar {{ combo.title }}">
                         <i class="bi bi-whatsapp"></i>
                         <span>Pedir Dúo</span>
                     </a>
                 </div>
+
             </article>
             {% else %}
-            <!-- Card de respaldo si la base de datos aún no tiene combosDuo -->
-            <article class="combo-card">
-                <div class="combo-ribbon-savings">AHORRAS C$ 40</div>
-                <div>
-                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
-                        <img src="{{ url_for('static', filename='imagenes/CombosDuos/netf_disney.svg') }}" alt="Netflix + Disney+" style="max-height: 100%; object-fit: contain;">
-                    </div>
-                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-electric); text-transform:uppercase;">Combo Pareja #1</span>
-                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">Netflix 4K + Disney+</h3>
-                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">Series globales, Marvel, Pixar y deportes en directo ESPN con perfiles privados.</p>
-                </div>
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Combo</span>
-                        <span class="price-val">C$ 230.00 <small class="price-period">/mes</small></span>
-                    </div>
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20el%20Combo%20Netflix%20%2B%20Disney" target="_blank" class="btn-card-contract"><i class="bi bi-whatsapp"></i> Pedir Dúo</a>
-                </div>
-            </article>
+            <div style="padding: 2.5rem; text-align: center; color: var(--text-muted); width: 100%; grid-column: 1 / -1;">
+                <i class="bi bi-inbox" style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;"></i>
+                <p>No hay combos dúo activos en este momento. Agrega uno desde el Panel de Administración con sus dos imágenes.</p>
+            </div>
             {% endfor %}
         </div>
 
