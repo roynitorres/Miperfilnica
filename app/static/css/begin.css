@@ -1018,6 +1018,13 @@
   white-space: nowrap;
 }
 
+/* Badge Superior de Ahorro / Descuento */
+.combo-duo-badge-top--savings {
+  background: linear-gradient(135deg, #059669, #10b981);
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+}
+
 /* Contenido Inferior Centrado */
 .combo-duo-info {
   position: relative;
@@ -1097,6 +1104,33 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
+}
+
+/* Precio original tachado si hay descuento */
+.price-val-original {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: line-through;
+  margin-right: 0.35rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Píldora de Ahorro bajo el precio */
+.combo-savings-pill-sub {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  color: #34d399;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.22rem 0.75rem;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3px;
 }
 
 .btn-pill-contract--duo {

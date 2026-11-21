@@ -107,15 +107,31 @@ document.addEventListener("DOMContentLoaded", () => {
   setupImagePreview("imageFileInput", "imageLivePreview", "imagePreviewContainer");
   setupImagePreview("imageFileInput2", "imageLivePreview2", "imagePreviewContainer2");
 
-  // 2.1 CONMUTADOR DINÁMICO DE CAMPOS SEGÚN CATEGORÍA (COMBOS DÚO = 2 IMÁGENES)
+  // 2.1 CONMUTADOR DINÁMICO Y CALCULADORA INTELIGENTE DE COMBOS DÚO
   const categorySelect = document.getElementById("categorySelect");
+  const duoBuilderBox = document.getElementById("duoBuilderBox");
   const image2FieldGroup = document.getElementById("image2FieldGroup");
   const image1Label = document.getElementById("image1Label");
+  const platform1Select = document.getElementById("platform1Select");
+  const platform2Select = document.getElementById("platform2Select");
+  const duoSumDisplay = document.getElementById("duoSumDisplay");
+  const originalPriceInput = document.getElementById("originalPriceInput");
+  const discountInput = document.getElementById("discountInput");
+  const badgePreviewText = document.getElementById("badgePreviewText");
+  const productPriceInput = document.getElementById("productPriceInput");
+  const productTitleInput = document.getElementById("productTitleInput");
+  const inheritedImage1 = document.getElementById("inheritedImage1");
+  const inheritedImage2 = document.getElementById("inheritedImage2");
+  const previewImg1 = document.getElementById("imageLivePreview");
+  const previewContainer1 = document.getElementById("imagePreviewContainer");
+  const previewImg2 = document.getElementById("imageLivePreview2");
+  const previewContainer2 = document.getElementById("imagePreviewContainer2");
 
-  if (categorySelect && image2FieldGroup) {
+  if (categorySelect) {
     const handleCategoryChange = () => {
       const isDuo = categorySelect.value === "combosDuo";
-      image2FieldGroup.style.display = isDuo ? "block" : "none";
+      if (image2FieldGroup) image2FieldGroup.style.display = isDuo ? "block" : "none";
+      if (duoBuilderBox) duoBuilderBox.style.display = isDuo ? "block" : "none";
       if (image1Label) {
         image1Label.innerHTML = isDuo
           ? '<i class="bi bi-image"></i> Imagen 1 (Primera Plataforma del Combo Dúo) *'
@@ -124,6 +140,86 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     categorySelect.addEventListener("change", handleCategoryChange);
+  }
+
+  const updateDuoCalculation = (source = "platforms") => {
+    if (!platform1Select || !platform2Select) return;
+
+    const opt1 = platform1Select.options[platform1Select.selectedIndex];
+    const opt2 = platform2Select.options[platform2Select.selectedIndex];
+
+    const price1 = opt1 ? parseFloat(opt1.dataset.price) || 0 : 0;
+    const price2 = opt2 ? parseFloat(opt2.dataset.price) || 0 : 0;
+    const sum = price1 + price2;
+
+    if (duoSumDisplay) duoSumDisplay.textContent = `C$ ${sum.toFixed(2)}`;
+    if (originalPriceInput) originalPriceInput.value = sum.toFixed(2);
+
+    let discount = discountInput ? parseFloat(discountInput.value) || 0 : 0;
+
+    // Actualizar título sugerido si el usuario no ha escrito uno personalizado o si está creando
+    if (source === "platforms" && productTitleInput) {
+      const title1 = opt1 && opt1.dataset.title ? opt1.dataset.title.trim() : "";
+      const title2 = opt2 && opt2.dataset.title ? opt2.dataset.title.trim() : "";
+      if (title1 && title2) {
+        productTitleInput.value = `${title1} + ${title2}`;
+      }
+    }
+
+    // Heredar imágenes si la plataforma tiene una y no se ha subido una personalizada
+    if (source === "platforms") {
+      const img1 = opt1 ? opt1.dataset.image : "";
+      const img2 = opt2 ? opt2.dataset.image : "";
+      if (img1 && inheritedImage1) {
+        inheritedImage1.value = img1;
+        if (previewImg1) {
+          previewImg1.src = `/static/${img1}`;
+          if (previewContainer1) previewContainer1.style.display = "flex";
+        }
+      }
+      if (img2 && inheritedImage2) {
+        inheritedImage2.value = img2;
+        if (previewImg2) {
+          previewImg2.src = `/static/${img2}`;
+          if (previewContainer2) previewContainer2.style.display = "flex";
+        }
+      }
+    }
+
+    if (source === "price" && productPriceInput) {
+      const finalP = parseFloat(productPriceInput.value) || 0;
+      if (sum > 0) {
+        discount = Math.max(0, sum - finalP);
+        if (discountInput) discountInput.value = discount.toFixed(0);
+      }
+    } else {
+      // Calcular precio final a partir de la suma y el descuento
+      const finalPrice = Math.max(0, sum - discount);
+      if (productPriceInput && sum > 0) {
+        productPriceInput.value = finalPrice.toFixed(2);
+      }
+    }
+
+    if (badgePreviewText) {
+      badgePreviewText.textContent = `AHORRA C$ ${discount.toFixed(0)}`;
+    }
+  };
+
+  if (platform1Select) {
+    platform1Select.addEventListener("change", () => updateDuoCalculation("platforms"));
+  }
+  if (platform2Select) {
+    platform2Select.addEventListener("change", () => updateDuoCalculation("platforms"));
+  }
+  if (discountInput) {
+    discountInput.addEventListener("input", () => updateDuoCalculation("discount"));
+  }
+  if (productPriceInput) {
+    productPriceInput.addEventListener("input", () => {
+      if (categorySelect && categorySelect.value === "combosDuo") {
+        updateDuoCalculation("price");
+      }
+    });
   }
 
   // 3. CIERRE DE ALERTAS

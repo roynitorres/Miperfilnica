@@ -61,3 +61,26 @@ class Product(db.Model):
     @property
     def image_2(self):
         return self.features.get('image_2')
+
+    @property
+    def discount(self):
+        try:
+            return float(self.features.get('discount', 0.0) or 0.0)
+        except (ValueError, TypeError):
+            return 0.0
+
+    @property
+    def original_price(self):
+        try:
+            return float(self.features.get('original_price', 0.0) or 0.0)
+        except (ValueError, TypeError):
+            return 0.0
+
+    @property
+    def savings(self):
+        """Calcula el ahorro en C$: o bien el descuento explícito, o la diferencia entre original_price y price"""
+        if self.discount > 0:
+            return self.discount
+        if self.original_price > self.price:
+            return round(self.original_price - self.price, 2)
+        return 0.0
