@@ -301,31 +301,18 @@
                         <!-- Contenido Inferior Centrado sobre el Degradado -->
                         <div class="combo-duo-info">
                             <h3 class="combo-duo-title">{{ combo.title }}</h3>
-                            <p class="combo-duo-desc">
-                                Acceso simultáneo a tus 2 plataformas con perfiles separados y soporte directo en Nicaragua.
-                            </p>
+                           
 
-                            <div class="combo-duo-pills">
-                                <span class="combo-pill-tag"><i class="bi bi-display"></i> 2 Pantallas</span>
-                                <span class="combo-pill-tag"><i class="bi bi-key-fill"></i> PIN Privado</span>
-                                <span class="combo-pill-tag"><i class="bi bi-shield-check"></i> Garantía</span>
-                            </div>
+                            
 
                             <!-- Fila de Precio con Precio Original Tachado y Precio Final -->
                             <div class="combo-duo-price">
-                                {% if combo.original_price > combo.price %}
-                                    <span class="price-val-original">C$ {{ "%.0f"|format(combo.original_price) }}</span>
-                                {% endif %}
+                              
                                 <span class="price-val-main">{{ combo.currency }} {{ "%.0f"|format(combo.price) }}</span>
                                 <span class="price-unit-main">/{{ combo.period }}</span>
                             </div>
 
-                            <!-- Píldora de Ahorro visible bajo el precio -->
-                            {% if combo.savings > 0 %}
-                            <div class="combo-savings-pill-sub">
-                                <i class="bi bi-piggy-bank-fill"></i> Ahorras C$ {{ "%.0f"|format(combo.savings) }}
-                            </div>
-                            {% endif %}
+                           
 
                             <a href="https://wa.me/50576145799?text=Hola,%20deseo%20contratar%20el%20Combo%20Dúo%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
                                target="_blank" 
