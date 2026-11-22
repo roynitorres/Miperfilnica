@@ -270,34 +270,19 @@
                     {% for combo in combosDuos %}
                     <article class="combo-duo-card">
                         
-                        <!-- Fondo con 2 Imágenes Divididas o 1 si no hay segunda imagen -->
-                        <div class="combo-duo-bg">
+                        <!-- Fondo con Transición Alternada de Imágenes Completas -->
+                        <div class="combo-duo-bg {% if combo.image_2 %}combo-duo-bg--animated{% endif %}">
+                            <img src="{{ url_for('static', filename=combo.image_1 or combo.image or 'imagenes/CombosDuos/netf_disney.svg') }}" 
+                                 alt="{{ combo.title }} - Plataforma 1" 
+                                 class="combo-duo-slide combo-duo-slide--1"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                             {% if combo.image_2 %}
-                                <div class="combo-duo-panel combo-duo-panel--left">
-                                    <img src="{{ url_for('static', filename=combo.image_1) }}" 
-                                         alt="{{ combo.title }} - Plataforma 1" 
-                                         class="combo-duo-bg-img"
-                                         loading="lazy"
-                                         onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                                </div>
-                                <div class="combo-duo-divider">
-                                    <span class="combo-duo-plus-badge">+</span>
-                                </div>
-                                <div class="combo-duo-panel combo-duo-panel--right">
-                                    <img src="{{ url_for('static', filename=combo.image_2) }}" 
-                                         alt="{{ combo.title }} - Plataforma 2" 
-                                         class="combo-duo-bg-img"
-                                         loading="lazy"
-                                         onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                                </div>
-                            {% else %}
-                                <div class="combo-duo-panel" style="width: 100%;">
-                                    <img src="{{ url_for('static', filename=combo.image_1 or combo.image or 'imagenes/CombosDuos/netf_disney.svg') }}" 
-                                         alt="{{ combo.title }}" 
-                                         class="combo-duo-bg-img"
-                                         loading="lazy"
-                                         onerror="this.onerror=null; this.src='/static/imagenes/CombosDuos/netf_disney.svg';">
-                                </div>
+                            <img src="{{ url_for('static', filename=combo.image_2) }}" 
+                                 alt="{{ combo.title }} - Plataforma 2" 
+                                 class="combo-duo-slide combo-duo-slide--2"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                             {% endif %}
                             <div class="combo-duo-overlay"></div>
                         </div>
