@@ -266,6 +266,16 @@ function initPlatformsSlider() {
     dotsId: "combosDuoDotsWrapper",
     cardSelector: ".combo-duo-card",
   });
+
+  // 3. Slider de Mega Combos Trío (x3)
+  setupCardSlider({
+    viewportId: "combosTrioViewport",
+    trackId: "combosTrioTrack",
+    prevBtnId: "combosTrioPrevBtn",
+    nextBtnId: "combosTrioNextBtn",
+    dotsId: "combosTrioDotsWrapper",
+    cardSelector: ".combo-trio-card",
+  });
 }
 function initComboCalculator() {
   const pills = document.querySelectorAll(".calc-pill-item");

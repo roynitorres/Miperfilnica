@@ -78,7 +78,6 @@ ul, ol {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: var(--navbar-border);
-  box-shadow: var(--navbar-shadow);
   transition: var(--transition-smooth);
 }
 
@@ -151,7 +150,6 @@ ul, ol {
   height: 7px;
   border-radius: 50%;
   background-color: var(--color-red-live);
-  box-shadow: 0 0 8px var(--color-red-live);
   animation: dotPing 1.8s infinite;
 }
 
@@ -159,12 +157,12 @@ ul, ol {
   0%, 100% {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0 6px var(--color-red-live);
+    
   }
   50% {
     opacity: 0.3;
     transform: scale(1.4);
-    box-shadow: 0 0 12px var(--color-red-live);
+   
   }
 }
 
@@ -268,7 +266,6 @@ ul, ol {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-md);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -430,14 +427,12 @@ ul, ol {
   font-weight: 800;
   padding: 0.65rem 1.45rem;
   border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-wa-glow);
   transition: var(--transition-smooth);
   text-decoration: none;
 }
 
 .btn-whatsapp-cta:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
   color: #ffffff;
 }
 
@@ -491,7 +486,7 @@ ul, ol {
   background: linear-gradient(180deg, var(--color-navy-dark), var(--color-navy-deep));
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding: 1rem 1.5rem 1.5rem;
-  box-shadow: 0 16px 28px rgba(0, 24, 69, 0.4);
+
 }
 
 .mobile-nav-drawer.open {
@@ -749,7 +744,6 @@ ul, ol {
   align-items: center;
   justify-content: center;
   font-size: 1.85rem;
-  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
   transition: var(--transition-spring);
 }
 

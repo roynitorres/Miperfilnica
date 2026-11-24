@@ -75,19 +75,25 @@
                     {% endif %}
                 </div>
 
-                <!-- SELECTOR INTELIGENTE DE PLATAFORMAS PARA COMBO DÚO -->
-                <div id="duoBuilderBox" style="{% if not (product and product.category == 'combosDuo') %}display: none;{% endif %} background: rgba(0, 54, 159, 0.03); border: 1.5px dashed rgba(0, 54, 159, 0.3); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem;">
+                <!-- SELECTOR INTELIGENTE DE PLATAFORMAS PARA COMBOS DÚO Y TRÍO -->
+                <div id="duoBuilderBox" style="{% if not (product and product.category in ['combosDuo', 'combotres']) %}display: none;{% endif %} background: rgba(0, 54, 159, 0.03); border: 1.5px dashed rgba(0, 54, 159, 0.3); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem;">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <i class="bi bi-magic" style="color: var(--color-blue-electric); font-size: 1.2rem;"></i>
-                            <strong style="color: var(--color-navy-dark); font-size: 0.95rem;">Configurador Automático de Combo Dúo</strong>
+                            <strong id="comboBuilderTitle" style="color: var(--color-navy-dark); font-size: 0.95rem;">
+                                {% if product and product.category == 'combotres' %}
+                                    Configurador Automático de Mega Combo Trío (x3)
+                                {% else %}
+                                    Configurador Automático de Combo Dúo (x2)
+                                {% endif %}
+                            </strong>
                         </div>
                         <span style="font-size: 0.75rem; color: #64748b; background: #ffffff; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid var(--border-light);">
                             Calcula suma y descuento en tiempo real
                         </span>
                     </div>
 
-                    <div class="form-row-2col">
+                    <div id="platformsContainerGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
                         <!-- Plataforma 1 -->
                         <div class="form-field-group">
                             <label class="form-field-label">
@@ -125,6 +131,25 @@
                                 {% endfor %}
                             </select>
                         </div>
+
+                        <!-- Plataforma 3 (Para Combos Trío x3) -->
+                        <div class="form-field-group" id="platform3FieldGroup" style="{% if not (product and product.category == 'combotres') %}display: none;{% endif %}">
+                            <label class="form-field-label">
+                                <i class="bi bi-3-circle-fill" style="color: #f59e0b;"></i> Plataforma 3 (Trío) *
+                            </label>
+                            <select name="platform_3_id" id="platform3Select" class="form-control-select">
+                                <option value="" data-title="" data-price="0" data-image="">-- Selecciona Plataforma 3 --</option>
+                                {% for p in platforms %}
+                                <option value="{{ p.id }}" 
+                                        data-title="{{ p.title }}" 
+                                        data-price="{{ p.price }}" 
+                                        data-image="{{ p.image_1 or p.image_url }}"
+                                        {% if product and product.features.get('platform_3_id')|string == p.id|string %}selected{% endif %}>
+                                    {{ p.title }} (C$ {{ "%.0f"|format(p.price) }})
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Fila de Cálculo: Suma de Perfiles + Descuento Manual -->
@@ -140,6 +165,7 @@
                                 <input type="hidden" name="original_price" id="originalPriceInput" value="{{ product.original_price if product else '0' }}">
                                 <input type="hidden" name="inherited_image_1" id="inheritedImage1" value="{{ product.image_1 if product else '' }}">
                                 <input type="hidden" name="inherited_image_2" id="inheritedImage2" value="{{ product.image_2 if product else '' }}">
+                                <input type="hidden" name="inherited_image_3" id="inheritedImage3" value="{{ product.image_3 if product else '' }}">
                             </div>
 
                             <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -234,11 +260,11 @@
                     </div>
                 </div>
 
-                <!-- Imagen 2: Segunda Plataforma Exclusiva para Combo Dúo -->
+                <!-- Imagen 2: Segunda Plataforma para Combo Dúo o Trío -->
                 <div class="form-field-group" id="image2FieldGroup" 
-                     style="{% if not (product and product.category == 'combosDuo') %}display: none;{% endif %}">
-                    <label class="form-field-label" style="color: var(--color-blue-royal);">
-                        <i class="bi bi-layers-half"></i> Imagen 2 (Segunda Plataforma del Combo Dúo) *
+                     style="{% if not (product and product.category in ['combosDuo', 'combotres']) %}display: none;{% endif %}">
+                    <label class="form-field-label" id="image2Label" style="color: var(--color-blue-royal);">
+                        <i class="bi bi-layers-half"></i> Imagen 2 (Segunda Plataforma del Combo) *
                     </label>
                     
                     <div class="image-upload-box" onclick="document.getElementById('imageFileInput2').click();" style="border-color: rgba(0, 102, 255, 0.4); background: rgba(0, 102, 255, 0.02);">
@@ -263,6 +289,40 @@
                             <img id="imageLivePreview2" 
                                  src="{% if product and product.image_2 %}{{ url_for('static', filename=product.image_2) }}{% endif %}" 
                                  alt="Previsualización Imagen 2"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen 3: Tercera Plataforma Exclusiva para Mega Combo Trío -->
+                <div class="form-field-group" id="image3FieldGroup" 
+                     style="{% if not (product and product.category == 'combotres') %}display: none;{% endif %}">
+                    <label class="form-field-label" id="image3Label" style="color: #b45309;">
+                        <i class="bi bi-trophy-fill" style="color: #f59e0b;"></i> Imagen 3 (Tercera Plataforma del Mega Combo Trío) *
+                    </label>
+                    
+                    <div class="image-upload-box" onclick="document.getElementById('imageFileInput3').click();" style="border-color: rgba(245, 158, 11, 0.45); background: rgba(245, 158, 11, 0.03);">
+                        <i class="bi bi-cloud-arrow-up-fill" style="font-size: 2rem; color: #f59e0b;"></i>
+                        <p style="font-size: 0.88rem; font-weight: 700; color: var(--color-navy-dark); margin: 0.35rem 0;">
+                            Haz clic aquí para seleccionar o reemplazar la Imagen 3
+                        </p>
+                        <p style="font-size: 0.78rem; color: #64748b; margin: 0;">
+                            Formatos soportados: SVG, PNG, JPG o WEBP (máx. 5MB)
+                        </p>
+                        
+                        <!-- Input oculto Imagen 3 -->
+                        <input type="file" 
+                               name="image_3" 
+                               id="imageFileInput3" 
+                               accept="image/*" 
+                               style="display: none;">
+                        
+                        <!-- Previsualización en Vivo Imagen 3 -->
+                        <div class="image-preview-previewer" id="imagePreviewContainer3" 
+                             style="{% if not (product and product.image_3) %}display: none;{% endif %}">
+                            <img id="imageLivePreview3" 
+                                 src="{% if product and product.image_3 %}{{ url_for('static', filename=product.image_3) }}{% endif %}" 
+                                 alt="Previsualización Imagen 3"
                                  onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
                         </div>
                     </div>

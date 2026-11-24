@@ -31,10 +31,12 @@ def new_product():
 
         platform_1_id = request.form.get('platform_1_id')
         platform_2_id = request.form.get('platform_2_id')
+        platform_3_id = request.form.get('platform_3_id')
         original_price = request.form.get('original_price')
         discount = request.form.get('discount')
         inherited_image_1 = request.form.get('inherited_image_1')
         inherited_image_2 = request.form.get('inherited_image_2')
+        inherited_image_3 = request.form.get('inherited_image_3')
 
         # Procesar Imagen 1 (principal)
         image_file = request.files.get('image')
@@ -51,6 +53,8 @@ def new_product():
             features['platform_1_id'] = platform_1_id
         if platform_2_id:
             features['platform_2_id'] = platform_2_id
+        if platform_3_id:
+            features['platform_3_id'] = platform_3_id
         if original_price:
             try:
                 features['original_price'] = float(original_price)
@@ -62,7 +66,7 @@ def new_product():
             except ValueError:
                 pass
 
-        # Procesar Imagen 2 (segunda plataforma para combos duo)
+        # Procesar Imagen 2 (segunda plataforma para combos duo y trío)
         image_file_2 = request.files.get('image_2')
         image_2_url = inherited_image_2 or None
         if image_file_2 and image_file_2.filename != '':
@@ -74,6 +78,19 @@ def new_product():
 
         if image_2_url:
             features['image_2'] = image_2_url
+
+        # Procesar Imagen 3 (tercera plataforma para combos trío)
+        image_file_3 = request.files.get('image_3')
+        image_3_url = inherited_image_3 or None
+        if image_file_3 and image_file_3.filename != '':
+            try:
+                image_3_url = save_uploaded_image(image_file_3)
+            except ValueError as e:
+                flash(f'Error en Imagen 3: {str(e)}', 'danger')
+                return render_template('admin/product_form.html', action='Crear', platforms=platforms)
+
+        if image_3_url:
+            features['image_3'] = image_3_url
 
         create_product(
             title=title,
@@ -104,16 +121,20 @@ def edit_product(product_id):
 
         platform_1_id = request.form.get('platform_1_id')
         platform_2_id = request.form.get('platform_2_id')
+        platform_3_id = request.form.get('platform_3_id')
         original_price = request.form.get('original_price')
         discount = request.form.get('discount')
         inherited_image_1 = request.form.get('inherited_image_1')
         inherited_image_2 = request.form.get('inherited_image_2')
+        inherited_image_3 = request.form.get('inherited_image_3')
 
         features_update = {}
         if platform_1_id:
             features_update['platform_1_id'] = platform_1_id
         if platform_2_id:
             features_update['platform_2_id'] = platform_2_id
+        if platform_3_id:
+            features_update['platform_3_id'] = platform_3_id
         if original_price:
             try:
                 features_update['original_price'] = float(original_price)
@@ -151,6 +172,18 @@ def edit_product(product_id):
         elif inherited_image_2 and not product.image_2:
             features_update['image_2'] = inherited_image_2
 
+        # Verificar si subió una nueva Imagen 3
+        image_file_3 = request.files.get('image_3')
+        if image_file_3 and image_file_3.filename != '':
+            try:
+                new_image_3_url = save_uploaded_image(image_file_3)
+                features_update['image_3'] = new_image_3_url
+            except ValueError as e:
+                flash(f'Error en Imagen 3: {str(e)}', 'danger')
+                return render_template('admin/product_form.html', action='Editar', product=product, platforms=platforms)
+        elif inherited_image_3 and not product.image_3:
+            features_update['image_3'] = inherited_image_3
+
         update_product_price_and_image(
             product_id=product.id,
             new_price=price,
@@ -162,8 +195,6 @@ def edit_product(product_id):
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/product_form.html', action='Editar', product=product, platforms=platforms)
-
-    return render_template('admin/product_form.html', action='Editar', product=product)
 
 @admin_bp.route('/product/toggle/<int:product_id>', methods=['POST'])
 @login_required

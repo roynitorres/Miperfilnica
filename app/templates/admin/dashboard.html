@@ -132,9 +132,25 @@
                             data-category="{{ p.category }}" 
                             data-code="{{ p.code or p.id }}">
                             
-                            <!-- Miniatura (Doble para Combos Dúo con 2 imágenes) -->
+                            <!-- Miniatura (Doble para Dúos, Triple para Tríos) -->
                             <td>
-                                {% if p.category == 'combosDuo' and p.image_2 %}
+                                {% if p.category == 'combotres' and (p.image_2 or p.image_3) %}
+                                <div style="display:inline-flex; align-items:center; gap:3px;" title="{{ p.title }} (3 Plataformas)">
+                                    <div class="admin-prod-thumb" style="width:30px; height:30px;">
+                                        <img src="{{ url_for('static', filename=p.image_1) }}" alt="Plat 1" loading="lazy" onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                                    </div>
+                                    <span style="font-weight:900; color:var(--color-blue-royal); font-size:0.7rem;">+</span>
+                                    <div class="admin-prod-thumb" style="width:30px; height:30px;">
+                                        <img src="{{ url_for('static', filename=p.image_2 or p.image_1) }}" alt="Plat 2" loading="lazy" onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                                    </div>
+                                    {% if p.image_3 %}
+                                    <span style="font-weight:900; color:#f59e0b; font-size:0.7rem;">+</span>
+                                    <div class="admin-prod-thumb" style="width:30px; height:30px;">
+                                        <img src="{{ url_for('static', filename=p.image_3) }}" alt="Plat 3" loading="lazy" onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% elif p.category == 'combosDuo' and p.image_2 %}
                                 <div style="display:inline-flex; align-items:center; gap:4px;" title="{{ p.title }} (2 Plataformas)">
                                     <div class="admin-prod-thumb" style="width:34px; height:34px;">
                                         <img src="{{ url_for('static', filename=p.image_1) }}" alt="Plat 1" loading="lazy" onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">

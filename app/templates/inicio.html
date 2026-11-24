@@ -7,12 +7,6 @@
 {% endblock %}
 
 {% block content %}
-<!-- Luces ambientales de fondo -->
-<div class="ambient-glow-wrapper" aria-hidden="true">
-    <div class="ambient-orb-1"></div>
-    <div class="ambient-orb-2"></div>
-    <div class="ambient-orb-3"></div>
-</div>
 
 <!-- ==========================================================================
      1. HERO SECTION DE ALTO IMPACTO (IMAGEN JPG CINEMÁTICA Y PRECIOS EN C$)
@@ -58,7 +52,7 @@
                         <div class="metric-label">Entrega Rápida</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-num highlight-green">100%</div>
+                        <div class="metric-num ">100%</div>
                         <div class="metric-label">Garantía Total</div>
                     </div>
                 </div>
@@ -395,96 +389,131 @@
 <!-- ==========================================================================
      6. SECCIÓN 3: CATÁLOGO DE MEGA COMBOS X3
      ========================================================================== -->
-<section class="combos-section" id="combos-trios" style="padding: 3rem 0; background: #ffffff; border-bottom: 1px solid var(--border-light);">
+<section class="combos-section" id="combos-trios" style="padding: 4.5rem 0; background: #ffffff; border-bottom: 1px solid var(--border-light);">
     <div class="site-container">
 
-        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
-            <span class="section-tag" style="justify-content: center; color:var(--color-amber-gold);">
-                <i class="bi bi-gem"></i> Paquetes Todo Incluido
-            </span>
-            <h2 class="section-title">Mega Combos x3 de Streaming</h2>
-            <p class="section-subtitle" style="margin: 0.5rem auto 0;">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 2.5rem;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(245, 158, 11, 0.1); color: #d97706; font-size: 1.5rem; margin-bottom: 0.75rem;">
+                <i class="bi bi-trophy-fill"></i>
+            </div>
+            <h2 class="section-title" style="margin-bottom: 0.45rem;">Mega Combos x3 de Streaming</h2>
+            <p class="section-subtitle" style="margin: 0 auto;">
                 Elige la combinación triple ideal para ti y tu familia con el mejor precio garantizado de Nicaragua.
             </p>
         </div>
 
-        <div class="combos-grid">
-            {% for combo in combosTrios %}
-            <article class="combo-card combo-card-featured">
-                <div class="combo-ribbon-savings">MEGA TRÍO X3</div>
+        <!-- Slider Horizontal de Mega Combos Trío con Chevrons Laterales -->
+        <div class="platforms-slider-wrapper">
+            <!-- Chevron Izquierdo -->
+            <button type="button" class="platforms-nav-btn platforms-nav-btn--prev" id="combosTrioPrevBtn" aria-label="Mover hacia la izquierda" title="Anterior">
+                <i class="bi bi-chevron-left"></i>
+            </button>
 
-                <div>
-                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
-                        <img src="{{ url_for('static', filename=combo.image or 'imagenes/ComboTrio/21.svg') }}" 
-                             alt="{{ combo.title }}" 
-                             style="max-height: 100%; object-fit: contain;"
-                             onerror="this.onerror=null; this.src='/static/imagenes/ComboTrio/21.svg';">
-                    </div>
-
-                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-royal); text-transform:uppercase;">
-                        Pack Triple Especial
-                    </span>
-                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">
-                        {{ combo.title }}
-                    </h3>
-                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">
-                        Tres servicios estables para cubrir televisión, música y películas con la mejor economía por pantalla.
-                    </p>
-
-                    <div style="display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.5rem; font-size:0.8rem; font-weight:600; color:var(--text-body);">
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <i class="bi bi-check-circle-fill" style="color:#059669;"></i> 3 Perfiles privados con PIN
+            <!-- Viewport Horizontal Deslizante -->
+            <div class="platforms-viewport" id="combosTrioViewport">
+                <div class="platforms-track" id="combosTrioTrack">
+                    {% for combo in combosTrios %}
+                    <article class="combo-duo-card combo-trio-card">
+                        
+                        <!-- Fondo con Transición Alternada de 3 Imágenes Completas -->
+                        <div class="combo-duo-bg {% if combo.image_3 or combo.image_2 %}combo-trio-bg--animated{% endif %}">
+                            <img src="{{ url_for('static', filename=combo.image_1 or combo.image or 'imagenes/ComboTrio/21.svg') }}" 
+                                 alt="{{ combo.title }} - Plataforma 1" 
+                                 class="combo-duo-slide combo-trio-slide--1"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                            {% if combo.image_2 %}
+                            <img src="{{ url_for('static', filename=combo.image_2) }}" 
+                                 alt="{{ combo.title }} - Plataforma 2" 
+                                 class="combo-duo-slide combo-trio-slide--2"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                            {% endif %}
+                            {% if combo.image_3 %}
+                            <img src="{{ url_for('static', filename=combo.image_3) }}" 
+                                 alt="{{ combo.title }} - Plataforma 3" 
+                                 class="combo-duo-slide combo-trio-slide--3"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
+                            {% endif %}
+                            <div class="combo-duo-overlay"></div>
                         </div>
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <i class="bi bi-check-circle-fill" style="color:#059669;"></i> Calidad 4K Ultra HD en todos
-                        </div>
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <i class="bi bi-check-circle-fill" style="color:#059669;"></i> Máximo ahorro mensual en C$
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Trío</span>
-                        <div>
-                            <span class="price-val">{{ combo.currency }} {{ "%.2f"|format(combo.price) }}</span>
-                            <span class="price-period">/{{ combo.period }}</span>
+                        <!-- Badge Superior (Ahorro Destacado o Mega Trío x3) -->
+                        {% if combo.savings > 0 %}
+                        <div class="combo-duo-badge-top combo-duo-badge-top--savings">
+                            <i class="bi bi-tag-fill"></i> AHORRA C$ {{ "%.0f"|format(combo.savings) }}
                         </div>
-                    </div>
+                        {% else %}
+                        <div class="combo-duo-badge-top combo-trio-badge-top">
+                            <i class="bi bi-trophy-fill"></i> Mega Trío 3 en 1
+                        </div>
+                        {% endif %}
 
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20adquirir%20el%20Mega%20Trío%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
-                       target="_blank" 
-                       class="btn-card-contract"
-                       rel="noopener noreferrer"
-                       title="Contratar {{ combo.title }}">
-                        <i class="bi bi-whatsapp"></i>
-                        <span>Pedir Trío</span>
-                    </a>
+                        <!-- Contenido Inferior Centrado sobre el Degradado -->
+                        <div class="combo-duo-info">
+                            <h3 class="combo-duo-title">{{ combo.title }}</h3>
+
+                            <!-- Fila de Precio con Precio Final -->
+                            <div class="combo-duo-price">
+                                <span class="price-val-main">{{ combo.currency }} {{ "%.0f"|format(combo.price) }}</span>
+                                <span class="price-unit-main">/{{ combo.period }}</span>
+                            </div>
+
+                            <a href="https://wa.me/50576145799?text=Hola,%20deseo%20contratar%20el%20Mega%20Trío%20de%20{{ combo.title }}%20({{ combo.currency }}%20{{ '%.2f'|format(combo.price) }})" 
+                               target="_blank" 
+                               class="btn-pill-contract btn-pill-contract--trio"
+                               rel="noopener noreferrer"
+                               title="Contratar {{ combo.title }}">
+                                <i class="bi bi-whatsapp"></i>
+                                <span>Pedir Trío</span>
+                            </a>
+                        </div>
+
+                    </article>
+                    {% else %}
+                    <!-- Card demostrativo de respaldo si no hay registros creados aún -->
+                    <article class="combo-duo-card combo-trio-card">
+                        <div class="combo-duo-bg">
+                            <img src="{{ url_for('static', filename='imagenes/ComboTrio/21.svg') }}" 
+                                 alt="Mega Trío Cine Total" 
+                                 class="combo-duo-slide combo-trio-slide--1"
+                                 loading="lazy">
+                            <div class="combo-duo-overlay"></div>
+                        </div>
+                        <div class="combo-duo-badge-top combo-duo-badge-top--savings">
+                            <i class="bi bi-tag-fill"></i> AHORRA C$ 70
+                        </div>
+                        <div class="combo-duo-info">
+                            <h3 class="combo-duo-title">Netflix + Disney+ + Max</h3>
+                            <div class="combo-duo-price">
+                                <span class="price-val-main">C$ 290</span>
+                                <span class="price-unit-main">/mes</span>
+                            </div>
+                            <a href="https://wa.me/50576145799?text=Hola,%20deseo%20el%20Mega%20Trío%20Netflix%20%2B%20Disney%20%2B%20Max" 
+                               target="_blank" 
+                               class="btn-pill-contract btn-pill-contract--trio"
+                               rel="noopener noreferrer">
+                                <i class="bi bi-whatsapp"></i>
+                                <span>Pedir Trío</span>
+                            </a>
+                        </div>
+                    </article>
+                    {% endfor %}
                 </div>
-            </article>
-            {% else %}
-            <!-- Card de respaldo con Trío Cine Total si no hay registros -->
-            <article class="combo-card combo-card-featured">
-                <div class="combo-ribbon-savings">AHORRAS C$ 70</div>
-                <div>
-                    <div style="width: 100%; height: 110px; border-radius: var(--radius-lg); background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; padding: 0.75rem; margin-bottom: 1.25rem;">
-                        <img src="{{ url_for('static', filename='imagenes/ComboTrio/21.svg') }}" alt="Netflix + Disney + Max" style="max-height: 100%; object-fit: contain;">
-                    </div>
-                    <span style="font-size:0.75rem; font-weight:800; color:var(--color-blue-royal); text-transform:uppercase;">Trío Cine Total</span>
-                    <h3 style="font-size:1.25rem; font-weight:900; color:var(--color-navy-dark); margin:0.25rem 0 0.5rem;">Netflix + Disney+ + Max</h3>
-                    <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.25rem;">Las 3 gigantes del streaming en un solo paquete con calidad 4K UHD.</p>
-                </div>
-                <div class="card-footer-row">
-                    <div class="price-meta">
-                        <span class="price-subtext">Precio Trío</span>
-                        <span class="price-val">C$ 290.00 <small class="price-period">/mes</small></span>
-                    </div>
-                    <a href="https://wa.me/50576145799?text=Hola,%20deseo%20el%20Mega%20Trío%20Netflix%20%2B%20Disney%20%2B%20Max" target="_blank" class="btn-card-contract"><i class="bi bi-whatsapp"></i> Pedir Trío</a>
-                </div>
-            </article>
-            {% endfor %}
+            </div>
+
+            <!-- Chevron Derecho -->
+            <button type="button" class="platforms-nav-btn platforms-nav-btn--next" id="combosTrioNextBtn" aria-label="Mover hacia la derecha" title="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
         </div>
+
+        <!-- Indicador de Dots de Paginación Centrado -->
+        <div class="platforms-dots-wrapper" id="combosTrioDotsWrapper"></div>
+
+    </div>
+</section>
 
     </div>
 </section>

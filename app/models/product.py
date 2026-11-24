@@ -46,6 +46,7 @@ class Product(db.Model):
             "image": self.image_url,
             "image_1": self.image_1,
             "image_2": self.image_2,
+            "image_3": self.image_3,
             "features": self.features,
             "is_active": self.is_active
         }
@@ -61,6 +62,10 @@ class Product(db.Model):
     @property
     def image_2(self):
         return self.features.get('image_2')
+
+    @property
+    def image_3(self):
+        return self.features.get('image_3')
 
     @property
     def discount(self):
