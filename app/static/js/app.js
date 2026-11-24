@@ -363,35 +363,42 @@ function initComboCalculator() {
     // Cálculo numérico
     const subtotal = selectedItems.reduce((acc, curr) => acc + curr.price, 0);
 
-    // Descuentos progresivos
-    let discountRate = 0;
+    // Descuentos en córdobas según la cantidad de plataformas seleccionadas
+    let discountAmount = 0;
     let label = "Cuenta Individual";
 
     if (count === 2) {
-      discountRate = 0.15; // 15% Dúo
-      label = "Combo Dúo (15% OFF)";
+      discountAmount = 10;
+      label = "Combo Dúo (Ahorra C$ 10)";
     } else if (count === 3) {
-      discountRate = 0.25; // 25% Trío
-      label = "Mega Trío (25% OFF)";
+      discountAmount = 20;
+      label = "Mega Trío (Ahorra C$ 20)";
     } else if (count >= 4) {
-      discountRate = 0.35; // 35% Pack Familiar
-      label = `Super Pack x${count} (35% OFF)`;
+      discountAmount = 30;
+      label = `Super Pack x${count} (Ahorra C$ 30)`;
     }
 
     if (badgeType) badgeType.textContent = label;
 
-    const discountAmount = subtotal * discountRate;
-    const finalTotal = subtotal - discountAmount;
+    const finalTotal = Math.max(0, subtotal - discountAmount);
 
     if (subtotalEl) subtotalEl.textContent = `C$ ${subtotal.toFixed(2)}`;
-    if (discountEl) discountEl.textContent = `- C$ ${discountAmount.toFixed(2)} (${discountRate * 100}%)`;
+    if (discountEl) {
+      discountEl.textContent = discountAmount > 0
+        ? `- C$ ${discountAmount.toFixed(2)}`
+        : `C$ 0.00`;
+    }
     if (totalEl) {
       totalEl.innerHTML = `C$ ${finalTotal.toFixed(2)} <span style="font-size:0.85rem; font-weight:normal; color:#7dd3fc;">/mes</span>`;
     }
 
     // Generar enlace dinámico de WhatsApp
     const platformNames = selectedItems.map(i => i.name).join(", ");
-    const waText = `Hola, armé mi Combo Personalizado en la web:\n- Plataformas: ${platformNames}\n- Total mensual en C$: C$ ${finalTotal.toFixed(2)}\n¿Me ayudan a activarlo?`;
+    let waText = `Hola, armé mi Combo Personalizado en la web:\n- Plataformas (${count}): ${platformNames}\n- Subtotal: C$ ${subtotal.toFixed(2)}`;
+    if (discountAmount > 0) {
+      waText += `\n- Descuento aplicado: -C$ ${discountAmount.toFixed(2)}`;
+    }
+    waText += `\n- Total mensual a pagar: C$ ${finalTotal.toFixed(2)}\n¿Me ayudan a activarlo?`;
     const waUrl = `https://wa.me/50576145799?text=${encodeURIComponent(waText)}`;
 
     if (orderBtn) orderBtn.href = waUrl;
