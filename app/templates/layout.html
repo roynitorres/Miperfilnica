@@ -44,9 +44,7 @@
                 <a href="{{ url_for('public.inicio') }}" class="brand-link" title="MiPerfilNica Inicio">
                     <div class="brand-text-block">
                         <span class="brand-name">MiPerfil<span>Nica</span></span>
-                        <span class="brand-badge">
-                            <span class="ping-dot"></span> En Linea
-                        </span>
+                        
                     </div>
                 </a>
 
@@ -193,15 +191,48 @@
                         tu mes.
                     </p>
 
-                    <span
-                        style="font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:0.45rem;">
-                        Métodos de Pago en C$:
-                    </span>
-                    <div class="footer-payment-tags">
-                        <span class="payment-tag">BAC Nicaragua</span>
-                        <span class="payment-tag">LAFISE Bancentro</span>
-                        <span class="payment-tag">Banpro</span>
-                        <span class="payment-tag">Billetera Móvil</span>
+                    <!-- Bloque de Métodos de Pago con Logos de Bancos -->
+                    <div class="footer-payments-block">
+                        <span class="footer-payments-title">
+                            <i class="bi bi-wallet2"></i> Métodos de Pago en C$:
+                        </span>
+                        
+                        <div class="footer-banks-grid">
+                            <div class="footer-bank-card" title="BAC Credomatic Nicaragua">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/bac.svg') }}" 
+                                     alt="BAC Credomatic" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Banpro Grupo Promerica">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/banpro.svg') }}" 
+                                     alt="Banpro Grupo Promerica" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Banco LAFISE Bancentro">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/lafise.svg') }}" 
+                                     alt="Banco LAFISE Bancentro" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Billetera Móvil Banpro">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/billetera_movil.svg') }}" 
+                                     alt="Billetera Móvil" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Banco Ficohsa Nicaragua">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/ficohsa.svg') }}" 
+                                     alt="Banco Ficohsa" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                        </div>
+
+                        <p class="footer-payments-note">
+                            <i class="bi bi-shield-check"></i> Transferencias inmediatas y seguras en Córdobas
+                        </p>
                     </div>
                 </div>
 

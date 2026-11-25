@@ -606,7 +606,8 @@ ul, ol {
 
 @media (min-width: 1024px) {
   .footer-grid {
-    grid-template-columns: 2fr 1fr 1.25fr 1.5fr;
+    grid-template-columns: 2.2fr 1fr 1.25fr 1.4fr;
+    gap: 3rem;
   }
 }
 
@@ -634,6 +635,81 @@ ul, ol {
 .footer-links-list a:hover {
   color: #ffffff;
   transform: translateX(3px);
+}
+
+/* ==========================================================================
+   MÉTODOS DE PAGO CON LOGOS DE BANCOS
+   ========================================================================== */
+.footer-payments-block {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-payments-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--color-cyan-glacier, #38bdf8);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-banks-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.footer-bank-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  height: 38px;
+  min-width: 74px;
+  max-width: 95px;
+  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+  cursor: default;
+}
+
+.footer-bank-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(56, 189, 248, 0.3);
+  border-color: var(--color-cyan-glacier, #38bdf8);
+}
+
+.footer-bank-img {
+  max-height: 22px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.footer-payments-note {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 1.4;
+}
+
+.footer-payments-note i {
+  color: #34d399;
+  font-size: 0.85rem;
 }
 
 .footer-payment-tags {

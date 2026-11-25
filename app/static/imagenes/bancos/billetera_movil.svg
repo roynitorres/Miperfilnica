@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 38" width="135" height="38">
+  <defs>
+    <linearGradient id="bmBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+  </defs>
+  <!-- Smartphone with Wireless Signal Icon -->
+  <g transform="translate(4, 5)">
+    <!-- Phone body -->
+    <rect x="2" y="1" width="18" height="26" rx="3.5" fill="url(#bmBlue)" />
+    <!-- Screen -->
+    <rect x="4.5" y="4" width="13" height="19" rx="1.5" fill="#ffffff" />
+    <!-- Check / Currency Mark on Screen -->
+    <path d="M7 13.5 l2.5 2.5 l5 -5" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Home button dot -->
+    <circle cx="11" cy="24.5" r="0.9" fill="#ffffff" />
+    <!-- Signal waves emitting -->
+    <path d="M21 9 C23 11 23 15 21 17" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" />
+    <path d="M23.5 6 C26.5 9 26.5 17 23.5 20" fill="none" stroke="#0284c7" stroke-width="1.8" stroke-linecap="round" />
+  </g>
+  <!-- Text: Billetera Móvil -->
+  <g font-family="'Plus Jakarta Sans', Arial, sans-serif">
+    <text x="35" y="17" font-size="10.5" font-weight="900" fill="#0369a1" letter-spacing="-0.2">Billetera</text>
+    <text x="35" y="29" font-size="9" font-weight="800" fill="#0284c7" letter-spacing="1">MÓVIL</text>
+  </g>
+</svg>
