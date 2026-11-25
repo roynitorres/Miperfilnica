@@ -188,88 +188,56 @@
 </section>
 
 <!-- ==========================================================================
-     3. SPLIT SCREEN INTERACTIVO PARA COMBOS DÚO
+     3. SPLIT SCREEN PARA COMBOS DÚO: TEXTO A LA IZQUIERDA / IMAGEN A LA DERECHA
      ========================================================================== -->
-<section class="duo-split-section-wrapper" id="descanso-duos">
+<section class="duo-split-section" id="descanso-duos">
     <div class="site-container">
-        <div class="duo-split-container">
+        <div class="duo-split-card">
             
-            <!-- Banner Flotante Superior / Central con la Propuesta de Valor -->
-            <div class="duo-split-header-banner">
-                <span class="duo-split-badge-tag">
+            <!-- Columna Izquierda: Texto y Propuesta de Valor -->
+            <div class="duo-split-content">
+                <span class="duo-split-badge">
                     <i class="bi bi-layers-half"></i> Doble Diversión, Máximo Ahorro
                 </span>
                 <h2 class="duo-split-title">
                     ¿Por qué conformarte con una? <br>
                     <span>Combina y Ahorra en Dúo</span>
                 </h2>
-                <p class="duo-split-subtitle">
+                <p class="duo-split-desc">
                     Junta tus dos plataformas favoritas en un solo pago mensual en córdobas. Cero complicaciones, perfiles 100% independientes y hasta un <strong>35% de descuento</strong> comparado a comprarlas por separado.
                 </p>
+
+                <!-- Beneficios en Píldoras -->
                 <div class="duo-split-features">
-                    <span class="duo-split-feat-item">
-                        <i class="bi bi-check-circle-fill" style="color:#34d399;"></i> 2 Pantallas a la vez
-                    </span>
-                    <span class="duo-split-feat-item">
-                        <i class="bi bi-wallet2" style="color:var(--color-cyan-glacier);"></i> Un Solo Pago en C$
-                    </span>
-                    <span class="duo-split-feat-item">
-                        <i class="bi bi-shield-check" style="color:#f59e0b;"></i> Garantía 30 Días
-                    </span>
+                    <div class="duo-split-feat">
+                        <i class="bi bi-check-circle-fill" style="color:#34d399;"></i>
+                        <span>2 Pantallas a la vez</span>
+                    </div>
+                    <div class="duo-split-feat">
+                        <i class="bi bi-wallet2" style="color:var(--color-cyan-glacier);"></i>
+                        <span>Un Solo Pago en C$</span>
+                    </div>
+                    <div class="duo-split-feat">
+                        <i class="bi bi-shield-check" style="color:#f59e0b;"></i>
+                        <span>Garantía 30 Días</span>
+                    </div>
                 </div>
-                <div style="margin-top: 0.85rem;">
-                    <a href="#combos-duos" class="btn-pill-contract btn-pill-contract--duo" style="padding: 0.45rem 1.35rem; font-size: 0.82rem; text-decoration: none;">
+
+                <!-- Botón de Acción -->
+                <div class="duo-split-actions">
+                    <a href="#combos-duos" class="btn-pill-contract btn-pill-contract--duo">
                         <i class="bi bi-collection-play-fill"></i>
                         <span>Ver Catálogo de Dúos</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Panel Izquierdo (50%): Plataforma 1 -->
-            <div class="duo-split-panel duo-split-panel--left" onclick="document.getElementById('combos-duos').scrollIntoView({behavior: 'smooth'});">
-                <img src="{{ url_for('static', filename='uploads/2966f50d1edc4b37a46f13b47403c753_La_casa_de_papel.jpg') }}" 
-                     alt="Plataforma 1 - Cine y Series de Estreno" 
-                     class="duo-split-bg-img"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                <div class="duo-split-overlay"></div>
-                
-                <div class="duo-split-panel-info">
-                    <span class="duo-split-platform-tag">
-                        <i class="bi bi-1-circle-fill"></i> Plataforma 1
-                    </span>
-                    <h3 class="duo-split-panel-title">Series Globales & Cine de Estreno</h3>
-                    <p class="duo-split-panel-desc">
-                        Estrenos mundiales, películas de acción y anime exclusivo en calidad 4K Ultra HD sin cortes.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Divisor Central con Insignia '+' -->
-            <div class="duo-split-center-divider">
-                <div class="duo-split-plus-badge" title="Combina tus 2 plataformas">
-                    <i class="bi bi-plus-lg"></i>
-                </div>
-            </div>
-
-            <!-- Panel Derecho (50%): Plataforma 2 -->
-            <div class="duo-split-panel duo-split-panel--right" onclick="document.getElementById('combos-duos').scrollIntoView({behavior: 'smooth'});">
-                <img src="{{ url_for('static', filename='uploads/cee1278bce25446298e15b8e2d704a5f_MOANA.jpg') }}" 
-                     alt="Plataforma 2 - Familia, Deportes y Música" 
-                     class="duo-split-bg-img"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='/static/imagenes/Individuales/1.svg';">
-                <div class="duo-split-overlay"></div>
-
-                <div class="duo-split-panel-info">
-                    <span class="duo-split-platform-tag">
-                        <i class="bi bi-2-circle-fill"></i> Plataforma 2
-                    </span>
-                    <h3 class="duo-split-panel-title">Familia, Clásicos & Deportes en Vivo</h3>
-                    <p class="duo-split-panel-desc">
-                        Mundos mágicos, transmisiones deportivas en vivo y música ilimitada para todos en casa.
-                    </p>
-                </div>
+            <!-- Columna Derecha: Imagen Representativa -->
+            <div class="duo-split-media">
+                <img src="{{ url_for('static', filename='imagenes/combos_duo_banner.jpg') }}" 
+                     alt="Ilustración Combos Dúo MiPerfilNica" 
+                     class="duo-split-img"
+                     loading="lazy">
             </div>
 
         </div>
