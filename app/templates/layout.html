@@ -191,17 +191,43 @@
                         tu mes.
                     </p>
 
-                    <!-- Bloque de Métodos de Pago: Imagen a Ancho Completo -->
+                    <!-- Bloque de Métodos de Pago con Logos de Bancos (4-5 métodos) -->
                     <div class="footer-payments-block">
                         <span class="footer-payments-title">
                             <i class="bi bi-wallet2"></i> Métodos de Pago en C$:
                         </span>
                         
-                        <div class="footer-payment-banner">
-                            <img src="{{ url_for('static', filename='imagenes/bancos/bac.png') }}" 
-                                 alt="Métodos de Pago - BAC Credomatic" 
-                                 class="footer-payment-img" 
-                                 loading="lazy">
+                        <div class="footer-banks-grid">
+                            <div class="footer-bank-card" title="BAC Credomatic Nicaragua">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/bac.png') }}" 
+                                     alt="BAC Credomatic" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Banpro Grupo Promerica">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/banpro.svg') }}" 
+                                     alt="Banpro Grupo Promerica" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Banco LAFISE Bancentro">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/lafise.svg') }}" 
+                                     alt="Banco LAFISE Bancentro" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Billetera Móvil Banpro">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/billetera_movil.svg') }}" 
+                                     alt="Billetera Móvil" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
+                            <div class="footer-bank-card" title="Banco Ficohsa Nicaragua">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/ficohsa.svg') }}" 
+                                     alt="Banco Ficohsa" 
+                                     class="footer-bank-img" 
+                                     loading="lazy">
+                            </div>
                         </div>
 
                         <p class="footer-payments-note">

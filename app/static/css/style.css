@@ -638,7 +638,7 @@ ul, ol {
 }
 
 /* ==========================================================================
-   MÉTODOS DE PAGO: BANNER A ANCHO COMPLETO
+   MÉTODOS DE PAGO: TARJETAS DE BANCOS A ANCHO COMPLETO
    ========================================================================== */
 .footer-payments-block {
   margin-top: 1.5rem;
@@ -658,48 +658,25 @@ ul, ol {
   margin-bottom: 0.75rem;
 }
 
-/* Banner de imagen a ancho completo */
-.footer-payment-banner {
-  width: 100%;
-  border-radius: var(--radius-md, 10px);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  background: #001233;
-  display: block;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.footer-payment-banner:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px rgba(56, 189, 248, 0.25);
-  border-color: var(--color-cyan-glacier, #38bdf8);
-}
-
-.footer-payment-img {
-  width: 100%;
-  height: auto;
-  max-height: 140px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
 .footer-banks-grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
   gap: 0.55rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .footer-banks-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .footer-bank-card {
   background: #ffffff;
-  border-radius: 8px;
-  padding: 0.35rem 0.65rem;
-  height: 38px;
-  min-width: 74px;
-  max-width: 95px;
-  flex: 0 1 auto;
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.35rem 0.5rem;
+  height: 44px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -707,6 +684,7 @@ ul, ol {
   border: 1px solid rgba(255, 255, 255, 0.18);
   transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.22s ease, border-color 0.22s ease;
   cursor: default;
+  overflow: hidden;
 }
 
 .footer-bank-card:hover {
@@ -716,11 +694,11 @@ ul, ol {
 }
 
 .footer-bank-img {
-  max-height: 22px;
-  max-width: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  max-height: 34px;
   object-fit: contain;
+  object-position: center;
   display: block;
 }
 
