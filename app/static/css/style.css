@@ -638,7 +638,7 @@ ul, ol {
 }
 
 /* ==========================================================================
-   MÉTODOS DE PAGO CON LOGOS DE BANCOS
+   MÉTODOS DE PAGO: BANNER A ANCHO COMPLETO
    ========================================================================== */
 .footer-payments-block {
   margin-top: 1.5rem;
@@ -656,6 +656,33 @@ ul, ol {
   align-items: center;
   gap: 0.45rem;
   margin-bottom: 0.75rem;
+}
+
+/* Banner de imagen a ancho completo */
+.footer-payment-banner {
+  width: 100%;
+  border-radius: var(--radius-md, 10px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  background: #001233;
+  display: block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.footer-payment-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px rgba(56, 189, 248, 0.25);
+  border-color: var(--color-cyan-glacier, #38bdf8);
+}
+
+.footer-payment-img {
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .footer-banks-grid {
