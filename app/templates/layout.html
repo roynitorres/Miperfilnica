@@ -30,7 +30,7 @@
 
     <!-- Estilos de Diseño Puros (Independientes de Bootstrap) -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
     {% block extra_css %}{% endblock %}
 </head>
 
@@ -198,10 +198,11 @@
                         </span>
                         
                         <div class="footer-banks-grid">
-                            <div class="footer-bank-card" title="BAC Credomatic Nicaragua">
-                                <img src="{{ url_for('static', filename='imagenes/bancos/bac.png') }}" 
+                            <div class="footer-bank-card" title="BAC Credomatic Nicaragua" style="padding: 0; overflow: hidden;">
+                                <img src="{{ url_for('static', filename='imagenes/bancos/bac.png') }}?v=4" 
                                      alt="BAC Credomatic" 
                                      class="footer-bank-img" 
+                                     style="width: 100%; height: 100%; object-fit: cover; display: block;"
                                      loading="lazy">
                             </div>
                             <div class="footer-bank-card" title="Banpro Grupo Promerica">
